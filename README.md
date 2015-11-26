@@ -2,14 +2,14 @@
 Verkefni 1
 
 
-##DATA LAYER
+####DATA LAYER
 TODO: Struct for person
 DONE: Add person to XML
 TODO: Read persons from XML
 TODO: Delete a person from XML(?)
 
-##DOMAIN LAYER
+####DOMAIN LAYER
 TODO: *
 
-##PRESENTATION LAYER/UI
+####PRESENTATION LAYER/UI
 TODO: *
