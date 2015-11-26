@@ -5,7 +5,7 @@ xmlfile::xmlfile(QString xmlfilename)
 {
     filename = xmlfilename + ".xml";
     file.setFileName(filename);
-    initializeWriter();
+    xmlwriter.setDevice(&file);
 
     if (!file.exists())
     {
@@ -34,11 +34,6 @@ void xmlfile::addPerson(QString newname) //Adds new Person, TODO: Create a 'Pers
 }
 
 //========PRIVATE FUNCTIONS==========
-void xmlfile::initializeWriter()
-{
-    xmlwriter.setDevice(&file);
-}
-
 void xmlfile::createNewFile()
 {
     file.open(QIODevice::WriteOnly);

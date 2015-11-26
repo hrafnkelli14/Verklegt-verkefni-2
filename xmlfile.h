@@ -12,7 +12,6 @@ public:
     void addPerson(QString newname); //Adds new Person, TODO: Create a 'Person' struct with DoB, name etc
 private:
     void createNewFile(); //Creates a new xml file if there isn't a corresponding one
-    void initializeWriter(); //initializes a new XmlStreamWriter instance
     QString filename; //filename of xml file
     QFile file;
     QXmlStreamWriter xmlwriter;
