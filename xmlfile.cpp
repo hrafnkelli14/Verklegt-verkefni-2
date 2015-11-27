@@ -43,6 +43,11 @@ void XmlFile::setFile(QString newfile)
     checkExists();
 }
 
+void XmlFile::deletePerson(QString name)
+{
+    //TODO
+}
+
 //========PRIVATE FUNCTIONS==========
 void XmlFile::createNewFile()
 {
