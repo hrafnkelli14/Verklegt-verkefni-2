@@ -4,7 +4,11 @@ Verkefni 1
 
 
 ######DATA LAYER
+<<<<<<< HEAD
 - DONE: Class for computer scientists(*Arnar, Eiríkur*)
+=======
+- TODO(WIP): Class for computer scientists
+>>>>>>> 94e2610407634ccc10613a5da1352a5215107d58
 - DONE: write to xml file(*Hrafnkell*)
 - DONE: read from xml file(*Hrafnkell*)
 
