@@ -10,7 +10,10 @@ Verkefni 1
 - TODO: Delete a person from XML(?)
 
 ######DOMAIN LAYER
-- TODO: *
+- DONE: Add person to database (*Hrafnkell*)
+- TODO: Read persons from database
+- TODO: Delete person from database(?)
+- TODO: OrderBy for persons
 
 ######PRESENTATION LAYER/UI
 - TODO: *
