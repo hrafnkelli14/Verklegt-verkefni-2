@@ -1,12 +1,17 @@
 #include <QCoreApplication>
 #include "requestprocessor.h"
+#include <iostream> //FOR DEBUGGING
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
     RequestProcessor request;
-    //request.addPerson("Alan Turing2"); //Adds new person to xml with the name Alan Turing
+    Person pers;
+    //cin >> pers;
+    //request.addPerson(pers); //Adds new person to xml
+
+    request.outputAll(); //DEBUGGING
 
     return a.exec();
 }

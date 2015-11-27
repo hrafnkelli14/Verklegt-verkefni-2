@@ -10,11 +10,12 @@ class RequestProcessor
 {
 public:
     RequestProcessor();
-    void addPerson(QString personname);
+    void addPerson(const Person &pers);
     void deletePerson(); //TODO IMPLEMENT
+    void outputAll(); //FOR DEBUGGING
 private:
     XmlFile data;
-    QVector<QString> cscientists;
+    QVector<Person> cscientists;
 };
 
 #endif // REQUESTPROCESSOR_H
