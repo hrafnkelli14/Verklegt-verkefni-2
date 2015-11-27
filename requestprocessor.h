@@ -1,4 +1,5 @@
 #include <QString>
+#include <QVector>
 #include "xmlfile.h"
 
 #ifndef REQUESTPROCESSOR_H
@@ -9,11 +10,11 @@ class RequestProcessor
 {
 public:
     RequestProcessor();
-    void addPerson(QString personName);
+    void addPerson(QString personname);
+    void deletePerson(); //TODO IMPLEMENT
 private:
     XmlFile data;
-    void getPersons(); //TODO
-    //RESERVED FOR COMPUTER SCIENTIST VECTOR
+    QVector<QString> cscientists;
 };
 
 #endif // REQUESTPROCESSOR_H

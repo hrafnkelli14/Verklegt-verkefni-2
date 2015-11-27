@@ -4,16 +4,19 @@
 RequestProcessor::RequestProcessor()
 {
    data.setFile("data");
+   cscientists = data.getList();
 }
 
 //========PUBLIC FUNCTIONS==========
 void RequestProcessor::addPerson(QString personname)
 {
-    data.addPerson(personname);
+    cscientists.push_back(personname);
+    data.update(cscientists);
+}
+
+void RequestProcessor::deletePerson()
+{
+    //TODO IMPLEMENT
 }
 
 //========PRIVATE FUNCTIONS==========
-void RequestProcessor::getPersons()
-{
-    //TODO: IMPLEMENT
-}
