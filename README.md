@@ -14,6 +14,7 @@ Verkefni 1
 - TODO: Read persons from database
 - TODO: Delete person from database(?)
 - TODO: OrderBy for persons
+- TODO: Search
 
 ######PRESENTATION LAYER/UI
 - TODO: *
