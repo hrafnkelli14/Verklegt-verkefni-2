@@ -1,20 +1,57 @@
 #include "person.h"
 
 //========CONSTRUCTORS==========
-person::person()
+Person::Person()
 {
     name = "";
     gender = "";
     date_of_birth = "";
     date_of_death = "";
 }
+
 //========PUBLIC FUNCTIONS==========
-string person::getName(person person1)
+QString Person::getName()
 {
-    return person1.name;
+    return QString::fromStdString(name);
 }
+
+QString Person::getGender()
+{
+    return QString::fromStdString(gender);
+}
+
+QString Person::getDoB()
+{
+    return QString::fromStdString(date_of_birth);
+}
+
+QString Person::getDoD()
+{
+    return QString::fromStdString(date_of_death);
+}
+
+void Person::setName(string _name)
+{
+    name = _name;
+}
+
+void Person::setGender(string _gender)
+{
+    gender = _gender;
+}
+
+void Person::setDoB(string dob)
+{
+    date_of_birth = dob;
+}
+
+void Person::setDoD(string dod)
+{
+    date_of_death = dod;
+}
+
 //========FRIEND FUNCTIONS==========
-istream& operator >>(istream& ins, person& person1)
+istream& operator >>(istream& ins, Person& person1)
 {
     char temp;  //temporary variable to enter a character for the persons gender
     string tempGender;  //makes the interface easier to read
@@ -47,7 +84,7 @@ istream& operator >>(istream& ins, person& person1)
     return ins;
 }
 
-ostream& operator <<(ostream& os, person person1)
+ostream& operator <<(ostream& os, Person person1)
 {
     os << person1.name << endl;
     os << person1.gender << endl;
@@ -55,4 +92,3 @@ ostream& operator <<(ostream& os, person person1)
     os << person1.date_of_death << endl;
     return os;
 }
-

@@ -4,10 +4,11 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <QString>
 
 using namespace std;
 
-class person{
+class Person{
 private:
     string name;
     string gender;
@@ -15,10 +16,21 @@ private:
     string date_of_death;
 
 public:
-    person();   //default constructor
-    string getName(person person1); //returns the name of a computer scientist
+    Person();   //default constructor
 
-    friend std::istream& operator >>(std::istream& ins, person& person1);   //overloads the >> operator to read into the variable person
-    friend std::ostream& operator <<(std::ostream& os, person person1);     //overloads the << operator to write out the contants of a variable person
+    //needed to add more 'get' functions for db 'read from' functionality
+    QString getName(); //returns the name of a computer scientist //attribute not needed
+    QString getGender();
+    QString getDoB();
+    QString getDoD();
+
+    //needed to add 'set' functions for db 'read to' functionality
+    void setName(string _name);
+    void setGender(string _gender);
+    void setDoB(string dob);
+    void setDoD(string dod);
+
+    friend std::istream& operator >>(std::istream& ins, Person& person1);   //overloads the >> operator to read into the variable person
+    friend std::ostream& operator <<(std::ostream& os, Person person1);     //overloads the << operator to write out the contants of a variable person
 };
 #endif // PERSON
