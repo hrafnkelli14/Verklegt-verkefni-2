@@ -5,6 +5,7 @@ RequestProcessor::RequestProcessor()
 {
    data.setFile("data");
    cscientists = data.getList();
+   order_by = NAME;
 }
 
 //========PUBLIC FUNCTIONS==========
@@ -25,6 +26,11 @@ void RequestProcessor::outputAll() //FOR DEBUGGING
     {
         std::cout << cscientists[i];
     }
+}
+
+void RequestProcessor::setOrdering(ordering _order_by)
+{
+    order_by = _order_by;
 }
 
 //========PRIVATE FUNCTIONS==========
