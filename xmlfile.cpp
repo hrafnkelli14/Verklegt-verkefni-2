@@ -17,8 +17,8 @@ void XmlFile::setFile(QString newfile)
     filename = newfile + ".xml";
     file.setFileName(filename);
     xmlwriter.setDevice(&file);
+    xmlreader.setDevice(&file);
 
-    checkFile();
     readFile();
 }
 
@@ -39,7 +39,6 @@ void XmlFile::writeToFile() //Writes the vector to file
 {
     file.open(QIODevice::WriteOnly);
 
-    QXmlStreamWriter xmlwriter(&file);
     xmlwriter.setAutoFormatting(true);
     xmlwriter.writeStartDocument();
 
@@ -58,26 +57,12 @@ void XmlFile::writeToFile() //Writes the vector to file
     file.close();
 }
 
-void XmlFile::createNewFile()
-{
-    file.open(QIODevice::WriteOnly);
-    xmlwriter.writeStartDocument();
-    xmlwriter.writeStartElement("scientist");
-    xmlwriter.writeEndElement();
-
-    file.close();
-}
-
-void XmlFile::checkFile()
-{
-    if (!file.exists())
-    {
-        createNewFile();
-    }
-}
-
 void XmlFile::readFile()
 {
+    if(!file.exists())
+    {
+        return;
+    }
     file.open(QIODevice::ReadOnly);
     xmlreader.setDevice(&file);
 
@@ -86,10 +71,11 @@ void XmlFile::readFile()
     Person temp;
 
     xmlreader.readNext();
-    while(!xmlreader.atEnd())
+    while(!xmlreader.atEnd()) //this is super ugly, BUT IT WORKS!. Everything I've tried to clean it up breaks its functionality.. BEWARE
     {
         if(xmlreader.isStartElement())
         {
+
             if(xmlreader.name() == "scientist")
             {
                 xmlreader.readNext();

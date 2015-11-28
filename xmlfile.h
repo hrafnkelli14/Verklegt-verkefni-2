@@ -18,8 +18,6 @@ public:
     void update(QVector<Person> newVector); //Update list and write to file
 private:
     void writeToFile(); //writes cscientists to XML file
-    void createNewFile(); //Creates a new xml file if there isn't a corresponding one
-    void checkFile(); //Does the file exist?
     void readFile(); //Reads XML file
     QString filename; //filename of xml file
     QFile file; //file instance
