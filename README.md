@@ -12,9 +12,14 @@ Verkefni 1
 - DONE: Add person to database (*Hrafnkell*)
 - TODO: Delete person from database
 - TODO: Edit person
-- TODO: OrderBy for persons
+- TODO(WIP): OrderBy for persons
 - TODO: Search
 
 ######PRESENTATION LAYER/UI
-- TODO(WIP): Add new computer scientist from console 
-- TODO: *
+- DONE: Add new computer scientist from console(*Arnar, Eiríkur, Hrafnkell*)
+- TODO(WIP): Main menu
+- TODO(WIP): Change ordering from console.
+- TODO: Edit person from console.
+- TODO: Delete person from console.
+- TODO: Search from console.
+- TODO: display list from console.
