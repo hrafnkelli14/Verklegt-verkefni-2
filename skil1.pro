@@ -10,12 +10,14 @@ TEMPLATE = app
 SOURCES += main.cpp \
     xmlfile.cpp \
     requestprocessor.cpp \
-    person.cpp
+    person.cpp \
+    interface.cpp
 
 HEADERS += \
     xmlfile.h \
     requestprocessor.h \
-    person.h
+    person.h \
+    interface.h
     requestprocessor.cpp
 
 HEADERS += \

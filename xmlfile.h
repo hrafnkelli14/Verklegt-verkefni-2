@@ -14,7 +14,7 @@ public:
     XmlFile(); //Constructor
     XmlFile(QString xmlfilename); //Constructor
     void setFile(QString newfile); //Changes xml source file name(CREATES NEW)
-    QVector<Person> getList(); //returns the cscientists vector read from XML TODO:CLASSify
+    QVector<Person> getList(); //returns the cscientists vector read from XML
     void update(QVector<Person> newVector); //Update list and write to file
 private:
     void writeToFile(); //writes cscientists to XML file
@@ -25,7 +25,7 @@ private:
     QFile file; //file instance
     QXmlStreamWriter xmlwriter; //QXml library writer
     QXmlStreamReader xmlreader; //QXml library reader
-    QVector<Person> cscientists; //The scientists read from XML -- this needs to be changed to scientist class
+    QVector<Person> cscientists; //The scientists read from XML
 };
 
 #endif // XMLFILE_H
