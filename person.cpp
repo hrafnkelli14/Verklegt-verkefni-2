@@ -57,6 +57,7 @@ istream& operator >>(istream& ins, Person& person1)
     string tempGender;  //makes the interface easier to read
 
     cout << "Enter the name of a computer scientist: ";
+    cin.ignore(1000, '\n'); //this might be needed because cin leaves stuff in the buffer
     getline(ins, person1.name);
     cout << "Enter that scientists gender (m for male, f for female): ";
     cin >> temp;
