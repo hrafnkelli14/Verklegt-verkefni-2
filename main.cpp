@@ -9,6 +9,7 @@ int main(int argc, char *argv[])
     Interface i;
     i.start();
 
-    return a.exec();
+    //return a.exec();
+    return 0;
 }
 
