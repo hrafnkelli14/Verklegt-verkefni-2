@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <QString>
+#include <QDate>
 
 using namespace std;
 
@@ -15,6 +16,8 @@ private:
     string date_of_birth;
     string date_of_death;
 
+    bool checkDateFormat(string date); //checks if date follows DD/MM/YYYY format
+    QDate strToQDate(string date); //changes date string to QDate for input testing
 public:
     Person();   //default constructor
 

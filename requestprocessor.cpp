@@ -24,7 +24,7 @@ void RequestProcessor::outputAll() //FOR DEBUGGING
 {
     for(int i = 0; i < cscientists.size(); i++)
     {
-        std::cout << cscientists[i];
+        std::cout << cscientists[i] << endl;
     }
 }
 
