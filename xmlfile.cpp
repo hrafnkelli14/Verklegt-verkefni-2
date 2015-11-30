@@ -12,6 +12,9 @@ XmlFile::XmlFile()
 XmlFile::XmlFile(QString xmlfilename)
 {
     setFile(xmlfilename);
+
+    order_by = "NAME";
+    view_gender = "BOTH";
 }
 
 //========PUBLIC FUNCTIONS==========
@@ -31,9 +34,21 @@ QVector<Person> XmlFile::getList()
     return cscientists;
 }
 
-void XmlFile::update(QVector<Person> newVector)
+QString XmlFile::getOrdering()
+{
+    return order_by;
+}
+
+QString XmlFile::getViewGender()
+{
+    return view_gender;
+}
+
+void XmlFile::update(QVector<Person> newVector, QString _order_by, QString _view_gender)
 {
     cscientists = newVector;
+    order_by = _order_by;
+    view_gender = _view_gender;
     writeToFile();
 }
 
@@ -57,6 +72,11 @@ void XmlFile::writeToFile() //Writes the vector to file
     }
     xmlwriter.writeEndElement();
 
+    xmlwriter.writeStartElement("settings");
+    xmlwriter.writeTextElement("order_by", order_by);
+    xmlwriter.writeTextElement("view_gender", view_gender);
+    xmlwriter.writeEndElement();
+
     file.close();
 }
 
@@ -78,13 +98,6 @@ void XmlFile::readFile()
     {
         if(xmlreader.isStartElement())
         {
-            // <settings>
-            if(xmlreader.name() == "order_by")
-            {
-                //TODO
-            }
-            // </settings>
-
             // <scientists>
             if(xmlreader.name() == "scientist")
             {
@@ -126,7 +139,41 @@ void XmlFile::readFile()
            xmlreader.readNext();
        }
        xmlreader.readNext();
-   }
+    }
+    file.close();
+
+    file.open(QIODevice::ReadOnly);
+    xmlreader.setDevice(&file);
+    while(!xmlreader.atEnd())
+    {
+        QString temp = xmlreader.name().toString();
+        string tempst = temp.toStdString();
+        cout << tempst;
+
+        if(xmlreader.isStartElement())
+        {
+            if(xmlreader.name() == "settings")
+            {
+                cout << "YOYO";
+                xmlreader.readNext();
+            }
+
+            else if(xmlreader.name() == "order_by")
+            {
+                order_by = "DOB";
+                //xmlreader.readNext();
+            }
+        }
+
+        else if(xmlreader.isEndElement())
+        {
+            xmlreader.readNext();
+        }
+
+        xmlreader.readNext();
+
+
+    }
 
    file.close();
 }
