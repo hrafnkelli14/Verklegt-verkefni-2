@@ -39,6 +39,7 @@ void RequestProcessor::updateSettings()
     data.update(cscientists, orderingToQStr(), gendertypeToQStr());
 }
 
+QVector<Person> genderSortVector;
 QVector<Person> RequestProcessor::outputList()
 {
    /* switch(order_by)
@@ -55,22 +56,30 @@ QVector<Person> RequestProcessor::outputList()
     switch(view_gender)
     {
     case MALE:
-        //TODO implement
+        for(int i = 0; i < cscientists.size(); i++)
+        {
+            if (cscientists[i].getGender() == "Male" )
+            {
+                genderSortVector.push_back(cscientists[i]); //The cscientists vector should not be here, rather is should be a pre-sorted vector
+            }
+        }
         break;
     case FEMALE:
-        //TODO implement
+            for(int i = 0; i < cscientists.size(); i++)
+            {
+                if (cscientists[i].getGender() == "Female")
+                {
+                     genderSortVector.push_back(cscientists[i]); //The cscientists vector should not be here, rather is should be a pre-sorted vector
+                }
+            }
         break;
     case BOTH:
-        //TODO implement
+            genderSortVector = cscientists; //The cscientists vector should not be here, rather is should be a pre-sorted vector
         break;
     }
 
-    return QVector<Person>();
-}
 
-QVector<Person> RequestProcessor::searchList()
-{
-    //TODO implement
+
     return QVector<Person>();
 }
 
