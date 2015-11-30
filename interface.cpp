@@ -139,8 +139,8 @@ void Interface::settingsOrdering()
 
     char ch = ' ';
 
-    std::cout << "press (1) to order list by names in alphabetical order \n"
-                 "press (2) to order list by names in reverse alphabetical order\n"
+    std::cout << "press (1) to order list by names in lexicographical order \n"
+                 "press (2) to order list by names in reverse lexicographical order\n"
                  "press (3) to order list by date of birth \n"
                  "press (4) to order list by date of birth in reverse order \n"
                  "press (5) to order list by date of death (those who are alive will be excluded)\n"
@@ -275,10 +275,10 @@ void Interface::setSettingsStatus()
     switch (current_ordering)
     {
     case NAME:
-        new_settingsstatus += "Name(alphabetical)";
+        new_settingsstatus += "Name(lexicographical)";
         break;
     case NAME_R:
-        new_settingsstatus += "Name(reverse alphabetical)";
+        new_settingsstatus += "Name(reverse lexicographical)";
         break;
     case DOB:
         new_settingsstatus += "Date of Birth";
