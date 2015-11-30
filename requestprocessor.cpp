@@ -36,7 +36,7 @@ void RequestProcessor::outputAll() //FOR DEBUGGING
 
 QVector<Person> RequestProcessor::outputList()
 {
-    switch(order_by)
+   /* switch(order_by)
     {
     case NAME:
         //TODO implement
@@ -45,7 +45,7 @@ QVector<Person> RequestProcessor::outputList()
         //TODO implement
         break;
         //etc, etc, etc, etc
-    }
+    }*/
 
     switch(view_gender)
     {

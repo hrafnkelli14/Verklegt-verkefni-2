@@ -278,7 +278,7 @@ void Interface::printSettingsStatus()
 void Interface::printMenuHead(string menuname)
 {
     std::cout << "\t\t\t";
-    for(int i = 0; i < 70/menuname.size(); i++) //this makes the text appear centered(kind of)
+    for(unsigned int i = 0; i < 70/menuname.size(); i++) //this makes the text appear centered(kind of)
     {
         std::cout << ' ';
     }
