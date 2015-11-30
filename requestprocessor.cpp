@@ -34,6 +34,11 @@ void RequestProcessor::outputAll() //FOR DEBUGGING
     }
 }
 
+void RequestProcessor::updateSettings()
+{
+    data.update(cscientists, orderingToQStr(), gendertypeToQStr());
+}
+
 QVector<Person> RequestProcessor::outputList()
 {
    /* switch(order_by)

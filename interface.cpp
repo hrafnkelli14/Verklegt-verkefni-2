@@ -81,6 +81,8 @@ void Interface::settingsMain()
         break;
     }
 
+    request.updateSettings();
+
 }
 
 void Interface::settingsOrdering()
