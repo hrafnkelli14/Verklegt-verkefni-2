@@ -57,17 +57,17 @@ QVector<Person> RequestProcessor::outputList()
     switch(view_gender)
     {
     case MALE:
-        return malesOnly(sortedVector);
+        malesOnly(sortedVector);
         break;
     case FEMALE:
-        return femalesOnly(sortedVector);
+        femalesOnly(sortedVector);
         break;
     case BOTH:
-        return sortedVector;
+        //nothing needed
         break;
     }
 
-    return QVector<Person>();
+    return sortedVector; //this shouldn't be reached
 }
 
 void RequestProcessor::setOrdering(ordering _order_by)
@@ -129,31 +129,32 @@ QVector<Person> RequestProcessor::orderByDoD_R()
 }
 
 //--gender view functions--
-QVector<Person> RequestProcessor::malesOnly(QVector<Person> &sortedVector)
+void RequestProcessor::malesOnly(QVector<Person> &sortedVector)
 {
     QVector<Person> malesOnlyCscientists;
     for(int i = 0; i < sortedVector.size(); i++)
     {
-        if (sortedVector[i].getGender() == "MALE" )
+        if (sortedVector[i].getGender() == "Male")
         {
             malesOnlyCscientists.push_back(sortedVector[i]);
         }
     }
-    return malesOnlyCscientists;
+
+    sortedVector = malesOnlyCscientists;
 }
 
-QVector<Person> RequestProcessor::femalesOnly(QVector<Person> &sortedVector)
+void RequestProcessor::femalesOnly(QVector<Person> &sortedVector)
 {
     QVector<Person> femalesOnlyCscientists;
     for(int i = 0; i < sortedVector.size(); i++)
     {
-        if (sortedVector[i].getGender() == "FEMALE")
+        if (sortedVector[i].getGender() == "Female")
         {
              femalesOnlyCscientists.push_back(sortedVector[i]);
         }
     }
 
-    return femalesOnlyCscientists;
+    sortedVector = femalesOnlyCscientists;
 }
 
 //--searching functions--

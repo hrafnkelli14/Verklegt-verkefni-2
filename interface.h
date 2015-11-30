@@ -10,6 +10,7 @@ public:
     void start(); //essentially the main menu
 private:
     void add(); //adds a new person
+    void output(); //output menu
 
     //other menus
     void settingsMain(); //TODO finish this

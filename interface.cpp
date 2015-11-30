@@ -24,9 +24,8 @@ void Interface::start()
         case '1':
             add();
             break;
-        case '2': //a real output function has to be implemented that accounts for ordering & gender settings
-            request.outputAll(); //should NOT be done this way.. only for testing purposes
-            cin >> ch; //since there is no menu for output yet we have to use cin so the console doesn't clear
+        case '2':
+            output();
             break;
         case '3':
             settingsMain();
@@ -50,6 +49,25 @@ void Interface::add()
 
     request.addPerson(temp);
     setStatus("\"" + temp.getName().toStdString() + "\" added to list!");
+}
+
+void Interface::output()
+{
+    char ch = ' ';
+    QVector<Person> to_output = request.outputList();
+    clearConsole();
+    printLines();
+    printMenuHead("COMPUTER SCIENTISTS");
+
+    for(int i = 0; i < to_output.size(); i++)
+    {
+        cout << to_output[i] << endl;
+    }
+
+    printSettingsStatus();
+
+    cout << "press any key to continue: ";
+    cin >> ch;
 }
 
 //--menus--
