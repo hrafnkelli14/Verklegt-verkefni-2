@@ -25,7 +25,7 @@ void Interface::start()
             add();
             break;
         case '2': //a real output function has to be implemented that accounts for ordering & gender settings
-            request.outputAll(); //should NOT be done this way.. only for testing purposes       
+            request.outputAll(); //should NOT be done this way.. only for testing purposes
             cin >> ch; //since there is no menu for output yet we have to use cin so the console doesn't clear
             break;
         case '3':
