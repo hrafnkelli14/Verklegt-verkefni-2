@@ -11,7 +11,7 @@ Person::Person()
 //========PRIVATE FUNCTIONS==========
 bool Person::checkDateFormat(string date)
 {
-    if(date.size() > 10)
+    if(date.size() > 10 || date.size() < 10)
     {
         return false;
     }
@@ -118,11 +118,6 @@ istream& operator >>(istream& ins, Person& person1)
             tempGender = "her ";
             break;
         }
-        else
-        {
-            cout << "INVALID INPUT, ";
-        }
-
     }
 
     while(1) //input checker
@@ -133,7 +128,7 @@ istream& operator >>(istream& ins, Person& person1)
         if(person1.checkDateFormat(person1.date_of_birth))
         {
             bdate = person1.strToQDate(person1.date_of_birth);
-            if(bdate.isValid())
+            if(bdate.isValid() && bdate < QDate::currentDate())
             {
                 break;
             }
