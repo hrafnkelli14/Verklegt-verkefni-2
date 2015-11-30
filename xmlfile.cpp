@@ -3,7 +3,7 @@
 //========CONSTRUCTORS==========
 XmlFile::XmlFile()
 {
-    //JUST LEAVE THIS EMPTY
+    filename = "";
 }
 
 XmlFile::XmlFile(QString xmlfilename)

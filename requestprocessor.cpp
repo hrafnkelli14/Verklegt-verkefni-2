@@ -6,6 +6,7 @@ RequestProcessor::RequestProcessor()
    data.setFile("data");
    cscientists = data.getList();
    order_by = NAME;
+   view_gender = BOTH;
 }
 
 //========PUBLIC FUNCTIONS==========
@@ -31,6 +32,21 @@ void RequestProcessor::outputAll() //FOR DEBUGGING
 void RequestProcessor::setOrdering(ordering _order_by)
 {
     order_by = _order_by;
+}
+
+void RequestProcessor::setGenderView(gendertype _view_gender)
+{
+    view_gender = _view_gender;
+}
+
+ordering RequestProcessor::getOrdering()
+{
+    return order_by;
+}
+
+gendertype RequestProcessor::getGenderView()
+{
+    return view_gender;
 }
 
 //========PRIVATE FUNCTIONS==========
