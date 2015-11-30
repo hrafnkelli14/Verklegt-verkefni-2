@@ -66,8 +66,6 @@ void Interface::output()
     printSettingsStatus();
     cout << "press any key to continue: ";
     waitForAnyKey();
-
-
 }
 
 //--menus--
@@ -84,7 +82,8 @@ void Interface::settingsMain()
     printLines();
 
     std::cout << "Choice: ";
-    std::cin >> ch;
+    cin.ignore(1000, '\n');
+    ch = cin.get();
 
     switch(ch)
     {
@@ -120,27 +119,34 @@ void Interface::settingsOrdering()
     printLines();
 
     std::cout << "Choice: ";
-    std::cin >> ch;
+    cin.ignore(1000, '\n');
+    ch = cin.get();
 
     switch(ch)
     {
     case '1':
         request.setOrdering(NAME);
+        setSettingsStatus(); //update settings status
         break;
     case '2':
         request.setOrdering(NAME_R);
+        setSettingsStatus(); //update settings status
         break;
     case '3':
         request.setOrdering(DOB);
+        setSettingsStatus(); //update settings status
         break;
     case '4':
         request.setOrdering(DOB_R);
+        setSettingsStatus(); //update settings status
         break;
     case '5':
         request.setOrdering(DOD);
+        setSettingsStatus(); //update settings status
         break;
     case '6':
         request.setOrdering(DOD_R);
+        setSettingsStatus(); //update settings status
         break;
     case '7':
         return; //go to main menu
@@ -150,7 +156,6 @@ void Interface::settingsOrdering()
         break;
     }
 
-    setSettingsStatus(); //update settings status
     settingsMain();
 }
 
@@ -168,18 +173,22 @@ void Interface::settingsGenders()
     printLines();
 
     std::cout << "Choice: ";
-    std::cin >> ch;
+    cin.ignore(1000, '\n');
+    ch = cin.get();
 
     switch(ch)
     {
     case '1':
         request.setGenderView(MALE);
+        setSettingsStatus(); //update settings status
         break;
     case '2':
         request.setGenderView(FEMALE);
+        setSettingsStatus(); //update settings status
         break;
     case '3':
         request.setGenderView(BOTH);
+        setSettingsStatus(); //update settings status
         break;
     case '4':
         return; //go to main menu
@@ -188,7 +197,6 @@ void Interface::settingsGenders()
         break;
     }
 
-    setSettingsStatus(); //update settings status
     settingsMain(); //after changing gender view settings go back to main settings menu
 }
 
@@ -323,7 +331,7 @@ void Interface::newMenu(string menuname)
 
 void Interface::waitForAnyKey()
 {
-    cin.ignore();
+    cin.ignore(1000, '\n');
     while(cin.get() == '\t') //stupid but works
     {
 
