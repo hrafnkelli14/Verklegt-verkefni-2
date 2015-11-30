@@ -60,6 +60,8 @@ void XmlFile::writeToFile() //Writes the vector to file
     xmlwriter.setAutoFormatting(true);
     xmlwriter.writeStartDocument();
 
+    xmlwriter.writeStartElement("programdata");
+
     xmlwriter.writeStartElement("scientists");
     for(int i = 0; i < cscientists.size(); i++)
     {
@@ -75,6 +77,8 @@ void XmlFile::writeToFile() //Writes the vector to file
     xmlwriter.writeStartElement("settings");
     xmlwriter.writeTextElement("order_by", order_by);
     xmlwriter.writeTextElement("view_gender", view_gender);
+    xmlwriter.writeEndElement();
+
     xmlwriter.writeEndElement();
 
     file.close();
@@ -98,6 +102,23 @@ void XmlFile::readFile()
     {
         if(xmlreader.isStartElement())
         {
+            // <settings>
+            if(xmlreader.name() == "settings")
+            {
+                xmlreader.readNext();
+            }
+            else if(xmlreader.name() == "order_by")
+            {
+                order_by = xmlreader.readElementText();
+                xmlreader.readNext();
+            }
+            else if(xmlreader.name() == "view_gender")
+            {
+                view_gender = xmlreader.readElementText();
+                xmlreader.readNext();
+            }
+            // </settings>
+
             // <scientists>
             if(xmlreader.name() == "scientist")
             {
@@ -146,33 +167,43 @@ void XmlFile::readFile()
     xmlreader.setDevice(&file);
     while(!xmlreader.atEnd())
     {
-        QString temp = xmlreader.name().toString();
-        string tempst = temp.toStdString();
-        cout << tempst;
 
         if(xmlreader.isStartElement())
         {
+
             if(xmlreader.name() == "settings")
             {
-                cout << "YOYO";
-                xmlreader.readNext();
-            }
-
-            else if(xmlreader.name() == "order_by")
-            {
-                order_by = "DOB";
-                //xmlreader.readNext();
+               // temp = xmlreader.readElementText();
+               // tempst = temp.toStdString();
+               // cout << tempst;
+                cout << "YOOHOO2";
             }
         }
 
-        else if(xmlreader.isEndElement())
+
+        if(xmlreader.name() == "order_by")
         {
-            xmlreader.readNext();
+            QString temp = xmlreader.name().toString();
+            string tempst = temp.toStdString();
+            cout << tempst;
+            temp = xmlreader.readElementText();
+            tempst = temp.toStdString();
+            cout << tempst;
         }
+
+        if(xmlreader.isEndElement())
+        {
+
+        }
+
+        QString temp = xmlreader.name().toString();
+        string tempst = temp.toStdString();
+        //cout << tempst;
+        temp = xmlreader.readElementText();
+        tempst = temp.toStdString();
+        cout << tempst;
 
         xmlreader.readNext();
-
-
     }
 
    file.close();
