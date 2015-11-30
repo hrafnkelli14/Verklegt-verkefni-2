@@ -43,16 +43,27 @@ QVector<Person> RequestProcessor::outputList()
 {
     QVector<Person> sortedVector = cscientists;
 
-    /* switch(order_by)
+    switch(order_by)
     {
     case NAME:
-        //TODO implement
+        orderByName(sortedVector);
         break;
     case NAME_R:
-        //TODO implement
+        orderByName_R(sortedVector);
         break;
-        //etc, etc, etc, etc
-    }*/
+    case DOB:
+        orderByDoB(sortedVector);
+        break;
+    case DOB_R:
+        orderByDoB_R(sortedVector);
+        break;
+    case DOD:
+        orderByDoD_R(sortedVector);
+        break;
+    case DOD_R:
+        orderByDoD_R(sortedVector);
+        break;
+    }
 
     switch(view_gender)
     {
@@ -97,40 +108,35 @@ gendertype RequestProcessor::getGenderView()
 
 //========PRIVATE FUNCTIONS==========
 //--sorting functions--
-QVector<Person> RequestProcessor::orderByName()
+void RequestProcessor::orderByName(QVector<Person> &sortedVector)
 {
-    //TODO implement
-    return QVector<Person>();
+    sort(sortedVector.begin(), sortedVector.end(), Person::lessThanName);
 }
 
-QVector<Person> RequestProcessor::orderByName_R()
+void RequestProcessor::orderByName_R(QVector<Person> &sortedVector)
 {
-    //TODO implement
-    return QVector<Person>();
+    orderByName(sortedVector);
+    reverse(sortedVector.begin(), sortedVector.end());
 }
 
-QVector<Person> RequestProcessor::orderByDoB()
+void RequestProcessor::orderByDoB(QVector<Person> &sortedVector)
 {
     //TODO implement
-    return QVector<Person>();
 }
 
-QVector<Person> RequestProcessor::orderByDoB_R()
+void RequestProcessor::orderByDoB_R(QVector<Person> &sortedVector)
 {
     //TODO implement
-    return QVector<Person>();
 }
 
-QVector<Person> RequestProcessor::orderByDoD()
+void RequestProcessor::orderByDoD(QVector<Person> &sortedVector)
 {
     //TODO implement
-    return QVector<Person>();
 }
 
-QVector<Person> RequestProcessor::orderByDoD_R()
+void RequestProcessor::orderByDoD_R(QVector<Person> &sortedVector)
 {
     //TODO implement
-    return QVector<Person>();
 }
 
 //--gender view functions--

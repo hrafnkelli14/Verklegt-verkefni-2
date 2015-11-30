@@ -30,16 +30,16 @@ public:
     gendertype getGenderView(); //returns view_gender attribute
 private:
     //sorting functions
-    QVector<Person> orderByName(); //TODO implement
-    QVector<Person> orderByName_R(); //TODO implement
-    QVector<Person> orderByDoB(); //TODO implement
-    QVector<Person> orderByDoB_R(); //TODO implement
-    QVector<Person> orderByDoD(); //TODO implement
-    QVector<Person> orderByDoD_R(); //TODO implement
+    void orderByName(QVector<Person> &sortedVector);
+    void orderByName_R(QVector<Person> &sortedVector); //TODO implement
+    void orderByDoB(QVector<Person> &sortedVector); //TODO implement
+    void orderByDoB_R(QVector<Person> &sortedVector); //TODO implement
+    void orderByDoD(QVector<Person> &sortedVector); //TODO implement
+    void orderByDoD_R(QVector<Person> &sortedVector); //TODO implement
 
     //gender view functions
-    void malesOnly(QVector<Person> &sortedVector); //WIP
-    void femalesOnly(QVector<Person> &sortedVector); //WIP
+    void malesOnly(QVector<Person> &sortedVector); //patriarchial female filter for sortedvector
+    void femalesOnly(QVector<Person> &sortedVector); //this makes the sortedvector 37.1% better
 
     //searching functions
     QVector<Person> searchByName(); //TODO implement
