@@ -17,7 +17,7 @@ private:
     void settingsGenders();
 
     //helpers
-    void clearConsole(); //should clear the console window (NOTE: not tested for unix based systems)
+    void clearConsole(); //should clear the console window (NOTE: not tested for unix based systems, commented out)
     void printMainMenu(); //prints the main menu text
     void setStatus(string newstatus); //sets current_status
     void setSettingsStatus(); //sets current_settings according to the values in request processor

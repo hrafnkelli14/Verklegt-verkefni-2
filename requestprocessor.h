@@ -5,7 +5,7 @@
 #ifndef REQUESTPROCESSOR_H
 #define REQUESTPROCESSOR_H
 
-enum ordering{NAME, NAME_R, DOB, DOB_R, DOD, DOD_R, GENDER}; //enum for order_by setting.. _R means reverse.
+enum ordering{NAME, NAME_R, DOB, DOB_R, DOD, DOD_R}; //enum for order_by setting.. _R means reverse.
 enum gendertype{MALE, FEMALE, BOTH}; //enum for view gender settings
 //BOTH is for implementation of a politically correct list(and is the default setting)
 

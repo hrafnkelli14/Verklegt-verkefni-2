@@ -176,15 +176,15 @@ void Interface::settingsGenders()
 //--helpers--
 void Interface::clearConsole()
 {
-    //this function is ugly but it works for now
+    //this function is ugly but it works for the purpose of this program
     for(int i = 0; i < 20; i++) //for smoother transition
     {
         std::cout << endl;
     }
-    std::system("clear"); //for unix based
+    //std::system("clear"); //for unix based
     std::system("CLS"); //for windows
 
-//NOTE: yeah yeah, I know, system commands are bad
+//NOTE: yeah yeah, I know, system() commands are really really bad
 }
 
 void Interface::printMainMenu()
