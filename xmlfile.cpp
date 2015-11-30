@@ -162,49 +162,4 @@ void XmlFile::readFile()
        xmlreader.readNext();
     }
     file.close();
-
-    file.open(QIODevice::ReadOnly);
-    xmlreader.setDevice(&file);
-    while(!xmlreader.atEnd())
-    {
-
-        if(xmlreader.isStartElement())
-        {
-
-            if(xmlreader.name() == "settings")
-            {
-               // temp = xmlreader.readElementText();
-               // tempst = temp.toStdString();
-               // cout << tempst;
-                cout << "YOOHOO2";
-            }
-        }
-
-
-        if(xmlreader.name() == "order_by")
-        {
-            QString temp = xmlreader.name().toString();
-            string tempst = temp.toStdString();
-            cout << tempst;
-            temp = xmlreader.readElementText();
-            tempst = temp.toStdString();
-            cout << tempst;
-        }
-
-        if(xmlreader.isEndElement())
-        {
-
-        }
-
-        QString temp = xmlreader.name().toString();
-        string tempst = temp.toStdString();
-        //cout << tempst;
-        temp = xmlreader.readElementText();
-        tempst = temp.toStdString();
-        cout << tempst;
-
-        xmlreader.readNext();
-    }
-
-   file.close();
 }
