@@ -16,7 +16,6 @@ bool Person::checkDateFormat(string date)
         return false;
     }
 
-    for(int i=0; i<date.size(); i++)
     for(unsigned int i=0; i<date.size(); i++)
     {
         if(i == 2 || i == 5)
