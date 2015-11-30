@@ -41,7 +41,7 @@ void RequestProcessor::updateSettings()
 
 QVector<Person> RequestProcessor::outputList()
 {
-    QVector<Person> genderSortVector;
+    QVector<Person> sortedVector = cscientists;
 
     /* switch(order_by)
     {
@@ -57,29 +57,15 @@ QVector<Person> RequestProcessor::outputList()
     switch(view_gender)
     {
     case MALE:
-        for(int i = 0; i < cscientists.size(); i++)
-        {
-            if (cscientists[i].getGender() == "Male" )
-            {
-                genderSortVector.push_back(cscientists[i]); //The cscientists vector should not be here, rather is should be a pre-sorted vector
-            }
-        }
+        return malesOnly(sortedVector);
         break;
     case FEMALE:
-            for(int i = 0; i < cscientists.size(); i++)
-            {
-                if (cscientists[i].getGender() == "Female")
-                {
-                     genderSortVector.push_back(cscientists[i]); //The cscientists vector should not be here, rather is should be a pre-sorted vector
-                }
-            }
+        return femalesOnly(sortedVector);
         break;
     case BOTH:
-            genderSortVector = cscientists; //The cscientists vector should not be here, rather is should be a pre-sorted vector
+        return sortedVector;
         break;
     }
-
-
 
     return QVector<Person>();
 }
@@ -140,6 +126,34 @@ QVector<Person> RequestProcessor::orderByDoD_R()
 {
     //TODO implement
     return QVector<Person>();
+}
+
+//--gender view functions--
+QVector<Person> RequestProcessor::malesOnly(QVector<Person> &sortedVector)
+{
+    QVector<Person> malesOnlyCscientists;
+    for(int i = 0; i < sortedVector.size(); i++)
+    {
+        if (sortedVector[i].getGender() == "MALE" )
+        {
+            malesOnlyCscientists.push_back(sortedVector[i]);
+        }
+    }
+    return malesOnlyCscientists;
+}
+
+QVector<Person> RequestProcessor::femalesOnly(QVector<Person> &sortedVector)
+{
+    QVector<Person> femalesOnlyCscientists;
+    for(int i = 0; i < sortedVector.size(); i++)
+    {
+        if (sortedVector[i].getGender() == "FEMALE")
+        {
+             femalesOnlyCscientists.push_back(sortedVector[i]);
+        }
+    }
+
+    return femalesOnlyCscientists;
 }
 
 //--searching functions--

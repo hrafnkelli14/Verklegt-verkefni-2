@@ -37,6 +37,10 @@ private:
     QVector<Person> orderByDoD(); //TODO implement
     QVector<Person> orderByDoD_R(); //TODO implement
 
+    //gender view functions
+    QVector<Person> malesOnly(QVector<Person> &sortedVector); //WIP
+    QVector<Person> femalesOnly(QVector<Person> &sortedVector); //WIP
+
     //searching functions
     QVector<Person> searchByName(); //TODO implement
     QVector<Person> searchByDoB(); //TODO implement
