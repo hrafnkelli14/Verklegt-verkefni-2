@@ -53,7 +53,6 @@ void Interface::add()
 
 void Interface::output()
 {
-    char ch = ' ';
     QVector<Person> to_output = request.outputList();
     clearConsole();
     printLines();
@@ -65,9 +64,10 @@ void Interface::output()
     }
 
     printSettingsStatus();
-
     cout << "press any key to continue: ";
-    cin >> ch;
+    waitForAnyKey();
+
+
 }
 
 //--menus--
@@ -319,4 +319,13 @@ void Interface::newMenu(string menuname)
     std::cout << endl;
     printLines();
     printMenuHead(menuname);
+}
+
+void Interface::waitForAnyKey()
+{
+    cin.ignore();
+    while(cin.get() == '\t') //stupid but works
+    {
+
+    }
 }
