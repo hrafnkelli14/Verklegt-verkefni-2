@@ -12,7 +12,7 @@ void Interface::start()
 {    
     char ch = ' ';
 
-    while(ch != '4') //there might be a better way to achieve a menu
+    while(ch != '5') //there might be a better way to achieve a menu
     {
         printMainMenu();
         setStatus(""); //reset status message
@@ -30,6 +30,9 @@ void Interface::start()
         case '3':
             settingsMain();
             break;
+        case '4':
+            search();
+            break;
         default:
             break;
         }
@@ -39,6 +42,7 @@ void Interface::start()
 }
 
 //========PRIVATE FUNCTIONS==========
+//--menus--
 void Interface::add()
 {  
     clearConsole();
@@ -68,7 +72,34 @@ void Interface::output()
     waitForAnyKey();
 }
 
-//--menus--
+void Interface::search()
+{
+    //searching menu
+    string search_string = "";
+
+    newMenu("SEARCH");
+    cin >> search_string;
+    //
+
+
+
+    //search results
+    QVector<Person> search_results = request.searchList(QString::fromStdString(search_string));
+    clearConsole();
+    printLines();
+    printMenuHead("SEARCH RESULTS");
+
+    for(int i = 0; i < search_results.size(); i++)
+    {
+        cout << search_results[i] << endl;
+    }
+
+    printSettingsStatus();
+    cout << "press any key to continue: ";
+    waitForAnyKey();
+    //
+}
+
 void Interface::settingsMain()
 {
     newMenu("SETTINGS");
@@ -222,7 +253,8 @@ void Interface::printMainMenu()
     std::cout << "press (1) to add a person to the list \n"
                  "press (2) to view list \n"
                  "press (3) for list view settings \n"
-                 "press (4) to exit \n";
+                 "press (4) to search the list\n"
+                 "press (5) to exit \n";
     printLines();
     printStatus();
 

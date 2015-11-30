@@ -70,6 +70,11 @@ QVector<Person> RequestProcessor::outputList()
     return sortedVector; //this shouldn't be reached
 }
 
+QVector<Person> RequestProcessor::searchList(QString search_string)
+{
+    return QVector<Person>();
+}
+
 void RequestProcessor::setOrdering(ordering _order_by)
 {
     order_by = _order_by;

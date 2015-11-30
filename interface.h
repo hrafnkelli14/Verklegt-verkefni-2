@@ -9,11 +9,13 @@ public:
     Interface();
     void start(); //essentially the main menu
 private:
+    //menus
     void add(); //adds a new person
     void output(); //output menu
+    void search(); //search menu
 
     //other menus
-    void settingsMain(); //TODO finish this
+    void settingsMain();
     void settingsOrdering();
     void settingsGenders();
 

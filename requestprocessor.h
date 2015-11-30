@@ -21,7 +21,7 @@ public:
     void updateSettings(); //what happens here?
 
     QVector<Person> outputList(); //this is the real function that is to be used
-    QVector<Person> searchList(); //TODO implement
+    QVector<Person> searchList(QString search_string); //TODO implement
 
     void setOrdering(ordering _order_by); //sets order_by attribute
     void setGenderView(gendertype _view_gender); //sets view_gender attribute
