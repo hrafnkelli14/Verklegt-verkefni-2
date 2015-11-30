@@ -11,7 +11,7 @@ Person::Person()
 //========PRIVATE FUNCTIONS==========
 bool Person::checkDateFormat(string date)
 {
-    if(date.size() > 10 || date.size() < 10)
+    if(date.size() != 10)
     {
         return false;
     }
