@@ -21,6 +21,8 @@ private:
     void readFile(); //Reads XML file
     QString filename; //filename of xml file
     QFile file; //file instance
+    QString order_by; //will be converted to enum in requestprocessor
+    QString view_gender; //will be converted to enum in requestprocessor
     QXmlStreamWriter xmlwriter; //QXml library writer
     QXmlStreamReader xmlreader; //QXml library reader
     QVector<Person> cscientists; //The scientists read from XML

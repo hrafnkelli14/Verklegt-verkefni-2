@@ -4,6 +4,9 @@
 XmlFile::XmlFile()
 {
     filename = "";
+
+    order_by = "NAME";
+    view_gender = "BOTH";
 }
 
 XmlFile::XmlFile(QString xmlfilename)
@@ -75,7 +78,14 @@ void XmlFile::readFile()
     {
         if(xmlreader.isStartElement())
         {
+            // <settings>
+            if(xmlreader.name() == "order_by")
+            {
+                //TODO
+            }
+            // </settings>
 
+            // <scientists>
             if(xmlreader.name() == "scientist")
             {
                 xmlreader.readNext();
@@ -83,32 +93,33 @@ void XmlFile::readFile()
             else if(xmlreader.name() == "name")
             {
                 tempqstr = xmlreader.readElementText();
-                tempstr = tempqstr.toUtf8();
+                tempstr = tempqstr.toStdString();
                 temp.setName(tempstr);
                 xmlreader.readNext();
             }
             else if(xmlreader.name() == "gender")
             {
                 tempqstr = xmlreader.readElementText();
-                tempstr = tempqstr.toUtf8();
+                tempstr = tempqstr.toStdString();
                 temp.setGender(tempstr);
                 xmlreader.readNext();
             }
             else if(xmlreader.name() == "dob")
             {
                 tempqstr = xmlreader.readElementText();
-                tempstr = tempqstr.toUtf8();
+                tempstr = tempqstr.toStdString();
                 temp.setDoB(tempstr);
                 xmlreader.readNext();
             }
             else if(xmlreader.name() == "dod")
             {
                 tempqstr = xmlreader.readElementText();
-                tempstr = tempqstr.toUtf8();
+                tempstr = tempqstr.toStdString();
                 temp.setDoD(tempstr);
                 xmlreader.readNext();
                 cscientists.push_back(temp); //this has to be in the last tag within scientist
             }
+            //</scientists>
        }
        else if (xmlreader.isEndElement())
        {
