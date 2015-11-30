@@ -39,10 +39,11 @@ void RequestProcessor::updateSettings()
     data.update(cscientists, orderingToQStr(), gendertypeToQStr());
 }
 
-QVector<Person> genderSortVector;
 QVector<Person> RequestProcessor::outputList()
 {
-   /* switch(order_by)
+    QVector<Person> genderSortVector;
+
+    /* switch(order_by)
     {
     case NAME:
         //TODO implement
