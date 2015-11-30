@@ -18,6 +18,8 @@ public:
     void deletePerson(); //TODO IMPLEMENT
     void editPerson(); //TODO implement
     void outputAll(); //FOR DEBUGGING - TO BE DELETED
+    void updateSettings(); //what happens here?
+
     QVector<Person> outputList(); //this is the real function that is to be used
     QVector<Person> searchList(); //TODO implement
 
@@ -39,6 +41,11 @@ private:
     QVector<Person> searchByName(); //TODO implement
     QVector<Person> searchByDoB(); //TODO implement
     QVector<Person> searchByDoD(); //TODO implement
+
+    QString orderingToQStr();
+    QString gendertypeToQStr();
+    void readOrdering();
+    void readGenderView();
 
     XmlFile data; //xml file connection
     QVector<Person> cscientists; //vector containing all our scientists
