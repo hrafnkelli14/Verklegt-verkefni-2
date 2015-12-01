@@ -222,7 +222,11 @@ void RequestProcessor::searchByName(QString search_query, QVector<Person> &sorte
     for(int i = 0; i < sortedVector.size(); i++)
     {
         string stdNameString = sortedVector[i].getName().toStdString();
-        if (stdNameString.find(search_query.toStdString()) <= stdNameString.size())
+        string stdQueryString = search_query.toStdString();
+        transform(stdNameString.begin(), stdNameString.end(), stdNameString.begin(), ::toupper);
+        transform(stdQueryString.begin(), stdQueryString.end(), stdQueryString.begin(), ::toupper);
+
+        if (stdNameString.find(stdQueryString) <= stdNameString.size())
         {
             searchNames.push_back(sortedVector[i]);
         }
