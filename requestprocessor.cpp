@@ -232,12 +232,32 @@ void RequestProcessor::searchByName(QString search_query, QVector<Person> &sorte
 
 void RequestProcessor::searchByDoB(QString search_query, QVector<Person> &sortedVector)
 {
-    //TODO implement
+    QVector<Person> searchDoB;
+
+    for(int i = 0; i < sortedVector.size(); i++)
+    {
+        string stdDoBString = sortedVector[i].getDoB().toStdString();
+        if (stdDoBString.find(search_query.toStdString()) <= stdDoBString.size())
+        {
+            searchDoB.push_back(sortedVector[i]);
+        }
+    }
+    sortedVector = searchDoB;
 }
 
 void RequestProcessor::searchByDoD(QString search_query, QVector<Person> &sortedVector)
 {
-    //TODO implement
+    QVector<Person> searchDoD;
+
+    for(int i = 0; i < sortedVector.size(); i++)
+    {
+        string stdDoDString = sortedVector[i].getDoD().toStdString();
+        if (stdDoDString.find(search_query.toStdString()) <= stdDoDString.size())
+        {
+            searchDoD.push_back(sortedVector[i]);
+        }
+    }
+    sortedVector = searchDoD;
 }
 
 //--helpers--
