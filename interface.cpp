@@ -76,7 +76,12 @@ void Interface::search()
 {
     //searching menu
     newMenu("SEARCH");
-    cout << "Syntax: \"searchtype searchquery\" # search types: 'name', 'dob' and 'dod\n";
+    cout << "Syntax: \"searchtype searchquery\"\n"
+            "Available search types:\n"
+            "'name' -- searches for names containing query\n"
+            "'dob'  -- searches for dates of birth containing query (DD/MM/YYYY)\n"
+            "'dod'  -- searches for dates of death containing query - also accepts 'alive'\n"
+            "Search results follow current settings\n";
     printSimpleLines();
 
 
