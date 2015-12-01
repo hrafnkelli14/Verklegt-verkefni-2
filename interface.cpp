@@ -75,45 +75,50 @@ void Interface::output()
 void Interface::search()
 {
     //searching menu
-    char ch = ' ';
-    string search_string = "";
-
     newMenu("SEARCH");
-
     cin.ignore(1000, '\n');
-    while(ch != '\n')
+
+    while(1)
     {
-        ch = cin.get();
-        if(ch != '\n')
+        cout << "Search query(leave empty to exit to main menu): ";
+        char ch = ' ';
+        string search_string = "";
+
+        do
         {
-            search_string += ch;
-        }
-    }
+            ch = cin.get();
+            if(ch != '\n')
+            {
+                search_string += ch;
+            }
+        }while(ch != '\n');
     //
 
-
+    if(search_string == "")
+    {
+        return;
+    }
 
     //search results
-    QVector<Person> search_results = request.searchList(QString::fromStdString(search_string));
-    clearConsole();
-    printLines();
-    printMenuHead("SEARCH RESULTS");
+        QVector<Person> search_results = request.searchList(QString::fromStdString(search_string));
+        clearConsole();
+        printLines();
+        printMenuHead("SEARCH RESULTS");
 
-    if(search_results.size() > 0)
-    {
-        for(int i = 0; i < search_results.size(); i++)
+        if(search_results.size() > 0)
         {
-            cout << search_results[i] << endl;
+            for(int i = 0; i < search_results.size(); i++)
+            {
+                cout << search_results[i] << endl;
+            }
         }
-    }
-    else
-    {
-        cout << "NO RESULTS(did you forget to prepend search string with 'name', 'dob' or 'dod'?)" << endl;
-    }
+        else
+        {
+            cout << "NO RESULTS(did you forget to prepend search string with 'name', 'dob' or 'dod'?)" << endl;
+        }
 
-    printSettingsStatus();
-    cout << "press any key to continue: ";
-    waitForAnyKey();
+        printSettingsStatus();
+    }
     //
 }
 
