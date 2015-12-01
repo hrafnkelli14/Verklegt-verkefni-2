@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<programdata>
+    <scientists>
+        <scientist>
+            <name>Alan Turing</name>
+            <gender>Male</gender>
+            <dob>23/07/1912</dob>
+            <dod>07/06/1954</dod>
+        </scientist>
+        <scientist>
+            <name>Charles Babbage</name>
+            <gender>Male</gender>
+            <dob>26/12/1791</dob>
+            <dod>18/10/1871</dod>
+        </scientist>
+        <scientist>
+            <name>Ada Lovelace</name>
+            <gender>Female</gender>
+            <dob>10/12/1815</dob>
+            <dod>27/11/1852</dod>
+        </scientist>
+        <scientist>
+            <name>Grace Murray Hopper</name>
+            <gender>Female</gender>
+            <dob>09/12/1906</dob>
+            <dod>01/01/1992</dod>
+        </scientist>
+        <scientist>
+            <name>John Atanasoff</name>
+            <gender>Male</gender>
+            <dob>04/10/1903</dob>
+            <dod>15/06/1995</dod>
+        </scientist>
+        <scientist>
+            <name>George Boole</name>
+            <gender>Male</gender>
+            <dob>02/11/1815</dob>
+            <dod>08/12/1864</dod>
+        </scientist>
+        <scientist>
+            <name>Vint Cerf</name>
+            <gender>Male</gender>
+            <dob>23/06/1943</dob>
+            <dod>alive</dod>
+        </scientist>
+        <scientist>
+            <name>Donald Knuth</name>
+            <gender>Male</gender>
+            <dob>10/01/1938</dob>
+            <dod>alive</dod>
+        </scientist>
+        <scientist>
+            <name>John von Neumann</name>
+            <gender>Male</gender>
+            <dob>28/12/1903</dob>
+            <dod>08/02/1957</dod>
+        </scientist>
+        <scientist>
+            <name>Blaise Pascal</name>
+            <gender>Male</gender>
+            <dob>19/06/1623</dob>
+            <dod>19/08/1662</dod>
+        </scientist>
+    </scientists>
+    <settings>
+        <order_by>DOB_R</order_by>
+        <view_gender>BOTH</view_gender>
+    </settings>
+</programdata>
