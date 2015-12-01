@@ -553,6 +553,10 @@ void RequestProcessor::readOrdering()
     {
         order_by = DOD_R;
     }
+    else
+    {
+        order_by = NAME; //defaults to name
+    }
 }
 
 void RequestProcessor::readGenderView()
@@ -569,5 +573,9 @@ void RequestProcessor::readGenderView()
     else if(genderViewQStr == "BOTH")
     {
         view_gender = BOTH;
+    }
+    else
+    {
+        view_gender = BOTH; //defaults to both
     }
 }
