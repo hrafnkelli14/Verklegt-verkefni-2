@@ -167,22 +167,238 @@ void RequestProcessor::orderByName_R(QVector<Person> &sortedVector)
 
 void RequestProcessor::orderByDoB(QVector<Person> &sortedVector)
 {
-    //TODO implement
+    QString Qtemp;
+    Person temp;
+    string date1, date2;
+
+    int year1, year2, month1, month2, day1, day2;
+    for(int i = 0; i < sortedVector.size(); i++)
+    {
+        for(int j = i+1; j < sortedVector.size(); j++)
+        {
+            Qtemp = sortedVector[i].getDoB();
+            date1 = Qtemp.toStdString();
+            Qtemp = sortedVector[j].getDoB();
+            date2 = Qtemp.toStdString();
+
+
+            year1 = stoi(date1.substr(6,4));
+            year2 = stoi(date2.substr(6,4));
+            month1 = stoi(date1.substr(3,2));
+            month2 = stoi(date2.substr(3,2));
+            day1 = stoi(date1.substr(0,2));
+            day2 = stoi(date2.substr(0,2));
+
+            if(year1 > year2)
+            {
+                temp = sortedVector[j];
+                sortedVector[j] = sortedVector[i];
+                sortedVector[i] = temp;
+            }
+            else if(year1 == year2 && month1 > month2)
+            {
+                temp = sortedVector[j];
+                sortedVector[j] = sortedVector[i];
+                sortedVector[i] = temp;
+            }
+            else if(year1 == year2 && month1 == month2 && day1 > day2)
+            {
+                temp = sortedVector[j];
+                sortedVector[j] = sortedVector[i];
+                sortedVector[i] = temp;
+            }
+        }
+    }
 }
 
 void RequestProcessor::orderByDoB_R(QVector<Person> &sortedVector)
 {
-    //TODO implement
+    QString Qtemp;
+    Person temp;
+    string date1, date2;
+
+    int year1, year2, month1, month2, day1, day2;
+    for(int i = 0; i < sortedVector.size(); i++)
+    {
+        for(int j = i+1; j < sortedVector.size(); j++)
+        {
+            Qtemp = sortedVector[i].getDoB();
+            date1 = Qtemp.toStdString();
+            Qtemp = sortedVector[j].getDoB();
+            date2 = Qtemp.toStdString();
+
+
+            year1 = stoi(date1.substr(6,4));
+            year2 = stoi(date2.substr(6,4));
+            month1 = stoi(date1.substr(3,2));
+            month2 = stoi(date2.substr(3,2));
+            day1 = stoi(date1.substr(0,2));
+            day2 = stoi(date2.substr(0,2));
+
+            if(year1 < year2)
+            {
+                temp = sortedVector[j];
+                sortedVector[j] = sortedVector[i];
+                sortedVector[i] = temp;
+            }
+            else if(year1 == year2 && month1 < month2)
+            {
+                temp = sortedVector[j];
+                sortedVector[j] = sortedVector[i];
+                sortedVector[i] = temp;
+            }
+            else if(year1 == year2 && month1 == month2 && day1 < day2)
+            {
+                temp = sortedVector[j];
+                sortedVector[j] = sortedVector[i];
+                sortedVector[i] = temp;
+            }
+        }
+    }
 }
 
 void RequestProcessor::orderByDoD(QVector<Person> &sortedVector)
 {
-    //TODO implement
+    QString Qtemp;
+    Person temp;
+    string date1, date2;
+
+    QVector<Person> alive, dead;
+    for(int i = 0; i < sortedVector.size(); i++)
+    {
+        Qtemp = sortedVector[i].getDoD();
+        date1 = Qtemp.toStdString();
+        if(date1 == "alive")
+        {
+            alive.push_back(sortedVector[i]);
+        }
+        else
+        {
+            dead.push_back(sortedVector[i]);
+        }
+    }
+    int year1, year2, month1, month2, day1, day2;
+    for(int i = 0; i < dead.size(); i++)
+    {
+        for(int j = i+1; j < dead.size(); j++)
+        {
+            Qtemp = dead[i].getDoD();
+            date1 = Qtemp.toStdString();
+            Qtemp = dead[j].getDoD();
+            date2 = Qtemp.toStdString();
+
+
+            year1 = stoi(date1.substr(6,4));
+            year2 = stoi(date2.substr(6,4));
+            month1 = stoi(date1.substr(3,2));
+            month2 = stoi(date2.substr(3,2));
+            day1 = stoi(date1.substr(0,2));
+            day2 = stoi(date2.substr(0,2));
+
+            if(year1 > year2)
+            {
+                temp = dead[j];
+                dead[j] = dead[i];
+                dead[i] = temp;
+            }
+            else if(year1 == year2 && month1 > month2)
+            {
+                temp = dead[j];
+                dead[j] = dead[i];
+                dead[i] = temp;
+            }
+            else if(year1 == year2 && month1 == month2 && day1 > day2)
+            {
+                temp = dead[j];
+                dead[j] = dead[i];
+                dead[i] = temp;
+            }
+        }
+    }
+    for(int i = sortedVector.size(); i > 0; i--)
+    {
+        sortedVector.pop_back();
+    }
+    for(int i = 0; i < alive.size(); i++)
+    {
+        dead.push_back(alive[i]);
+    }
+    for(int i = 0; i < dead.size(); i++)
+    {
+        sortedVector.push_back(dead[i]);
+    }
 }
 
 void RequestProcessor::orderByDoD_R(QVector<Person> &sortedVector)
 {
-    //TODO implement
+    QString Qtemp;
+    Person temp;
+    string date1, date2;
+
+    QVector<Person> alive, dead;
+    for(int i = 0; i < sortedVector.size(); i++)
+    {
+        Qtemp = sortedVector[i].getDoD();
+        date1 = Qtemp.toStdString();
+        if(date1 == "alive")
+        {
+            alive.push_back(sortedVector[i]);
+        }
+        else
+        {
+            dead.push_back(sortedVector[i]);
+        }
+    }
+    int year1, year2, month1, month2, day1, day2;
+    for(int i = 0; i < dead.size(); i++)
+    {
+        for(int j = i+1; j < dead.size(); j++)
+        {
+            Qtemp = dead[i].getDoD();
+            date1 = Qtemp.toStdString();
+            Qtemp = dead[j].getDoD();
+            date2 = Qtemp.toStdString();
+
+
+            year1 = stoi(date1.substr(6,4));
+            year2 = stoi(date2.substr(6,4));
+            month1 = stoi(date1.substr(3,2));
+            month2 = stoi(date2.substr(3,2));
+            day1 = stoi(date1.substr(0,2));
+            day2 = stoi(date2.substr(0,2));
+
+            if(year1 < year2)
+            {
+                temp = dead[j];
+                dead[j] = dead[i];
+                dead[i] = temp;
+            }
+            else if(year1 == year2 && month1 < month2)
+            {
+                temp = dead[j];
+                dead[j] = dead[i];
+                dead[i] = temp;
+            }
+            else if(year1 == year2 && month1 == month2 && day1 < day2)
+            {
+                temp = dead[j];
+                dead[j] = dead[i];
+                dead[i] = temp;
+            }
+        }
+    }
+    for(int i = sortedVector.size(); i > 0; i--)
+    {
+        sortedVector.pop_back();
+    }
+    for(int i = 0; i < dead.size(); i++)
+    {
+        alive.push_back(dead[i]);
+    }
+    for(int i = 0; i < alive.size(); i++)
+    {
+        sortedVector.push_back(alive[i]);
+    }
 }
 
 //--gender view functions--
