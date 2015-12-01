@@ -86,8 +86,6 @@ QVector<Person> RequestProcessor::searchList(QString search_string)
     QVector<Person> sortedVector = outputList();
     QString search_type = "";
     QString search_query = "";
-    QVector<Person> testing_output; //for testing purposes -- delete later
-    Person testing_per; //testing -- delete later
 
     int i = 0;
     while(1) //finds searchBy
@@ -107,21 +105,21 @@ QVector<Person> RequestProcessor::searchList(QString search_string)
     search_query = search_string.section(' ', 1); //finds the search query itself
 
 
-    if(QString::compare(search_type, "name", Qt::CaseInsensitive))
+    if(QString::compare(search_type, "name", Qt::CaseInsensitive)) //search by NAME
     {
         searchByName(search_query, sortedVector);
     }
-    else if(QString::compare(search_type, "dob", Qt::CaseInsensitive))
+    else if(QString::compare(search_type, "dob", Qt::CaseInsensitive)) //search by DOB
     {
         searchByDoB(search_query, sortedVector);
     }
-    else if(QString::compare(search_type, "dod", Qt::CaseInsensitive))
+    else if(QString::compare(search_type, "dod", Qt::CaseInsensitive)) //search by DOD
     {
         searchByDoD(search_query, sortedVector);
     }
 
 
-    return testing_output;
+    return sortedVector;
 }
 
 void RequestProcessor::setOrdering(ordering _order_by)

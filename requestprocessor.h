@@ -42,9 +42,9 @@ private:
     void femalesOnly(QVector<Person> &sortedVector); //this makes the sortedvector 37.1% better
 
     //searching functions
-    void searchByName(QString search_query, QVector<Person> &sortedVector); //TODO implement
-    void searchByDoB(QString search_query, QVector<Person> &sortedVector); //TODO implement
-    void searchByDoD(QString search_query, QVector<Person> &sortedVector); //TODO implement
+    void searchByName(QString search_query, QVector<Person> &sortedVector); //TODO implement(eirikur)
+    void searchByDoB(QString search_query, QVector<Person> &sortedVector); //TODO implement(eirikur)
+    void searchByDoD(QString search_query, QVector<Person> &sortedVector); //TODO implement(eirikur)
 
     QString orderingToQStr();
     QString gendertypeToQStr();
