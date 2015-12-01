@@ -36,8 +36,6 @@ void Interface::start()
         default:
             break;
         }
-
-
     }
 }
 
@@ -399,9 +397,10 @@ void Interface::newMenu(string menuname)
 
 void Interface::waitForAnyKey()
 {
-    char ch = '\n';
+    char ch = ' ';
+    cin.clear();
     cin.ignore(1000, '\n');
-    while(ch != '\n') //stupid but works
+    while(ch != '\n') //ugly but works
     {
         ch = cin.get();
     }
