@@ -21,8 +21,6 @@ void Interface::start()
         std::cin >> ch;
         switch(ch)
         {
-        case '0':
-            system("wordpad.exe data.xml");
         case '1':
             add();
             break;
@@ -38,8 +36,6 @@ void Interface::start()
         default:
             break;
         }
-
-
     }
 }
 
@@ -404,7 +400,7 @@ void Interface::waitForAnyKey()
     char ch = ' ';
     cin.clear();
     cin.ignore(1000, '\n');
-    while(ch != '\n') //stupid but works
+    while(ch != '\n') //ugly but works
     {
         ch = cin.get();
     }
