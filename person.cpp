@@ -165,9 +165,9 @@ istream& operator >>(istream& ins, Person& person1)
 
 ostream& operator <<(ostream& os, Person person1)
 {
-    os << person1.name << endl;
-    os << person1.gender << endl;
-    os << "Born: " << person1.date_of_birth;
+    os << "Name: " <<  person1.name << ", ";
+    os << "Gender: " << person1.gender << ", ";
+    os << "Born: " << person1.date_of_birth << ", ";
     if(person1.date_of_death != "alive")
     {
         os << " Died: " << person1.date_of_death << endl;
