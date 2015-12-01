@@ -21,6 +21,9 @@ void Interface::start()
         std::cin >> ch;
         switch(ch)
         {
+        case 'a':
+            about();
+            break;
         case '1':
             add();
             break;
@@ -47,10 +50,16 @@ void Interface::add()
     printLines();
     printMenuHead("ADD PERSON");
     Person temp;
+    char ch;
     cin >> temp;
 
-    request.addPerson(temp);
-    setStatus("\"" + temp.getName().toStdString() + "\" added to list!");
+    cout << "Are you sure you want to add " << temp.getName().toStdString() << "?(y/n): ";
+    cin >> ch;
+    if(ch == 'y' || ch == 'Y')
+    {
+        request.addPerson(temp);
+        setStatus("\"" + temp.getName().toStdString() + "\" added to list!");
+    }
 }
 
 void Interface::output()
@@ -66,7 +75,7 @@ void Interface::output()
     }
 
     printSettingsStatus();
-    cout << "press any key to continue: ";
+    cout << "press enter key to continue: ";
     waitForAnyKey();
 }
 
@@ -101,30 +110,30 @@ void Interface::search()
         }while(ch != '\n');
     //
 
-    if(search_string == "")
-    {
-        return;
-    }
+         if(search_string == "")
+         {
+            return;
+         }
 
     //search results
-        QVector<Person> search_results = request.searchList(QString::fromStdString(search_string));
-        clearConsole();
-        printLines();
-        printMenuHead("SEARCH RESULTS");
+         QVector<Person> search_results = request.searchList(QString::fromStdString(search_string));
+         clearConsole();
+         printLines();
+         printMenuHead("SEARCH RESULTS");
 
-        if(search_results.size() > 0)
-        {
-            for(int i = 0; i < search_results.size(); i++)
-            {
-                cout << search_results[i] << endl;
-            }
-        }
-        else
-        {
-            cout << "NO RESULTS(did you forget to prepend search string with 'name', 'dob' or 'dod'?)" << endl;
-        }
+         if(search_results.size() > 0)
+         {
+             for(int i = 0; i < search_results.size(); i++)
+             {
+                 cout << search_results[i] << endl;
+             }
+         }
+         else
+         {
+             cout << "NO RESULTS(did you forget to prepend search string with 'name', 'dob' or 'dod'?)" << endl;
+         }
 
-        printSettingsStatus();
+         printSettingsStatus();
     }
     //
 }
@@ -260,6 +269,18 @@ void Interface::settingsGenders()
     settingsMain(); //after changing gender view settings go back to main settings menu
 }
 
+void Interface::about()
+{
+    newMenu("ABOUT");
+    cout << "Verklegt Namsskeid - Skil 1 \t Reykjavik University - Fall 2015\n\n"
+            "Created by:\n"
+            "Hrafnkell Ivarsson\n"
+            "Arnar Freyr Saevarsson\n"
+            "Eirikur Hakon Fridriksson\n";
+    printLines();
+    cout << "Press enter to continue: ";
+    waitForAnyKey();
+}
 
 //--helpers--
 void Interface::clearConsole()
@@ -283,7 +304,8 @@ void Interface::printMainMenu()
                  "press (2) to view list \n"
                  "press (3) for list view settings \n"
                  "press (4) to search the list\n"
-                 "press (5) to exit \n";
+                 "press (5) to exit \n"
+                 "press (a) for information about this program\n";
     printLines();
     printStatus();
 

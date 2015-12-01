@@ -18,6 +18,7 @@ private:
     void settingsMain();
     void settingsOrdering();
     void settingsGenders();
+    void about();
 
     //helpers
     void clearConsole(); //should clear the console window (NOTE: not tested for unix based systems, commented out)
