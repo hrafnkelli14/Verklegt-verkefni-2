@@ -223,8 +223,8 @@ void RequestProcessor::searchByName(QString search_query, QVector<Person> &sorte
     {
         string stdNameString = sortedVector[i].getName().toStdString();
         string stdQueryString = search_query.toStdString();
-        transform(stdNameString.begin(), stdNameString.end(), stdNameString.begin(), ::toupper);
-        transform(stdQueryString.begin(), stdQueryString.end(), stdQueryString.begin(), ::toupper);
+        transform(stdNameString.begin(), stdNameString.end(), stdNameString.begin(), ::toupper); //case insensitive search
+        transform(stdQueryString.begin(), stdQueryString.end(), stdQueryString.begin(), ::toupper); //case insensitive search
 
         if (stdNameString.find(stdQueryString) <= stdNameString.size())
         {
