@@ -105,17 +105,22 @@ QVector<Person> RequestProcessor::searchList(QString search_string)
     search_query = search_string.section(' ', 1); //finds the search query itself
 
 
-    if(QString::compare(search_type, "name", Qt::CaseInsensitive)) //search by NAME
+    if(QString::compare(search_type, "name", Qt::CaseInsensitive) == 0) //search by NAME
     {
         searchByName(search_query, sortedVector);
     }
-    else if(QString::compare(search_type, "dob", Qt::CaseInsensitive)) //search by DOB
+    else if(QString::compare(search_type, "dob", Qt::CaseInsensitive) == 0) //search by DOB
     {
         searchByDoB(search_query, sortedVector);
     }
-    else if(QString::compare(search_type, "dod", Qt::CaseInsensitive)) //search by DOD
+    else if(QString::compare(search_type, "dod", Qt::CaseInsensitive) == 0) //search by DOD
     {
         searchByDoD(search_query, sortedVector);
+    }
+    else
+    {
+        //incorrect search type
+        return QVector<Person>();
     }
 
 

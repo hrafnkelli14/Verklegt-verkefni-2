@@ -96,9 +96,16 @@ void Interface::search()
     printLines();
     printMenuHead("SEARCH RESULTS");
 
-    for(int i = 0; i < search_results.size(); i++)
+    if(search_results.size() > 0)
     {
-        cout << search_results[i] << endl;
+        for(int i = 0; i < search_results.size(); i++)
+        {
+            cout << search_results[i] << endl;
+        }
+    }
+    else
+    {
+        cout << "SEARCH ERROR: prepend search query with 'name', 'dob' or 'dod'" << endl;
     }
 
     printSettingsStatus();
