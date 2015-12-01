@@ -75,10 +75,17 @@ void Interface::output()
 void Interface::search()
 {
     //searching menu
+    char ch = ' ';
     string search_string = "";
 
     newMenu("SEARCH");
-    cin >> search_string;
+
+    cin.ignore(1000, '\n');
+    while(ch != '\n')
+    {
+        ch = cin.get();
+        search_string += ch;
+    }
     //
 
 
@@ -363,9 +370,10 @@ void Interface::newMenu(string menuname)
 
 void Interface::waitForAnyKey()
 {
+    char ch = '\n';
     cin.ignore(1000, '\n');
-    while(cin.get() == '\t') //stupid but works
+    while(ch != '\n') //stupid but works
     {
-
+        ch = cin.get();
     }
 }

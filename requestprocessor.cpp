@@ -83,7 +83,45 @@ QVector<Person> RequestProcessor::outputList()
 
 QVector<Person> RequestProcessor::searchList(QString search_string)
 {
-    return QVector<Person>();
+    QVector<Person> sortedVector = outputList();
+    QString search_type = "";
+    QString search_query = "";
+    QVector<Person> testing_output; //for testing purposes -- delete later
+    Person testing_per; //testing -- delete later
+
+    int i = 0;
+    while(1) //finds searchBy
+    {
+        if(search_string[i] == ' ')
+        {
+            break;
+        }
+        else
+        {
+            search_type += search_string[i];
+        }
+
+        i++;
+    }
+
+    search_query = search_string.section(' ', 1); //finds the search query itself
+
+
+    if(QString::compare(search_type, "name", Qt::CaseInsensitive))
+    {
+        searchByName(search_query, sortedVector);
+    }
+    else if(QString::compare(search_type, "dob", Qt::CaseInsensitive))
+    {
+        searchByDoB(search_query, sortedVector);
+    }
+    else if(QString::compare(search_type, "dod", Qt::CaseInsensitive))
+    {
+        searchByDoD(search_query, sortedVector);
+    }
+
+
+    return testing_output;
 }
 
 void RequestProcessor::setOrdering(ordering _order_by)
@@ -169,22 +207,19 @@ void RequestProcessor::femalesOnly(QVector<Person> &sortedVector)
 }
 
 //--searching functions--
-QVector<Person> RequestProcessor::searchByName()
+void RequestProcessor::searchByName(QString search_query, QVector<Person> &sortedVector)
 {
     //TODO implement
-    return QVector<Person>();
 }
 
-QVector<Person> RequestProcessor::searchByDoB()
+void RequestProcessor::searchByDoB(QString search_query, QVector<Person> &sortedVector)
 {
     //TODO implement
-    return QVector<Person>();
 }
 
-QVector<Person> RequestProcessor::searchByDoD()
+void RequestProcessor::searchByDoD(QString search_query, QVector<Person> &sortedVector)
 {
     //TODO implement
-    return QVector<Person>();
 }
 
 //--helpers--
