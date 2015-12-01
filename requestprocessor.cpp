@@ -427,7 +427,7 @@ void RequestProcessor::searchByName(QString search_query, QVector<Person> &sorte
         transform(stdNameString.begin(), stdNameString.end(), stdNameString.begin(), ::toupper); //case insensitive search
         transform(stdQueryString.begin(), stdQueryString.end(), stdQueryString.begin(), ::toupper); //case insensitive search
 
-        if (stdNameString.find(stdQueryString) <= stdNameString.size())
+        if (stdNameString.find(stdQueryString) <= stdNameString.size()) //checks if search query is a part of the name
         {
             searchNames.push_back(sortedVector[i]);
         }

@@ -1,6 +1,5 @@
 #include <QCoreApplication>
 #include "interface.h"
-#include <iostream> //FOR DEBUGGING
 
 int main(int argc, char *argv[])
 {
@@ -9,7 +8,6 @@ int main(int argc, char *argv[])
     Interface i;
     i.start();
 
-    //return a.exec();
     return 0;
 }
 

@@ -17,8 +17,8 @@ public:
     void addPerson(const Person &pers); //contains the famous middle-out compression algorithm
     void updateSettings(); //what happens here?
 
-    QVector<Person> outputList(); //this is the real function that is to be used
-    QVector<Person> searchList(QString search_string); //TODO implement
+    QVector<Person> outputList(); //outputs list according to order_by and view_gender settings
+    QVector<Person> searchList(QString search_string); //searches list according to order_by and view_gender settings
 
     void setOrdering(ordering _order_by); //sets order_by attribute
     void setGenderView(gendertype _view_gender); //sets view_gender attribute
@@ -32,16 +32,16 @@ private:
     void orderByDoB(QVector<Person> &sortedVector);
     void orderByDoB_R(QVector<Person> &sortedVector);
     void orderByDoD(QVector<Person> &sortedVector);
-    void orderByDoD_R(QVector<Person> &sortedVector); //TODO implement
+    void orderByDoD_R(QVector<Person> &sortedVector);
 
     //gender view functions
     void malesOnly(QVector<Person> &sortedVector); //patriarchial female filter for sortedvector
     void femalesOnly(QVector<Person> &sortedVector); //this makes the sortedvector 37.1% better
 
     //searching functions
-    void searchByName(QString search_query, QVector<Person> &sortedVector); //TODO implement(eirikur)
-    void searchByDoB(QString search_query, QVector<Person> &sortedVector); //TODO implement(eirikur)
-    void searchByDoD(QString search_query, QVector<Person> &sortedVector); //TODO implement(eirikur)
+    void searchByName(QString search_query, QVector<Person> &sortedVector);
+    void searchByDoB(QString search_query, QVector<Person> &sortedVector);
+    void searchByDoD(QString search_query, QVector<Person> &sortedVector);
 
     QString orderingToQStr();
     QString gendertypeToQStr();
