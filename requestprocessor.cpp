@@ -217,7 +217,17 @@ void RequestProcessor::femalesOnly(QVector<Person> &sortedVector)
 //--searching functions--
 void RequestProcessor::searchByName(QString search_query, QVector<Person> &sortedVector)
 {
-    //TODO implement
+    QVector<Person> searchNames;
+
+    for(int i = 0; i < sortedVector.size(); i++)
+    {
+        string stdNameString = sortedVector[i].getName().toStdString();
+        if (stdNameString.find(search_query.toStdString()) <= stdNameString.size())
+        {
+            searchNames.push_back(sortedVector[i]);
+        }
+    }
+    sortedVector = searchNames;
 }
 
 void RequestProcessor::searchByDoB(QString search_query, QVector<Person> &sortedVector)
