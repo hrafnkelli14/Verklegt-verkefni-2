@@ -22,6 +22,6 @@ Verkefni 1
 - DONE: (*Hrafnkell*) Search from console.
 - DONE: (*Hrafnkell*) display list from console.
 
-######FINISHED PRODUCT
+######FINISHED PRODUCT(DONE)
 - DONE: compile and add populated data.xml to .zip/.rar
-- TODO: turn the finished assignment in :)
+- DONE: turn the finished assignment in :)
