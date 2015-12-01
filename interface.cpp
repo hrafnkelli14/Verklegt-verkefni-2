@@ -105,7 +105,7 @@ void Interface::search()
     }
     else
     {
-        cout << "SEARCH ERROR: prepend search query with 'name', 'dob' or 'dod'" << endl;
+        cout << "NO RESULTS(did you forget to prepend search string with 'name', 'dob' or 'dod'?)" << endl;
     }
 
     printSettingsStatus();

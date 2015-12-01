@@ -99,6 +99,11 @@ QVector<Person> RequestProcessor::searchList(QString search_string)
             search_type += search_string[i];
         }
 
+        if(i > search_string.length())
+        {
+            return QVector<Person>();
+        }
+
         i++;
     }
 
