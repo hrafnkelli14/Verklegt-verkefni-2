@@ -76,11 +76,15 @@ void Interface::search()
 {
     //searching menu
     newMenu("SEARCH");
+    cout << "Syntax: \"searchtype searchquery\" # search types: 'name', 'dob' and 'dod\n";
+    printSimpleLines();
+
+
     cin.ignore(1000, '\n');
 
     while(1)
     {
-        cout << "Search query(leave empty to exit to main menu): ";
+        cout << "Search query(empty to exit to main menu): ";
         char ch = ' ';
         string search_string = "";
 
@@ -364,14 +368,19 @@ void Interface::printMenuHead(string menuname)
     {
         std::cout << ' ';
     }
-    std::cout << menuname << endl <<
-                 "------------------------------------------------------------------------\n";
+    std::cout << menuname << endl;
+    printSimpleLines();
 
 }
 
 void Interface::printLines()
 {
     std::cout << "========================================================================\n";
+}
+
+void Interface::printSimpleLines()
+{
+    std::cout << "------------------------------------------------------------------------\n";
 }
 
 void Interface::newMenu(string menuname)

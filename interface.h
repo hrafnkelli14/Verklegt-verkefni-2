@@ -27,7 +27,8 @@ private:
     void printStatus(); //prints status
     void printSettingsStatus(); //prints settings status
     void printMenuHead(string menuname); //prints header of a menu
-    void printLines(); //prints "===================================================" easier for consistency
+    void printLines(); //prints "===================================================\n" easier for consistency
+    void printSimpleLines(); //prints "------------------------------------------------------------------------\n" easier for consistency
     void newMenu(string menuname); //combination of clearConsole(), printSettingsStatus(), printMenuHead() and printLines();
     void waitForAnyKey(); //waits for any key
 
