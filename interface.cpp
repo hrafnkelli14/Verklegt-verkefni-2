@@ -84,7 +84,10 @@ void Interface::search()
     while(ch != '\n')
     {
         ch = cin.get();
-        search_string += ch;
+        if(ch != '\n')
+        {
+            search_string += ch;
+        }
     }
     //
 
