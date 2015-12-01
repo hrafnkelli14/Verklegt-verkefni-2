@@ -15,9 +15,6 @@ class RequestProcessor
 public:
     RequestProcessor();
     void addPerson(const Person &pers); //contains the famous middle-out compression algorithm
-    void deletePerson(); //TODO IMPLEMENT
-    void editPerson(); //TODO implement
-    void outputAll(); //FOR DEBUGGING - TO BE DELETED
     void updateSettings(); //what happens here?
 
     QVector<Person> outputList(); //this is the real function that is to be used
@@ -31,10 +28,10 @@ public:
 private:
     //sorting functions
     void orderByName(QVector<Person> &sortedVector);
-    void orderByName_R(QVector<Person> &sortedVector); //TODO implement
-    void orderByDoB(QVector<Person> &sortedVector); //TODO implement
-    void orderByDoB_R(QVector<Person> &sortedVector); //TODO implement
-    void orderByDoD(QVector<Person> &sortedVector); //TODO implement
+    void orderByName_R(QVector<Person> &sortedVector);
+    void orderByDoB(QVector<Person> &sortedVector);
+    void orderByDoB_R(QVector<Person> &sortedVector);
+    void orderByDoD(QVector<Person> &sortedVector);
     void orderByDoD_R(QVector<Person> &sortedVector); //TODO implement
 
     //gender view functions

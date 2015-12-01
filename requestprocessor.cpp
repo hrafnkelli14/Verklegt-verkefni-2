@@ -16,23 +16,7 @@ void RequestProcessor::addPerson(const Person &pers)
     data.update(cscientists, orderingToQStr(), gendertypeToQStr());
 }
 
-void RequestProcessor::deletePerson()
-{
-    //TODO IMPLEMENT
-}
 
-void RequestProcessor::editPerson()
-{
-    //TODO implement
-}
-
-void RequestProcessor::outputAll() //FOR DEBUGGING
-{
-    for(int i = 0; i < cscientists.size(); i++)
-    {
-        std::cout << cscientists[i] << endl;
-    }
-}
 
 void RequestProcessor::updateSettings()
 {
@@ -165,29 +149,29 @@ void RequestProcessor::orderByName_R(QVector<Person> &sortedVector)
     reverse(sortedVector.begin(), sortedVector.end());
 }
 
-void RequestProcessor::orderByDoB(QVector<Person> &sortedVector)
+void RequestProcessor::orderByDoB(QVector<Person> &sortedVector) //sets the list in order by date of birth
 {
     QString Qtemp;
     Person temp;
     string date1, date2;
 
     int year1, year2, month1, month2, day1, day2;
-    for(int i = 0; i < sortedVector.size(); i++)
+    for(int i = 0; i < sortedVector.size(); i++)//loops through the vector to check each date
     {
-        for(int j = i+1; j < sortedVector.size(); j++)
+        for(int j = i+1; j < sortedVector.size(); j++)  //compares each date with the date current lowest at each time
         {
             Qtemp = sortedVector[i].getDoB();
             date1 = Qtemp.toStdString();
             Qtemp = sortedVector[j].getDoB();
-            date2 = Qtemp.toStdString();
+            date2 = Qtemp.toStdString();        //sets the dates as a normal string instead of a QString
 
 
             year1 = stoi(date1.substr(6,4));
-            year2 = stoi(date2.substr(6,4));
+            year2 = stoi(date2.substr(6,4)); //declares two variables as years and sets them as integers with stoi
             month1 = stoi(date1.substr(3,2));
-            month2 = stoi(date2.substr(3,2));
+            month2 = stoi(date2.substr(3,2));//declares two variables as months and sets them as integers with stoi
             day1 = stoi(date1.substr(0,2));
-            day2 = stoi(date2.substr(0,2));
+            day2 = stoi(date2.substr(0,2)); //declares two variables as months and sets them as integers with stoi
 
             if(year1 > year2)
             {
@@ -211,7 +195,7 @@ void RequestProcessor::orderByDoB(QVector<Person> &sortedVector)
     }
 }
 
-void RequestProcessor::orderByDoB_R(QVector<Person> &sortedVector)
+void RequestProcessor::orderByDoB_R(QVector<Person> &sortedVector) //same as orderByDoB but reverses the output
 {
     QString Qtemp;
     Person temp;
@@ -264,7 +248,8 @@ void RequestProcessor::orderByDoD(QVector<Person> &sortedVector)
     string date1, date2;
 
     QVector<Person> alive, dead;
-    for(int i = 0; i < sortedVector.size(); i++)
+    for(int i = 0; i < sortedVector.size(); i++) // a loop that sets two vectors, dead with all comp. scientists that are dead
+                                                 // and alive with all comp. scientists still alive
     {
         Qtemp = sortedVector[i].getDoD();
         date1 = Qtemp.toStdString();
@@ -280,7 +265,7 @@ void RequestProcessor::orderByDoD(QVector<Person> &sortedVector)
     int year1, year2, month1, month2, day1, day2;
     for(int i = 0; i < dead.size(); i++)
     {
-        for(int j = i+1; j < dead.size(); j++)
+        for(int j = i+1; j < dead.size(); j++)  //same as orderbyDoB but uses just the dead comp. scientists
         {
             Qtemp = dead[i].getDoD();
             date1 = Qtemp.toStdString();
@@ -315,21 +300,21 @@ void RequestProcessor::orderByDoD(QVector<Person> &sortedVector)
             }
         }
     }
-    for(int i = sortedVector.size(); i > 0; i--)
+    for(int i = sortedVector.size(); i > 0; i--) //removes the current contents of sortedVector
     {
         sortedVector.pop_back();
     }
-    for(int i = 0; i < alive.size(); i++)
+    for(int i = 0; i < alive.size(); i++)   //adds all scientists alive to dead in order to add to sortedVector
     {
         dead.push_back(alive[i]);
     }
     for(int i = 0; i < dead.size(); i++)
     {
-        sortedVector.push_back(dead[i]);
+        sortedVector.push_back(dead[i]);    //adds all scientists to sortedVector
     }
 }
 
-void RequestProcessor::orderByDoD_R(QVector<Person> &sortedVector)
+void RequestProcessor::orderByDoD_R(QVector<Person> &sortedVector)  //same as orderbyDoD but reverses the output
 {
     QString Qtemp;
     Person temp;
