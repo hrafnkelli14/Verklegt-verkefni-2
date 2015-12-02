@@ -54,6 +54,18 @@ bool DbManager::addPerson(Person pers)
                      pers.getDoD() + "')");
 }
 
+bool DbManager::deletePerson(Person pers)
+{
+    //TODO implement
+    return false;
+}
+
+bool DbManager::editPerson(Person pers)
+{
+    //TODO implement
+    return false;
+}
+
 //========PRIVATE FUNCTIONS==========
 bool DbManager::execQuery(QString query_string)
 {
@@ -72,11 +84,6 @@ bool DbManager::createTables()
                      "dod TEXT, "
                      "PRIMARY KEY (name) )"); //might do better with a ID key, but this is good enough for testing
     //will other tables be needed?
-}
-
-void DbManager::readFile()
-{
-//
 }
 
 QVector<Person> DbManager::findPersons(QString conditions)

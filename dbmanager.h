@@ -14,17 +14,16 @@
 class DbManager
 {
 public:
-    DbManager();
-    QVector<Person> getList(QString order_by, QString view_gender);
-    QVector<Person> searchDb(QString search_type, QString search_query, QString order_by, QString view_gender); //TODO implement
-    bool addPerson(Person pers);
+    DbManager(); //main constructor
+    QVector<Person> getList(QString order_by, QString view_gender); //outputs list according to order_by and view_gender
+    QVector<Person> searchDb(QString search_type, QString search_query, QString order_by, QString view_gender); //searches in list according to order_by and view_gender
+    bool addPerson(Person pers); //adds person to Person table
     bool deletePerson(Person pers); //TODO implement
     bool editPerson(Person pers); //TODO implement
 private:
-    bool execQuery(QString query_string);
-    bool createTables();
-    void readFile();
-    QVector<Person> findPersons(QString conditions);
+    bool execQuery(QString query_string); //executes query.
+    bool createTables(); //creates needed tables for the program
+    QVector<Person> findPersons(QString conditions); //finds persons based on conditions in condition string(they must have an sql syntax)
 
     QString ascOrDesc(QString order_by);
 
