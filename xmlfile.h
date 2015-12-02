@@ -14,10 +14,10 @@ public:
     XmlFile(); //Constructor
     QString getOrdering(); //returns ordering as string
     QString getViewGender(); //returns view gender as string
-    void update(QString _order_by, QString _getViewGender); //Update list and write to file
+    void update(QString _order_by, QString _getViewGender); //updates order_by and view_gender and calls WriteToFile()
 private:
-    void writeToFile(); //writes cscientists to XML file
-    void readFile(); //Reads XML file
+    void writeToFile(); //writes order_by and view_gender to XML file
+    void readFile(); //Reads data from XML file
     QString filename; //filename of xml file
     QFile file; //file instance
     QString order_by; //will be converted to enum in requestprocessor

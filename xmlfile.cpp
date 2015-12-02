@@ -33,7 +33,7 @@ void XmlFile::update(QString _order_by, QString _view_gender)
 }
 
 //========PRIVATE FUNCTIONS==========
-void XmlFile::writeToFile() //Writes the vector to file
+void XmlFile::writeToFile()
 {
     file.open(QIODevice::WriteOnly);
 
