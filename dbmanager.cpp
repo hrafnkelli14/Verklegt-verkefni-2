@@ -16,30 +16,42 @@ DbManager::DbManager()
 
 }
 //========PUBLIC FUNCTIONS==========
-bool DbManager::update(QVector<Person> newVector)
+QVector<Person> DbManager::getList(QString order_by, QString view_gender)
 {
-    bool personsAdded = false;
-
-    if(newVector.isEmpty())
+    if(view_gender != "BOTH")
     {
-        return false;
+        return findPersons("WHERE gender LIKE '" + view_gender + "' " +
+                           "ORDER BY " + ascOrDesc(order_by));
+    }
+    else
+    {
+        return findPersons("ORDER BY " + ascOrDesc(order_by));
     }
 
-    for(int i = 0; i < newVector.size(); i++)
-    {
-        if(std::find(cscientists.begin(), cscientists.end(), newVector[i]) == cscientists.end())
-        {
-            personsAdded = addPerson(newVector[i]);
-        }
-    }
-
-    return personsAdded;
 }
 
-QVector<Person> DbManager::getList()
+QVector<Person> DbManager::searchDb(QString search_type, QString search_query, QString order_by, QString view_gender)
 {
-    readFile();
-    return cscientists;
+    if(view_gender != "BOTH")
+    {
+       return findPersons("WHERE " + search_type + " COLLATE UTF8_GENERAL_CI LIKE '%" + search_query + "%' "
+                          "AND gender LIKE '" + view_gender + "' " +
+                          "ORDER BY " + ascOrDesc(order_by));
+    }
+    else
+    {
+        return findPersons("WHERE " + search_type + " COLLATE UTF8_GENERAL_CI LIKE '%" + search_query + "%' "
+                           "ORDER BY " + ascOrDesc(order_by));
+    }
+}
+
+bool DbManager::addPerson(Person pers)
+{
+    return execQuery("INSERT INTO Persons VALUES"
+                     "('" + pers.getName() + "','" +
+                     pers.getGender() + "','" +
+                     pers.getDoB() + "','" +
+                     pers.getDoD() + "')");
 }
 
 //========PRIVATE FUNCTIONS==========
@@ -62,23 +74,21 @@ bool DbManager::createTables()
     //will other tables be needed?
 }
 
-bool DbManager::addPerson(Person pers)
+void DbManager::readFile()
 {
-    return execQuery("INSERT INTO Persons VALUES"
-              "('" + pers.getName() + "','" +
-              pers.getGender() + "','" +
-              pers.getDoB() + "','" +
-              pers.getDoD() + "')");
+//
 }
 
-void DbManager::readFile()
+QVector<Person> DbManager::findPersons(QString conditions)
 {
     db.open();
     Person temp;
+    QVector<Person> results;
     QSqlQuery qry;
 
     qry.exec("SELECT name, gender, dob, dod "
-              "FROM Persons");
+             "FROM Persons "
+             + conditions);
 
     int i_name = qry.record().indexOf("name");
     int i_gender = qry.record().indexOf("gender");
@@ -91,7 +101,30 @@ void DbManager::readFile()
         temp.setGender(qry.value(i_gender).toString().toStdString());
         temp.setDoB(qry.value(i_dob).toString().toStdString());
         temp.setDoD(qry.value(i_dod).toString().toStdString());
-        cscientists.push_back(temp);
+        results.push_back(temp);
     }
     db.close();
+
+    return results;
+}
+
+QString DbManager::ascOrDesc(QString order_by)
+{
+    if(order_by.toStdString().find("_R") <= order_by.size())
+    {
+        QString n_order_by = "";
+        for(int i = 0; i < order_by.size(); i++)
+        {
+            if(order_by[i] == '_')
+            {
+                break;
+            }
+            n_order_by += order_by[i];
+        }
+        return n_order_by + " DESC";
+    }
+    else
+    {
+        return order_by + " ASC";
+    }
 }

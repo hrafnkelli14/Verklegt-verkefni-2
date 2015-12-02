@@ -274,7 +274,7 @@ void Interface::about()
     clearConsole();
     printLines();
     printMenuHead("ABOUT");
-    cout << "Verklegt Namsskeid - Skil 1 \t Reykjavik University - Fall 2015\n\n"
+    cout << "Verklegt Namsskeid - Skil 2 \t Reykjavik University - Fall 2015\n\n"
             "Created by:\n"
             "Hrafnkell Ivarsson\n"
             "Arnar Freyr Saevarsson\n"
