@@ -3,9 +3,9 @@
 //========CONSTRUCTORS==========
 RequestProcessor::RequestProcessor()
 {
-   cscientists = data.getList();
-   readOrdering();
-   readGenderView();
+    cscientists = data.getList();
+    readOrdering();
+    readGenderView();
 }
 
 //========PUBLIC FUNCTIONS==========

@@ -14,16 +14,6 @@ DbManager::DbManager()
         std::cout << createTables();
     }
 
-
-    //QSqlQuery qry;
-
-    //cout << qry.exec("SELECT name FROM person");
-    //int idName = qry.record().indexOf("name");
-    //cout << qry.value(0).toString().toStdString();
-    //while(qry.next())
-    //{
-      //  cout << qry.value(idName).toString().toStdString();
-    //}
 }
 //========PUBLIC FUNCTIONS==========
 bool DbManager::update(QVector<Person> newVector)
@@ -40,16 +30,10 @@ bool DbManager::update(QVector<Person> newVector)
         if(std::find(cscientists.begin(), cscientists.end(), newVector[i]) == cscientists.end())
         {
             personsAdded = addPerson(newVector[i]);
-            std::cout << "zz";
         }
     }
 
     return personsAdded;
-}
-
-bool DbManager::isRunning()
-{
-    return db_run;
 }
 
 QVector<Person> DbManager::getList()
@@ -108,7 +92,6 @@ void DbManager::readFile()
         temp.setDoB(qry.value(i_dob).toString().toStdString());
         temp.setDoD(qry.value(i_dod).toString().toStdString());
         cscientists.push_back(temp);
-        std::cout << qry.value(i_name).toString().toStdString();
     }
     db.close();
 }

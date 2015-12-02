@@ -15,7 +15,6 @@ class DbManager
 {
 public:
     DbManager();
-    bool isRunning();
     bool update(QVector<Person> pers);
     QVector<Person> getList();
 private:
@@ -24,7 +23,6 @@ private:
     bool addPerson(Person pers);
     void readFile();
     QSqlDatabase db;
-    bool db_run;
     QVector<Person> cscientists;
 };
 
