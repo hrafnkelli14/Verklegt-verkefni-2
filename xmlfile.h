@@ -12,12 +12,9 @@
 class XmlFile {
 public:
     XmlFile(); //Constructor
-    XmlFile(QString xmlfilename); //Constructor
-    void setFile(QString newfile); //Changes xml source file name(CREATES NEW)
-    QVector<Person> getList(); //returns the cscientists vector read from XML
     QString getOrdering(); //returns ordering as string
     QString getViewGender(); //returns view gender as string
-    void update(QVector<Person> newVector, QString _order_by, QString _getViewGender); //Update list and write to file
+    void update(QString _order_by, QString _getViewGender); //Update list and write to file
 private:
     void writeToFile(); //writes cscientists to XML file
     void readFile(); //Reads XML file
@@ -27,7 +24,6 @@ private:
     QString view_gender; //will be converted to enum in requestprocessor
     QXmlStreamWriter xmlwriter; //QXml library writer
     QXmlStreamReader xmlreader; //QXml library reader
-    QVector<Person> cscientists; //The scientists read from XML
 };
 
 #endif // XMLFILE_H

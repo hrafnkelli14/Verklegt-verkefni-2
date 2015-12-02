@@ -49,8 +49,8 @@ private:
     void readOrdering();
     void readGenderView();
 
-    //XmlFile data; //xml file connection
-    DbManager data;
+    XmlFile settings; //xml file connection(settings)
+    DbManager data; //sql database connection
 
     QVector<Person> cscientists; //vector containing all our scientists
 
