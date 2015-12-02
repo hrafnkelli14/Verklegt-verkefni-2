@@ -2,6 +2,7 @@
 #include <QVector>
 #include <algorithm>
 #include "xmlfile.h"
+#include "dbmanager.h"
 
 #ifndef REQUESTPROCESSOR_H
 #define REQUESTPROCESSOR_H
@@ -48,7 +49,9 @@ private:
     void readOrdering();
     void readGenderView();
 
-    XmlFile data; //xml file connection
+    //XmlFile data; //xml file connection
+    DbManager data;
+
     QVector<Person> cscientists; //vector containing all our scientists
 
     ordering order_by; //order by setting

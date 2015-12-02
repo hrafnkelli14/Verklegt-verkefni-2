@@ -1,5 +1,6 @@
 #include <QCoreApplication>
 #include "interface.h"
+#include "dbmanager.h"
 
 int main(int argc, char *argv[])
 {

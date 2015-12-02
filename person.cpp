@@ -179,3 +179,20 @@ ostream& operator <<(ostream& os, Person person1)
 
     return os;
 }
+
+bool operator ==(Person& lhs, const Person& rhs)
+{
+    bool samename = (lhs.name == rhs.name);
+    bool samegender = (lhs.gender == lhs.gender);
+    bool samedob = (lhs.date_of_birth == rhs.date_of_birth);
+    bool samedod = (lhs.date_of_death == rhs.date_of_death);
+
+    if(samename && samegender && samedob && samedod)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}

@@ -1,4 +1,5 @@
 QT += core
+QT += sql
 QT -= gui
 
 TARGET = skil1
@@ -12,16 +13,14 @@ SOURCES += main.cpp \
     xmlfile.cpp \
     requestprocessor.cpp \
     person.cpp \
-    interface.cpp
+    interface.cpp \
+    dbmanager.cpp
 
 HEADERS += \
     xmlfile.h \
     requestprocessor.h \
     person.h \
-    interface.h
+    interface.h \
+    dbmanager.h
     requestprocessor.cpp
-
-HEADERS += \
-    xmlfile.h \
-    requestprocessor.h
 

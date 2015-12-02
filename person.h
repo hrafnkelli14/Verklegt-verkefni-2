@@ -38,5 +38,6 @@ public:
 
     friend std::istream& operator >>(std::istream& ins, Person& person1);   //overloads the >> operator to read into the variable person
     friend std::ostream& operator <<(std::ostream& os, Person person1);     //overloads the << operator to write out the contants of a variable person
+    friend bool operator ==(Person& lhs, const Person& rhs);
 };
 #endif // PERSON

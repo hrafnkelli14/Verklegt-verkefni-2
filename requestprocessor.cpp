@@ -3,7 +3,7 @@
 //========CONSTRUCTORS==========
 RequestProcessor::RequestProcessor()
 {
-   data.setFile("data");
+   //data.setFile("data");
    cscientists = data.getList();
    readOrdering();
    readGenderView();
@@ -13,14 +13,12 @@ RequestProcessor::RequestProcessor()
 void RequestProcessor::addPerson(const Person &pers)
 {
     cscientists.push_back(pers);
-    data.update(cscientists, orderingToQStr(), gendertypeToQStr());
+    data.update(cscientists);
 }
-
-
 
 void RequestProcessor::updateSettings()
 {
-    data.update(cscientists, orderingToQStr(), gendertypeToQStr());
+    //data.update(cscientists, orderingToQStr(), gendertypeToQStr());
 }
 
 QVector<Person> RequestProcessor::outputList()
@@ -513,7 +511,8 @@ QString RequestProcessor::gendertypeToQStr()
 
 void RequestProcessor::readOrdering()
 {
-    QString orderingQStr = data.getOrdering();
+    //QString orderingQStr = data.getOrdering();
+    QString orderingQStr = "NAME";
     if(orderingQStr == "NAME")
     {
         order_by = NAME;
@@ -546,7 +545,8 @@ void RequestProcessor::readOrdering()
 
 void RequestProcessor::readGenderView()
 {
-    QString genderViewQStr = data.getViewGender();
+    //QString genderViewQStr = data.getViewGender();
+    QString genderViewQStr = "BOTH";
     if(genderViewQStr == "MALE")
     {
         view_gender = MALE;
