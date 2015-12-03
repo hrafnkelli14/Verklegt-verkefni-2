@@ -14,13 +14,15 @@ SOURCES += main.cpp \
     requestprocessor.cpp \
     person.cpp \
     interface.cpp \
-    dbmanager.cpp
+    dbmanager.cpp \
+    computer.cpp
 
 HEADERS += \
     xmlfile.h \
     requestprocessor.h \
     person.h \
     interface.h \
-    dbmanager.h
+    dbmanager.h \
+    computer.h
     requestprocessor.cpp
 
