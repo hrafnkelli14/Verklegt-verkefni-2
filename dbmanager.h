@@ -25,7 +25,10 @@ private:
     bool createTables(); //creates needed tables for the program
     QVector<Person> findPersons(QString conditions); //finds persons based on conditions in condition string(they must have an sql syntax)
 
+    //helpers
     QString ascOrDesc(QString order_by);
+    QString toISO(QString date);
+    QString fromISO(QString date);
 
     QSqlDatabase db;
 };

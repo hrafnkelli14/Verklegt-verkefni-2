@@ -7,7 +7,7 @@ RequestProcessor::RequestProcessor()
 }
 
 //========PUBLIC FUNCTIONS==========
-void RequestProcessor::addPerson(const Person &pers)
+void RequestProcessor::addPerson(Person pers)
 {
     data.addPerson(pers);
 }

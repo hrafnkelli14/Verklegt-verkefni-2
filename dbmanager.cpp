@@ -47,11 +47,14 @@ QVector<Person> DbManager::searchDb(QString search_type, QString search_query, Q
 
 bool DbManager::addPerson(Person pers)
 {
+    QString DoB_iso = toISO(pers.getDoB());
+    QString DoD_iso = toISO(pers.getDoD());
+
     return execQuery("INSERT INTO Persons VALUES"
                      "('" + pers.getName() + "','" +
                      pers.getGender() + "','" +
-                     pers.getDoB() + "','" +
-                     pers.getDoD() + "')");
+                     DoB_iso + "','" +
+                     DoD_iso + "')");
 }
 
 bool DbManager::deletePerson(Person pers)
@@ -78,10 +81,10 @@ bool DbManager::execQuery(QString query_string)
 bool DbManager::createTables()
 {
     return execQuery("CREATE TABLE Persons ( "
-                     "name TEXT, "
-                     "gender TEXT, " //this might be changed to char
-                     "dob TEXT, "  //varchar will probably be easier than date.. for now
-                     "dod TEXT, "
+                     "name VARCHAR[40], "
+                     "gender VARCHAR[7], " //this might be changed to char
+                     "dob DATE, "  //varchar will probably be easier than date.. for now
+                     "dod DATE, "
                      "PRIMARY KEY (name) )"); //might do better with a ID key, but this is good enough for testing
     //will other tables be needed?
 }
@@ -106,8 +109,8 @@ QVector<Person> DbManager::findPersons(QString conditions)
     {
         temp.setName(qry.value(i_name).toString().toStdString());
         temp.setGender(qry.value(i_gender).toString().toStdString());
-        temp.setDoB(qry.value(i_dob).toString().toStdString());
-        temp.setDoD(qry.value(i_dod).toString().toStdString());
+        temp.setDoB(fromISO(qry.value(i_dob).toString()).toStdString());
+        temp.setDoD(fromISO(qry.value(i_dod).toString()).toStdString());
         results.push_back(temp);
     }
     db.close();
@@ -134,4 +137,32 @@ QString DbManager::ascOrDesc(QString order_by)
     {
         return order_by + " ASC";
     }
+}
+
+QString DbManager::toISO(QString date)
+{
+    if(date == "alive")
+    {
+        return "";
+    }
+
+    QString year = date.mid(6,4);
+    QString month = date.mid(3,2);
+    QString day = date.mid(0,2);
+
+    return year + '-' + month + '-' + day;
+}
+
+QString DbManager::fromISO(QString date)
+{
+    if(date == "")
+    {
+        return "alive";
+    }
+
+    QString year = date.mid(0,4);
+    QString month = date.mid(5,2);
+    QString day = date.mid(8,2);
+
+    return day + '/' + month + '/' + year;
 }

@@ -15,7 +15,7 @@ class RequestProcessor
 {
 public:
     RequestProcessor();
-    void addPerson(const Person &pers); //contains the famous middle-out compression algorithm
+    void addPerson(Person pers); //contains the famous middle-out compression algorithm
     void updateSettings(); //what happens here?
 
     QVector<Person> outputList(); //outputs list according to order_by and view_gender settings

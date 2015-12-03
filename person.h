@@ -18,7 +18,6 @@ private:
 
     bool checkDateFormat(string date); //checks if date follows DD/MM/YYYY format
     QDate strToQDate(string date); //changes date string to QDate for input testing
-
 public:
     Person();   //default constructor
 
@@ -32,9 +31,7 @@ public:
     void setName(string _name);
     void setGender(string _gender);
     void setDoB(string dob);
-    void setDoD(string dod);
-
-    static bool lessThanName(Person &lhs, Person &rhs);
+    void setDoD(string dod);   
 
     friend std::istream& operator >>(std::istream& ins, Person& person1);   //overloads the >> operator to read into the variable person
     friend std::ostream& operator <<(std::ostream& os, Person person1);     //overloads the << operator to write out the contants of a variable person

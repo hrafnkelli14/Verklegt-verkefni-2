@@ -181,7 +181,7 @@ void Interface::settingsOrdering()
                  "press (2) to order list by names in reverse lexicographical order\n"
                  "press (3) to order list by date of birth \n"
                  "press (4) to order list by date of birth in reverse order \n"
-                 "press (5) to order list by date of death (those who are alive will be excluded)\n"
+                 "press (5) to order list by date of death \n"
                  "press (6) to order list by date of death in reverse order \n"
                  "press (7) to go to main menu \n"
                  "press anything else to go back\n";

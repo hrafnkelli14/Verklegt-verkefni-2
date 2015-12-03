@@ -90,11 +90,6 @@ void Person::setDoD(string dod)
     date_of_death = dod;
 }
 
-bool Person::lessThanName(Person &lhs, Person &rhs)
-{
-    return lhs.getName() < rhs.getName();
-}
-
 //========FRIEND FUNCTIONS==========
 istream& operator >>(istream& ins, Person& person1)
 {
