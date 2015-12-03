@@ -15,8 +15,8 @@ class DbManager
 {
 public:
     DbManager(); //main constructor
-    QVector<Person> getList(QString order_by, QString view_gender); //outputs list according to order_by and view_gender
-    QVector<Person> searchDb(QString search_type, QString search_query, QString order_by, QString view_gender); //searches in list according to order_by and view_gender
+    QVector<Person> getAllPersons(QString order_by, QString view_gender); //outputs list according to order_by and view_gender
+    QVector<Person> searchPersons(QString search_type, QString search_query, QString order_by, QString view_gender); //searches in list according to order_by and view_gender
     bool addPerson(Person pers); //adds person to Person table
     bool deletePerson(Person pers); //TODO implement
     bool editPerson(Person pers); //TODO implement

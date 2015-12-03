@@ -16,7 +16,7 @@ DbManager::DbManager()
 
 }
 //========PUBLIC FUNCTIONS==========
-QVector<Person> DbManager::getList(QString order_by, QString view_gender)
+QVector<Person> DbManager::getAllPersons(QString order_by, QString view_gender)
 {
     if(view_gender != "BOTH")
     {
@@ -30,7 +30,7 @@ QVector<Person> DbManager::getList(QString order_by, QString view_gender)
 
 }
 
-QVector<Person> DbManager::searchDb(QString search_type, QString search_query, QString order_by, QString view_gender)
+QVector<Person> DbManager::searchPersons(QString search_type, QString search_query, QString order_by, QString view_gender)
 {
     if(view_gender != "BOTH")
     {
