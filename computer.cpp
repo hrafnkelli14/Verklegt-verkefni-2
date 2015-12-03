@@ -33,22 +33,22 @@ bool Computer::getBuilt()
 
 void Computer::setName(string _name)
 {
-    //TODO implement
+    name = _name;
 }
 
-void Computer::setYear(string _name)
+void Computer::setYear(string _year_of_build)
 {
-    //TODO implement
+    year_of_build = _year_of_build;
 }
 
-void Computer::setType(string _name)
+void Computer::setType(string _type)
 {
-    //TODO implement
+    type = _type;
 }
 
 void Computer::setBuilt(bool _was_built)
 {
-    //TODO implement
+    was_built = _was_built;
 }
 
 //========PRIVATE FUNCTIONS==========
