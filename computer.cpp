@@ -1,38 +1,34 @@
 #include "computer.h"
+#include <iostream>
 
 //========CONSTRUCTOR==========
 Computer::Computer()
 {
-    //TODO implement
+    name = "";
+    year_of_build = "";
+    type = "";
+    was_built = false;
 }
 
 //========PUBLIC FUNCTIONS==========
 QString Computer::getName()
 {
-    //TODO implement
-
-    return "";
+    return QString::fromStdString(name);
 }
 
 QString Computer::getYear()
 {
-    //TODO implement
-
-    return "";
+    return QString::fromStdString(year_of_build);
 }
 
 QString Computer::getType()
 {
-    //TODO implement
-
-    return "";
+    return QString::fromStdString(type);
 }
 
 bool Computer::getBuilt()
 {
-    //TODO implement
-
-    return false;
+    return was_built;
 }
 
 void Computer::setName(string _name)
@@ -62,12 +58,48 @@ void Computer::setBuilt(bool _was_built)
 //========FRIEND FUNCTIONS==========
 istream& operator >>(std::istream& ins, Computer& comp)
 {
-    //TODO implement
+    char built;
+
+    std::cout << "Enter the name of a computer: ";
+    ins >> comp.name;
+    std::cout << "Enter the computer type: ";
+    ins >> comp.type;
+    bool check_char = false;
+    while(check_char)
+    {
+       std::cout << "Was the computer built(y for yes, n for no): ";
+       ins >> built;
+
+        switch(tolower(built))
+        {
+            case 'y':
+                comp.was_built = true;
+                check_char = true;
+            break;
+            case 'n':
+                comp.was_built = false;
+                check_char = true;
+            break;
+            default:
+                cout << "Illegal character!" << endl;
+        }
+    }
+    if(comp.was_built == true)
+    {
+        std::cout << "Enter the year it was built: ";
+        ins >> comp.year_of_build;
+    }
+    else
+    {
+        comp.year_of_build = "Wasn't built.";
+    }
     return ins;
 }
 
 ostream& operator <<(std::ostream& os, Computer comp)
 {
-    //TODO implement
+    os << "Name: " << comp.name << ", ";
+    os << "Computer type: " << comp.type << ", ";
+    os << "Build year: " << comp.year_of_build;
     return os;
 }
