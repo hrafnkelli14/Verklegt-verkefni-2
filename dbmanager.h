@@ -6,6 +6,7 @@
 #include <QVector>
 #include <iostream> //DEBUGGING
 #include "person.h"
+#include "computer.h"
 
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
@@ -18,12 +19,14 @@ public:
     QVector<Person> getAllPersons(QString order_by, QString view_gender); //outputs list according to order_by and view_gender
     QVector<Person> searchPersons(QString search_type, QString search_query, QString order_by, QString view_gender); //searches in list according to order_by and view_gender
     bool addPerson(Person pers); //adds person to Person table
+    bool addComputer(Computer comp);
     bool deletePerson(Person pers); //TODO implement
     bool editPerson(Person pers); //TODO implement
 private:
     bool execQuery(QString query_string); //executes query.
     void createTables(); //creates needed tables for the program
     QVector<Person> findPersons(QString conditions); //finds persons based on conditions in condition string(they must have an sql syntax)
+    QVector<Computer> findComputers(QString conditions);
 
     //helpers
     QString ascOrDesc(QString order_by);

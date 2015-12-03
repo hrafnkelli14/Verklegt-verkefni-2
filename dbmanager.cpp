@@ -50,12 +50,22 @@ bool DbManager::addPerson(Person pers)
     QString dob_iso = toISO(pers.getDoB());
     QString dod_iso = toISO(pers.getDoD());
 
-    return execQuery("INSERT INTO Persons VALUES"
-                     "( NULL, '" +
+    return execQuery("INSERT INTO Persons VALUES ( "
+                     "NULL, '" +
                      pers.getName() + "','" +
                      pers.getGender() + "','" +
                      dob_iso + "','" +
                      dod_iso + "')");
+}
+
+bool DbManager::addComputer(Computer comp)
+{
+    return execQuery("INSERT INTO Computers VALUES ( "
+                     "NULL, '" +
+                     comp.getName() + "','" +
+                     comp.getYear() + "','" +
+                     comp.getType() + "','" +
+                     comp.getBuilt() + "')");
 }
 
 bool DbManager::deletePerson(Person pers)
@@ -94,6 +104,7 @@ void DbManager::createTables()
               "cID INT AUTO_INCREMENT, "
               "name VARCHAR[40], "
               "year VARCHAR[5], "
+              "type VARCHAR[20], "
               "built BOOLEAN, "
               "PRIMARY KEY (cID), "
               "UNIQUE (name) )");
@@ -130,6 +141,35 @@ QVector<Person> DbManager::findPersons(QString conditions)
         results.push_back(temp);
     }
     db.close();
+
+    return results;
+}
+
+QVector<Computer> findComputers(QString conditions)
+{
+    //db.open();
+    Computer temp;
+    QVector<Computer> results;
+    QSqlQuery qry;
+
+    qry.exec("SELECT name, year, type, built "
+             "FROM Computers "
+             + conditions);
+
+    int i_name = qry.record().indexOf("name");
+    int i_year = qry.record().indexOf("year");
+    int i_type = qry.record().indexOf("type");
+    int i_built = qry.record().indexOf("built");
+
+    while(qry.next())
+    {
+        temp.setName(qry.value(i_name).toString().toStdString());
+        temp.setYear(qry.value(i_year).toString().toStdString());
+        temp.setType(qry.value(i_type).toString().toStdString());
+        //temp.setBuilt(qry.value(i_built).toString().toStdString());
+        results.push_back(temp);
+    }
+    //db.close();
 
     return results;
 }
