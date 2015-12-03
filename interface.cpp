@@ -221,27 +221,27 @@ void Interface::settingsOrdering()
     switch(ch)
     {
     case '1':
-        request.setOrdering(NAME);
+        request.setPersonOrdering(NAME);
         setSettingsStatus(); //update settings status
         break;
     case '2':
-        request.setOrdering(NAME_R);
+        request.setPersonOrdering(NAME_R);
         setSettingsStatus(); //update settings status
         break;
     case '3':
-        request.setOrdering(DOB);
+        request.setPersonOrdering(DOB);
         setSettingsStatus(); //update settings status
         break;
     case '4':
-        request.setOrdering(DOB_R);
+        request.setPersonOrdering(DOB_R);
         setSettingsStatus(); //update settings status
         break;
     case '5':
-        request.setOrdering(DOD);
+        request.setPersonOrdering(DOD);
         setSettingsStatus(); //update settings status
         break;
     case '6':
-        request.setOrdering(DOD_R);
+        request.setPersonOrdering(DOD_R);
         setSettingsStatus(); //update settings status
         break;
     case '7':
@@ -347,12 +347,12 @@ void Interface::setStatus(string newstatus)
 
 void Interface::setSettingsStatus()
 {
-    ordering current_ordering = request.getOrdering();
+    ordering current_person_ordering = request.getPersonOrdering();
     gendertype current_genderview = request.getGenderView();
 
     string new_settingsstatus = "Order by: ";
 
-    switch (current_ordering)
+    switch (current_person_ordering)
     {
     case NAME:
         new_settingsstatus += "Name(lexicographical)";

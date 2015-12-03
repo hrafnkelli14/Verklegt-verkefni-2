@@ -24,10 +24,10 @@ public:
     QVector<Computer> outputComputers();
     QVector<Person> searchPersons(QString search_string); //ordering and view now broken since it searches straight from Db
 
-    void setOrdering(ordering _order_by); //sets order_by attribute
+    void setPersonOrdering(ordering _order_by); //sets order_by attribute
     void setGenderView(gendertype _view_gender); //sets view_gender attribute
 
-    ordering getOrdering(); //returns order_by attribute
+    ordering getPersonOrdering(); //returns order_by attribute
     gendertype getGenderView(); //returns view_gender attribute
 
 private:
@@ -41,7 +41,7 @@ private:
     XmlFile settings; //xml file connection(settings)
     DbManager data; //sql database connection
 
-    ordering order_by; //order by setting
+    ordering person_order_by; //order by setting
     gendertype view_gender; //gender view setting
 };
 

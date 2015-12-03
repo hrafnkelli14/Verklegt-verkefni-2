@@ -65,9 +65,9 @@ QVector<Person> RequestProcessor::searchPersons(QString search_string)
     return search_results;
 }
 
-void RequestProcessor::setOrdering(ordering _order_by)
+void RequestProcessor::setPersonOrdering(ordering _order_by)
 {
-    order_by = _order_by;
+    person_order_by = _order_by;
 }
 
 void RequestProcessor::setGenderView(gendertype _view_gender)
@@ -75,9 +75,9 @@ void RequestProcessor::setGenderView(gendertype _view_gender)
     view_gender = _view_gender;
 }
 
-ordering RequestProcessor::getOrdering()
+ordering RequestProcessor::getPersonOrdering()
 {
-    return order_by;
+    return person_order_by;
 }
 
 gendertype RequestProcessor::getGenderView()
@@ -89,7 +89,7 @@ gendertype RequestProcessor::getGenderView()
 //--settings functions--
 QString RequestProcessor::orderingToQStr()
 {
-    switch(order_by)
+    switch(person_order_by)
     {
     case NAME:
         return "NAME";
@@ -137,31 +137,31 @@ void RequestProcessor::readOrdering()
     QString orderingQStr = settings.getOrdering();
     if(orderingQStr == "NAME")
     {
-        order_by = NAME;
+        person_order_by = NAME;
     }
     else if(orderingQStr == "NAME_R")
     {
-        order_by = NAME_R;
+        person_order_by = NAME_R;
     }
     else if(orderingQStr == "DOB")
     {
-        order_by = DOB;
+        person_order_by = DOB;
     }
     else if(orderingQStr == "DOB_R")
     {
-        order_by = DOB_R;
+        person_order_by = DOB_R;
     }
     else if(orderingQStr == "DOD")
     {
-        order_by = DOD;
+        person_order_by = DOD;
     }
     else if(orderingQStr == "DOD_R")
     {
-        order_by = DOD_R;
+        person_order_by = DOD_R;
     }
     else
     {
-        order_by = NAME; //defaults to name
+        person_order_by = NAME; //defaults to name
     }
 }
 
