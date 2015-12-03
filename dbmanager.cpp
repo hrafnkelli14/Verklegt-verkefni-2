@@ -143,7 +143,7 @@ QString DbManager::toISO(QString date)
 {
     if(date == "alive")
     {
-        return "";
+        return "alive";
     }
 
     QString year = date.mid(6,4);
@@ -155,7 +155,7 @@ QString DbManager::toISO(QString date)
 
 QString DbManager::fromISO(QString date)
 {
-    if(date == "")
+    if(date == "alive")
     {
         return "alive";
     }
