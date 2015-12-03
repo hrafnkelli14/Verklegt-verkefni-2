@@ -1,8 +1,9 @@
-####Hópur 47
+﻿####Hópur 47
 Verkefni 2
 
 
 ######DATA LAYER
+- DONE: (*Arnar*) Class for computers 
 - DONE: (*Arnar, Eiríkur*) Class for computer scientists [input checks, get functions and set functions by *Hrafnkell*] [seems to hold up]
 - WIP: (*Hrafnkell*) add sql-specific searching functions [Person searching done - needs searching for computer]
 - DONE: (*Hrafnkell*) write/read settings to/from xml file [might need more settings depending on assignment]
