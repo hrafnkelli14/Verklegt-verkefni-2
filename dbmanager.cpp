@@ -11,7 +11,7 @@ DbManager::DbManager()
 
     if(!db_exists)
     {
-        std::cout << createTables();
+        createTables();
     }
 
 }
@@ -51,7 +51,8 @@ bool DbManager::addPerson(Person pers)
     QString dod_iso = toISO(pers.getDoD());
 
     return execQuery("INSERT INTO Persons VALUES"
-                     "('" + pers.getName() + "','" +
+                     "( NULL, '" +
+                     pers.getName() + "','" +
                      pers.getGender() + "','" +
                      dob_iso + "','" +
                      dod_iso + "')");
@@ -78,15 +79,30 @@ bool DbManager::execQuery(QString query_string)
     db.close();
 }
 
-bool DbManager::createTables()
+void DbManager::createTables()
 {
-    return execQuery("CREATE TABLE Persons ( "
-                     "name VARCHAR[40], "
-                     "gender VARCHAR[7], " //this might be changed to char
-                     "dob DATE, "  //varchar will probably be easier than date.. for now
-                     "dod DATE, "
-                     "PRIMARY KEY (name) )"); //might do better with a ID key, but this is good enough for testing
-    //will other tables be needed?
+    execQuery("CREATE TABLE Persons ( "
+              "pID INT AUTO_INCREMENT, " //we don't have to worry about ID with auto_increment
+              "name VARCHAR[40], "
+              "gender VARCHAR[7], " //this might be changed to char
+              "dob DATE, "
+              "dod DATE, "
+              "PRIMARY KEY (pID), "
+              "UNIQUE (name) )");
+
+    execQuery("CREATE TABLE Computers ( "
+              "cID INT AUTO_INCREMENT, "
+              "name VARCHAR[40], "
+              "year VARCHAR[5], "
+              "built BOOLEAN, "
+              "PRIMARY KEY (cID), "
+              "UNIQUE (name) )");
+
+    execQuery("CREATE TABLE ComputersXPersons ( "
+              "pID INT, "
+              "cID INT, "
+              "FOREIGN KEY (pID) REFERENCES Persons(pID), "
+              "FOREIGN KEY (cID) REFERENCES Computers(cID) )");
 }
 
 QVector<Person> DbManager::findPersons(QString conditions)

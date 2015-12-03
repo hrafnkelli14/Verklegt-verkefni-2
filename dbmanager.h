@@ -22,7 +22,7 @@ public:
     bool editPerson(Person pers); //TODO implement
 private:
     bool execQuery(QString query_string); //executes query.
-    bool createTables(); //creates needed tables for the program
+    void createTables(); //creates needed tables for the program
     QVector<Person> findPersons(QString conditions); //finds persons based on conditions in condition string(they must have an sql syntax)
 
     //helpers
