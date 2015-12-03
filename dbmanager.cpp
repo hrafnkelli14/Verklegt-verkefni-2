@@ -145,9 +145,9 @@ QVector<Person> DbManager::findPersons(QString conditions)
     return results;
 }
 
-QVector<Computer> findComputers(QString conditions)
+QVector<Computer> DbManager::findComputers(QString conditions)
 {
-    //db.open();
+    db.open();
     Computer temp;
     QVector<Computer> results;
     QSqlQuery qry;
@@ -169,7 +169,7 @@ QVector<Computer> findComputers(QString conditions)
         //temp.setBuilt(qry.value(i_built).toString().toStdString());
         results.push_back(temp);
     }
-    //db.close();
+    db.close();
 
     return results;
 }
