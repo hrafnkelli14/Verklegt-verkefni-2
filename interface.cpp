@@ -340,10 +340,10 @@ void Interface::setSettingsStatus()
         new_settingsstatus += "Date of Birth(reversed)";
         break;
     case DOD:
-        new_settingsstatus += "Date of Death(alive excluded)";
+        new_settingsstatus += "Date of Death";
         break;
     case DOD_R:
-        new_settingsstatus += "Date of Death(reversed, alive excluded)";
+        new_settingsstatus += "Date of Death(reversed)";
         break;
     default:
         new_settingsstatus += "This is awkward"; //this should never happen anyway
