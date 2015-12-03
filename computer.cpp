@@ -32,20 +32,20 @@ bool Computer::getBuilt()
 {
     //TODO implement
 
-    return fale;
+    return false;
 }
 
-void Computer::setName(QString _name)
+void Computer::setName(string _name)
 {
     //TODO implement
 }
 
-void Computer::setYear(QString _name)
+void Computer::setYear(string _name)
 {
     //TODO implement
 }
 
-void Computer::setType(QString _name)
+void Computer::setType(string _name)
 {
     //TODO implement
 }
