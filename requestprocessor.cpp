@@ -19,12 +19,12 @@ void RequestProcessor::addComputer(Computer comp)
 
 void RequestProcessor::updateSettings()
 {
-    settings.update(orderingToQStr(), gendertypeToQStr());
+    settings.update(personOrderingToQStr(), gendertypeToQStr());
 }
 
 QVector<Person> RequestProcessor::outputPersons()
 {
-    return data.getAllPersons(orderingToQStr(), gendertypeToQStr());
+    return data.getAllPersons(personOrderingToQStr(), gendertypeToQStr());
 }
 
 QVector<Computer> RequestProcessor::outputComputers()
@@ -61,7 +61,7 @@ QVector<Person> RequestProcessor::searchPersons(QString search_string)
 
     search_query = search_string.section(' ', 1); //finds the search query itself
 
-    search_results = data.searchPersons(search_type, search_query, orderingToQStr(), gendertypeToQStr());
+    search_results = data.searchPersons(search_type, search_query, personOrderingToQStr(), gendertypeToQStr());
     return search_results;
 }
 
@@ -87,7 +87,7 @@ gendertype RequestProcessor::getGenderView()
 
 //========PRIVATE FUNCTIONS==========
 //--settings functions--
-QString RequestProcessor::orderingToQStr()
+QString RequestProcessor::personOrderingToQStr()
 {
     switch(person_order_by)
     {

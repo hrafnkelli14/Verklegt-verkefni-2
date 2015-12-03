@@ -32,7 +32,7 @@ public:
 
 private:
     //settings functions
-    QString orderingToQStr();
+    QString personOrderingToQStr();
     QString gendertypeToQStr();
     void readOrdering();
     void readGenderView();
