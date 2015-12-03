@@ -30,6 +30,19 @@ QVector<Person> DbManager::getAllPersons(QString order_by, QString view_gender)
 
 }
 
+QVector<Computer> DbManager::getAllComputers(QString order_by, QString view_type)
+{
+    if(view_type != "ALL")
+    {
+        return findComputers("WHERE type LIKE '" + view_type + "' " +
+                             "ORDER BY " + ascOrDesc(order_by));
+    }
+    else
+    {
+        return findComputers("ORDER BY " + ascOrDesc(order_by));
+    }
+}
+
 QVector<Person> DbManager::searchPersons(QString search_type, QString search_query, QString order_by, QString view_gender)
 {
     if(view_gender != "BOTH")
@@ -43,6 +56,13 @@ QVector<Person> DbManager::searchPersons(QString search_type, QString search_que
         return findPersons("WHERE " + search_type + " COLLATE UTF8_GENERAL_CI LIKE '%" + search_query + "%' "
                            "ORDER BY " + ascOrDesc(order_by));
     }
+}
+
+QVector<Computer> DbManager::searchComputers(QString search_type, QString search_query, QString order_by, QString view_type)
+{
+    //TODO implement
+
+    return QVector<Computer>();
 }
 
 bool DbManager::addPerson(Person pers)
@@ -60,12 +80,23 @@ bool DbManager::addPerson(Person pers)
 
 bool DbManager::addComputer(Computer comp)
 {
-    return execQuery("INSERT INTO Computers VALUES ( "
-                     "NULL, '" +
+    QString was_built = "";
+    switch (comp.getBuilt())
+    {
+    case 0:
+        was_built = "0";
+        break;
+    case 1:
+        was_built = "1";
+        break;
+    }
+
+    return execQuery("INSERT INTO Computers (name, year, type, built) "
+                     "VALUES ( '" +
                      comp.getName() + "','" +
                      comp.getYear() + "','" +
-                     comp.getType() + "','" +
-                     comp.getBuilt() + "')");
+                     comp.getType() + "', " +
+                     was_built + " )");
 }
 
 bool DbManager::deletePerson(Person pers)
@@ -85,6 +116,7 @@ bool DbManager::execQuery(QString query_string)
 {
     db.open();
     QSqlQuery qry;
+    qry.exec("PRAGMA foreign_keys = ON");
     return qry.exec(query_string);
     db.close();
 }
@@ -92,21 +124,19 @@ bool DbManager::execQuery(QString query_string)
 void DbManager::createTables()
 {
     execQuery("CREATE TABLE Persons ( "
-              "pID INT AUTO_INCREMENT, " //we don't have to worry about ID with auto_increment
+              "pID INTEGER PRIMARY KEY AUTOINCREMENT, " //we don't have to worry about ID with autoincrement
               "name VARCHAR[40], "
               "gender VARCHAR[7], " //this might be changed to char
               "dob DATE, "
               "dod DATE, "
-              "PRIMARY KEY (pID), "
               "UNIQUE (name) )");
 
     execQuery("CREATE TABLE Computers ( "
-              "cID INT AUTO_INCREMENT, "
+              "cID INTEGER PRIMARY KEY AUTOINCREMENT, "
               "name VARCHAR[40], "
               "year VARCHAR[5], "
               "type VARCHAR[20], "
               "built BOOLEAN, "
-              "PRIMARY KEY (cID), "
               "UNIQUE (name) )");
 
     execQuery("CREATE TABLE ComputersXPersons ( "
@@ -122,6 +152,7 @@ QVector<Person> DbManager::findPersons(QString conditions)
     Person temp;
     QVector<Person> results;
     QSqlQuery qry;
+    execQuery("PRAGMA foreign_keys=ON");
 
     qry.exec("SELECT name, gender, dob, dod "
              "FROM Persons "
@@ -151,6 +182,7 @@ QVector<Computer> DbManager::findComputers(QString conditions)
     Computer temp;
     QVector<Computer> results;
     QSqlQuery qry;
+    execQuery("PRAGMA foreign_keys=ON");
 
     qry.exec("SELECT name, year, type, built "
              "FROM Computers "
@@ -166,7 +198,7 @@ QVector<Computer> DbManager::findComputers(QString conditions)
         temp.setName(qry.value(i_name).toString().toStdString());
         temp.setYear(qry.value(i_year).toString().toStdString());
         temp.setType(qry.value(i_type).toString().toStdString());
-        //temp.setBuilt(qry.value(i_built).toString().toStdString());
+        temp.setBuilt(stoi(qry.value(i_built).toString().toStdString())); //stoi to change to bool
         results.push_back(temp);
     }
     db.close();
@@ -222,3 +254,4 @@ QString DbManager::fromISO(QString date)
 
     return day + '/' + month + '/' + year;
 }
+

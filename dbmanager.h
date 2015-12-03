@@ -17,10 +17,12 @@ class DbManager
 public:
     DbManager(); //main constructor
     QVector<Person> getAllPersons(QString order_by, QString view_gender); //outputs list according to order_by and view_gender
-    QVector<Person> searchPersons(QString search_type, QString search_query, QString order_by, QString view_gender); //searches in list according to order_by and view_gender
+    QVector<Computer> getAllComputers(QString order_by, QString view_type);
+    QVector<Person> searchPersons(QString search_type, QString search_query, QString order_by, QString view_gender);
+    QVector<Computer> searchComputers(QString search_type, QString search_query, QString order_by, QString view_type);
     bool addPerson(Person pers); //adds person to Person table
     bool addComputer(Computer comp);
-    bool deletePerson(Person pers); //TODO implement
+    bool deletePerson(Person pers);  //TODO implement
     bool editPerson(Person pers); //TODO implement
 private:
     bool execQuery(QString query_string); //executes query.
@@ -32,6 +34,7 @@ private:
     QString ascOrDesc(QString order_by);
     QString toISO(QString date);
     QString fromISO(QString date);
+
 
     QSqlDatabase db;
 };

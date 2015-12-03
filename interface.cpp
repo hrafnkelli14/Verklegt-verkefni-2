@@ -25,16 +25,22 @@ void Interface::start()
             about();
             break;
         case '1':
-            add();
+            addPerson();
             break;
         case '2':
-            output();
+            outputPersons();
             break;
         case '3':
             settingsMain();
             break;
         case '4':
             search();
+            break;
+        case 'c':
+            addComputer();
+            break;
+        case 't':
+            outputComputers();
             break;
         default:
             break;
@@ -44,7 +50,7 @@ void Interface::start()
 
 //========PRIVATE FUNCTIONS==========
 //--menus--
-void Interface::add()
+void Interface::addPerson()
 {  
     clearConsole();
     printLines();
@@ -62,7 +68,14 @@ void Interface::add()
     }
 }
 
-void Interface::output()
+void Interface::addComputer()
+{
+    Computer temp;
+    cin >> temp;
+    request.addComputer(temp);
+}
+
+void Interface::outputPersons()
 {
     QVector<Person> to_output = request.outputPersons();
     clearConsole();
@@ -76,6 +89,20 @@ void Interface::output()
 
     printSettingsStatus();
     cout << "press enter key to continue: ";
+    waitForAnyKey();
+}
+
+void Interface::outputComputers()
+{
+    clearConsole();
+    printLines();
+    printMenuHead("COMPUTERS");
+
+    QVector<Computer> to_output = request.outputComputers();
+    for(int i = 0; i < to_output.size(); i++)
+    {
+        cout << to_output[i] << endl;
+    }
     waitForAnyKey();
 }
 

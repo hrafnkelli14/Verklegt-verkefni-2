@@ -10,8 +10,10 @@ public:
     void start(); //essentially the main menu
 private:
     //menus
-    void add(); //adds a new person
-    void output(); //output menu
+    void addPerson();
+    void addComputer();
+    void outputPersons();
+    void outputComputers();
     void search(); //search menu
 
     //other menus

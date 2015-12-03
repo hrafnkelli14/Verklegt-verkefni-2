@@ -64,24 +64,25 @@ istream& operator >>(std::istream& ins, Computer& comp)
     ins >> comp.name;
     std::cout << "Enter the computer type: ";
     ins >> comp.type;
-    bool check_char = false;
-    while(check_char)
+    while(1)
     {
-       std::cout << "Was the computer built(y for yes, n for no): ";
-       ins >> built;
+        std::cout << "Was the computer built(y for yes, n for no): ";
+        ins >> built;
 
-        switch(tolower(built))
+        if(built == 'Y' || built == 'y')
         {
-            case 'y':
-                comp.was_built = true;
-                check_char = true;
+            comp.was_built = true;
             break;
-            case 'n':
-                comp.was_built = false;
-                check_char = true;
+        }
+        else if(built == 'N' || built == 'n')
+        {
+            comp.was_built = false;
             break;
-            default:
-                cout << "Illegal character!" << endl;
+        }
+        else
+        {
+            cout << "Illegal character!" << endl;
+            break;
         }
     }
     if(comp.was_built == true)
@@ -91,7 +92,7 @@ istream& operator >>(std::istream& ins, Computer& comp)
     }
     else
     {
-        comp.year_of_build = "Wasn't built.";
+        comp.year_of_build = "";
     }
     return ins;
 }
@@ -100,6 +101,9 @@ ostream& operator <<(std::ostream& os, Computer comp)
 {
     os << "Name: " << comp.name << ", ";
     os << "Computer type: " << comp.type << ", ";
-    os << "Build year: " << comp.year_of_build;
+    if(comp.was_built)
+    {
+        os << "Build year: " << comp.year_of_build;
+    }
     return os;
 }

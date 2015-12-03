@@ -16,9 +16,12 @@ class RequestProcessor
 public:
     RequestProcessor();
     void addPerson(Person pers); //contains the famous middle-out compression algorithm
+    void addComputer(Computer comp);
+
     void updateSettings(); //what happens here?
 
-    QVector<Person> outputPersons(); //outputs list according to order_by and view_gender settings
+    QVector<Person> outputPersons();
+    QVector<Computer> outputComputers();
     QVector<Person> searchPersons(QString search_string); //ordering and view now broken since it searches straight from Db
 
     void setOrdering(ordering _order_by); //sets order_by attribute

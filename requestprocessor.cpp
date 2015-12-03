@@ -12,6 +12,11 @@ void RequestProcessor::addPerson(Person pers)
     data.addPerson(pers);
 }
 
+void RequestProcessor::addComputer(Computer comp)
+{
+    data.addComputer(comp);
+}
+
 void RequestProcessor::updateSettings()
 {
     settings.update(orderingToQStr(), gendertypeToQStr());
@@ -20,6 +25,12 @@ void RequestProcessor::updateSettings()
 QVector<Person> RequestProcessor::outputPersons()
 {
     return data.getAllPersons(orderingToQStr(), gendertypeToQStr());
+}
+
+QVector<Computer> RequestProcessor::outputComputers()
+{
+    // TODO FIX ORDERING AND TYPE
+    return data.getAllComputers("name", "ALL");
 }
 
 QVector<Person> RequestProcessor::searchPersons(QString search_string)
