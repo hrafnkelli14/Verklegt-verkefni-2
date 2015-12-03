@@ -64,7 +64,7 @@ void Interface::add()
 
 void Interface::output()
 {
-    QVector<Person> to_output = request.outputList();
+    QVector<Person> to_output = request.outputPersons();
     clearConsole();
     printLines();
     printMenuHead("COMPUTER SCIENTISTS");
@@ -116,7 +116,7 @@ void Interface::search()
          }
 
     //search results
-         QVector<Person> search_results = request.searchList(QString::fromStdString(search_string));
+         QVector<Person> search_results = request.searchPersons(QString::fromStdString(search_string));
          clearConsole();
          printLines();
          printMenuHead("SEARCH RESULTS");

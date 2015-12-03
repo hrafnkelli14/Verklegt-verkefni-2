@@ -17,12 +17,12 @@ void RequestProcessor::updateSettings()
     settings.update(orderingToQStr(), gendertypeToQStr());
 }
 
-QVector<Person> RequestProcessor::outputList()
+QVector<Person> RequestProcessor::outputPersons()
 {
-    return data.getList(orderingToQStr(), gendertypeToQStr());
+    return data.getAllPersons(orderingToQStr(), gendertypeToQStr());
 }
 
-QVector<Person> RequestProcessor::searchList(QString search_string)
+QVector<Person> RequestProcessor::searchPersons(QString search_string)
 {
     QVector<Person> search_results;
     QString search_type = "";
@@ -50,7 +50,7 @@ QVector<Person> RequestProcessor::searchList(QString search_string)
 
     search_query = search_string.section(' ', 1); //finds the search query itself
 
-    search_results = data.searchDb(search_type, search_query, orderingToQStr(), gendertypeToQStr());
+    search_results = data.searchPersons(search_type, search_query, orderingToQStr(), gendertypeToQStr());
     return search_results;
 }
 

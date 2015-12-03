@@ -4,23 +4,29 @@ Verkefni 2
 
 ######DATA LAYER
 - DONE: (*Arnar, Eiríkur*) Class for computer scientists [input checks, get functions and set functions by *Hrafnkell*] [seems to hold up]
-- TODO(WIP): add sql-specific searching functions[current amount vector usage almost defeats the purpose of a SQL DB]
+- WIP: (*Hrafnkell*) add sql-specific searching functions [Person searching done - needs searching for computer]
 - DONE: (*Hrafnkell*) write/read settings to/from xml file [might need more settings depending on assignment]
-- TODO(WIP): (*Hrafnkell*) smarter method to add to sql db [current style still has some leftovers from previous xml-implementation]
+- WIP: (*Hrafnkell*) Adding to sql db [Person adding done - needs adding for computers]
+- WIP: (*Hrafnkell*) order by - sql style [Person ordering done - needs ordering for computers]
 
 ######DOMAIN LAYER
-- TODO: Add person to database [current update() style needs to be replaced by some kind of add() function]
-- DONE: (*Hrafnkell*) Processing settings requests [this still holds up, since settings are still stored in xml, might need more settings depending on assignment]
-- DONE( * ): (*Arnar*) Sorting functions for correct ordering. [small work on using sort() by *Hrafnkell*] *This might need to be replaced by something more sql-y
-- DONE( * ): (*Eiríkur*) Viewing only people of a certain gender [turned into private functions by *Hrafnkell*, but the code itself was written by *Eiríkur*] *Might need to be replaced
-- TODO: Search [more sql-y style]
+- DONE: (*Hrafnkell*) Add person to database
+- TODO: Add computer to database
+- DONE: (*Hrafnkell*) fetch persons list from db
+- TODO: fetch computer list from db
+- TODO: fetch computers x persons relations list from db
+- TODO: Settings requests for computers
+- DONE: (*Hrafnkell*) Viewing only people of a certain gender [now sql-ified]
+- WIP: Search [works for persons]
 
 ######PRESENTATION LAYER/UI(DONE(*))
 - DONE: (*Arnar, Eiríkur, Hrafnkell*) Add new computer scientist from console
-- DONE: (*Hrafnkell*) Main menu
-- DONE: (*Hrafnkell*) Settings menu
-- DONE: (*Hrafnkell*) Search from console.
-- DONE: (*Hrafnkell*) display list from console.
+- WIP: Main menu [needs more menus for new functionality]
+- WIP: Settings menu [needs more settings for new functionality]
+- WIP: Search from console. [needs more menus for new functionality]
+- DONE: (*Hrafnkell*) display person list from console.
+- TODO: display computer list from console.
+- TODO: display computer x persons relations from console
 
 *request.update() will have to be replaced here.. the rest will probably hold up
 
