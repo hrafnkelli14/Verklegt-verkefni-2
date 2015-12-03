@@ -9,15 +9,8 @@
 
 using namespace std;
 
-class Person{
-private:
-    string name;
-    string gender;
-    string date_of_birth;
-    string date_of_death;
-
-    bool checkDateFormat(string date); //checks if date follows DD/MM/YYYY format
-    QDate strToQDate(string date); //changes date string to QDate for input testing
+class Person
+{
 public:
     Person();   //default constructor
 
@@ -31,7 +24,16 @@ public:
     void setName(string _name);
     void setGender(string _gender);
     void setDoB(string dob);
-    void setDoD(string dod);   
+    void setDoD(string dod);
+
+private:
+    string name;
+    string gender;
+    string date_of_birth;
+    string date_of_death;
+
+    bool checkDateFormat(string date); //checks if date follows DD/MM/YYYY format
+    QDate strToQDate(string date); //changes date string to QDate for input testing
 
     friend std::istream& operator >>(std::istream& ins, Person& person1);   //overloads the >> operator to read into the variable person
     friend std::ostream& operator <<(std::ostream& os, Person person1);     //overloads the << operator to write out the contants of a variable person

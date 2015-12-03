@@ -8,46 +8,6 @@ Person::Person()
     date_of_birth = "";
     date_of_death = "";
 }
-//========PRIVATE FUNCTIONS==========
-bool Person::checkDateFormat(string date)
-{
-    if(date.size() != 10)
-    {
-        return false;
-    }
-
-    for(unsigned int i=0; i<date.size(); i++)
-    {
-        if(i == 2 || i == 5)
-        {
-            if(date[i] != '/')
-            {
-                return false;
-            }
-        }
-        else
-        {
-            if(!isdigit(date[i]))
-            {
-                return false;
-            }
-        }
-    }
-
-    return true;
-
-}
-
-QDate Person::strToQDate(string date)
-{
-    int day = stoi(date.substr(0,2));
-    int month = stoi(date.substr(3,2));
-    int year = stoi(date.substr(6,4));
-
-    QDate date_check(year, month, day);
-
-    return date_check;
-}
 
 //========PUBLIC FUNCTIONS==========
 QString Person::getName()
@@ -90,11 +50,53 @@ void Person::setDoD(string dod)
     date_of_death = dod;
 }
 
+//========PRIVATE FUNCTIONS==========
+bool Person::checkDateFormat(string date)
+{
+    if(date.size() != 10)
+    {
+        return false;
+    }
+
+    for(unsigned int i=0; i<date.size(); i++)
+    {
+        if(i == 2 || i == 5)
+        {
+            if(date[i] != '/')
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if(!isdigit(date[i]))
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+
+}
+
+QDate Person::strToQDate(string date)
+{
+    int day = stoi(date.substr(0,2));
+    int month = stoi(date.substr(3,2));
+    int year = stoi(date.substr(6,4));
+
+    QDate date_check(year, month, day);
+
+    return date_check;
+}
+
+
 //========FRIEND FUNCTIONS==========
 istream& operator >>(istream& ins, Person& person1)
 {
     char temp;  //temporary variable to enter a character for the persons gender
-    string tempGender;  //makes the interface easier to read
+    string temp_gender;  //makes the interface easier to read
 
     QDate bdate, ddate; //for checking valid dates
 
@@ -109,20 +111,20 @@ istream& operator >>(istream& ins, Person& person1)
         if(temp == 'm')
         {
             person1.gender = "Male";
-            tempGender = "his ";
+            temp_gender = "his ";
             break;
         }
         else if(temp == 'f')
         {
             person1.gender = "Female";
-            tempGender = "her ";
+            temp_gender = "her ";
             break;
         }
     }
 
     while(1) //input checker
     {
-        cout << "Enter " << tempGender << "date of birth (DD/MM/YYYY): ";
+        cout << "Enter " << temp_gender << "date of birth (DD/MM/YYYY): ";
         ins >> person1.date_of_birth;
 
         if(person1.checkDateFormat(person1.date_of_birth))
@@ -137,7 +139,7 @@ istream& operator >>(istream& ins, Person& person1)
 
     while(1) //input checker
     {
-        cout << "Enter " << tempGender << "date of death (DD/MM/YYYY - enter 0 for still alive): ";
+        cout << "Enter " << temp_gender << "date of death (DD/MM/YYYY - enter 0 for still alive): ";
         ins >> person1.date_of_death;
         if(person1.date_of_death == "0")
         {

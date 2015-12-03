@@ -47,14 +47,14 @@ QVector<Person> DbManager::searchDb(QString search_type, QString search_query, Q
 
 bool DbManager::addPerson(Person pers)
 {
-    QString DoB_iso = toISO(pers.getDoB());
-    QString DoD_iso = toISO(pers.getDoD());
+    QString dob_iso = toISO(pers.getDoB());
+    QString dod_iso = toISO(pers.getDoD());
 
     return execQuery("INSERT INTO Persons VALUES"
                      "('" + pers.getName() + "','" +
                      pers.getGender() + "','" +
-                     DoB_iso + "','" +
-                     DoD_iso + "')");
+                     dob_iso + "','" +
+                     dod_iso + "')");
 }
 
 bool DbManager::deletePerson(Person pers)
