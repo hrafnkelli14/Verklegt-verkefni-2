@@ -108,7 +108,7 @@ istream& operator >>(std::istream& ins, Computer& comp)
 
 ostream& operator <<(std::ostream& os, Computer comp)
 {
-    os << '#' << comp.id << ", ";
+    os << '#' << comp.id << ": ";
     os << "Name: " << comp.name << ", ";
     os << "Computer type: " << comp.type << ", ";
     if(comp.was_built)
