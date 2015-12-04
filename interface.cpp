@@ -242,34 +242,39 @@ void Interface::searchComputers()
 
 void Interface::settingsMain()
 {
-    newMenu("SETTINGS");
-
-    char ch = ' ';
-
-
-    std::cout << "press (1) to change ordering settings \n"
-                 "press (2) to change gender view settings\n"
-                 "press anything else to go to main menu\n";
-    printLines();
-
-    std::cout << "Choice: ";
-    cin.ignore(1000, '\n');
-    ch = cin.get();
-
-    switch(ch)
+    cin.ignore(1, '\n');
+    while(1)
     {
-    case '1':
-        settingsOrdering();
-        break;
-    case '2':
-        settingsGenders();
-        break;
-    default:
-        //go to main menu
-        break;
-    }
+        newMenu("SETTINGS");
 
-    request.updateSettings();
+        char ch = ' ';
+
+
+        std::cout << "press (1) to change ordering settings \n"
+                     "press (2) to change gender view settings\n"
+                     "press anything else to go to main menu\n";
+        printLines();
+
+        std::cout << "Choice: ";
+
+        ch = cin.get();
+
+        switch(ch)
+        {
+        case '1':
+            settingsOrdering();
+            break;
+        case '2':
+            settingsGenders();
+            break;
+        default:
+            //go to main menu
+            break;
+        }
+
+        request.updateSettings();
+        return;
+    }
 
 }
 
@@ -290,7 +295,6 @@ void Interface::settingsOrdering()
     printLines();
 
     std::cout << "Choice: ";
-    cin.ignore(1000, '\n');
     ch = cin.get();
 
     switch(ch)
@@ -344,7 +348,6 @@ void Interface::settingsGenders()
     printLines();
 
     std::cout << "Choice: ";
-    cin.ignore(1000, '\n');
     ch = cin.get();
 
     switch(ch)
