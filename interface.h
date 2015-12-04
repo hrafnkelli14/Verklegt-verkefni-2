@@ -17,10 +17,12 @@ private:
     void searchPersons();
     void searchComputers();
 
-    //other menus
+    //settings menus
     void settingsMain();
-    void settingsOrdering();
+    void settingsPersonOrdering();
+    void settingsComputerOrdering();
     void settingsGenders();
+
     void about();
 
     //helpers

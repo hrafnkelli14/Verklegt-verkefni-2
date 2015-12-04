@@ -250,8 +250,9 @@ void Interface::settingsMain()
         char ch = ' ';
 
 
-        std::cout << "press (1) to change ordering settings \n"
-                     "press (2) to change gender view settings\n"
+        std::cout << "press (1) to change person ordering\n"
+                     "press (2) to change computer ordering\n"
+                     "press (3) to change gender view\n"
                      "press anything else to go to main menu\n";
         printLines();
 
@@ -262,11 +263,13 @@ void Interface::settingsMain()
         switch(ch)
         {
         case '1':
-            settingsOrdering();
+            settingsPersonOrdering();
             break;
         case '2':
-            settingsGenders();
+            settingsComputerOrdering();
             break;
+        case '3':
+            settingsGenders();
         default:
             //go to main menu
             break;
@@ -278,18 +281,18 @@ void Interface::settingsMain()
 
 }
 
-void Interface::settingsOrdering()
+void Interface::settingsPersonOrdering()
 {
-    newMenu("ORDERING SETTINGS");
+    newMenu("PERSON ORDERING");
 
     char ch = ' ';
 
-    std::cout << "press (1) to order list by names in lexicographical order \n"
-                 "press (2) to order list by names in reverse lexicographical order\n"
-                 "press (3) to order list by date of birth \n"
-                 "press (4) to order list by date of birth in reverse order \n"
-                 "press (5) to order list by date of death \n"
-                 "press (6) to order list by date of death in reverse order \n"
+    std::cout << "press (1) to order by name in lexicographical order \n"
+                 "press (2) to order by name in reverse lexicographical order\n"
+                 "press (3) to order by date of birth \n"
+                 "press (4) to order by date of birth in reverse order \n"
+                 "press (5) to order by date of death \n"
+                 "press (6) to order by date of death in reverse order \n"
                  "press (7) to go to main menu \n"
                  "press anything else to go back\n";
     printLines();
@@ -334,9 +337,65 @@ void Interface::settingsOrdering()
     settingsMain();
 }
 
+void Interface::settingsComputerOrdering()
+{
+    newMenu("COMPUTER ORDERING");
+
+    char ch = ' ';
+
+    std::cout << "press (1) to order by name in lexicographical order \n"
+                 "press (2) to order by name in reverse lexicographical order\n"
+                 "press (3) to order by year when built \n"
+                 "press (4) to order by year when built in reverse order \n"
+                 "press (5) to order by type \n"
+                 "press (6) to order by type in reverse order \n"
+                 "press (7) to go to main menu \n"
+                 "press anything else to go back\n";
+    printLines();
+
+    std::cout << "Choice: ";
+    ch = cin.get();
+
+    switch(ch)
+    {
+    case '1':
+        request.setComputerOrdering(CNAME);
+        setSettingsStatus(); //update settings status
+        break;
+    case '2':
+        request.setComputerOrdering(CNAME_R);
+        setSettingsStatus(); //update settings status
+        break;
+    case '3':
+        request.setComputerOrdering(YEAR);
+        setSettingsStatus(); //update settings status
+        break;
+    case '4':
+        request.setComputerOrdering(YEAR_R);
+        setSettingsStatus(); //update settings status
+        break;
+    case '5':
+        request.setComputerOrdering(TYPE);
+        setSettingsStatus(); //update settings status
+        break;
+    case '6':
+        request.setComputerOrdering(TYPE_R);
+        setSettingsStatus(); //update settings status
+        break;
+    case '7':
+        return; //go to main menu
+        break;
+    default:
+        //nothing here, defaults to go back
+        break;
+    }
+
+    settingsMain();
+}
+
 void Interface::settingsGenders()
 {
-    newMenu("GENDER VIEW SETTINGS");
+    newMenu("GENDER VIEW");
 
     char ch = ' ';
 
