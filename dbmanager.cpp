@@ -179,10 +179,11 @@ QVector<Computer> DbManager::findComputers(QString conditions)
     QSqlQuery qry;
     qry.exec("PRAGMA foreign_keys=ON");
 
-    qry.exec("SELECT name, year, type, built "
+    qry.exec("SELECT cID, name, year, type, built "
              "FROM Computers "
              + conditions);
 
+    int i_id = qry.record().indexOf("cID");
     int i_name = qry.record().indexOf("name");
     int i_year = qry.record().indexOf("year");
     int i_type = qry.record().indexOf("type");
@@ -190,6 +191,7 @@ QVector<Computer> DbManager::findComputers(QString conditions)
 
     while(qry.next())
     {
+        temp.setId(qry.value(i_id).toString().toStdString());
         temp.setName(qry.value(i_name).toString().toStdString());
         temp.setYear(qry.value(i_year).toString().toStdString());
         temp.setType(qry.value(i_type).toString().toStdString());
