@@ -97,7 +97,7 @@ QVector<Computer> RequestProcessor::searchComputers(QString search_string)
 
     if(search_type == "id")
     {
-        search_type = "pID";
+        search_type = "cID";
     }
 
     search_query = search_string.section(' ', 1); //finds the search query itself
