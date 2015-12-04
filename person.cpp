@@ -7,6 +7,7 @@ Person::Person()
     gender = "";
     date_of_birth = "";
     date_of_death = "";
+    id = "";
 }
 
 //========PUBLIC FUNCTIONS==========
@@ -48,6 +49,11 @@ void Person::setDoB(string dob)
 void Person::setDoD(string dod)
 {
     date_of_death = dod;
+}
+
+void Person::setId(string _id)
+{
+    id = _id;
 }
 
 //========PRIVATE FUNCTIONS==========

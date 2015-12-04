@@ -25,12 +25,14 @@ public:
     void setGender(string _gender);
     void setDoB(string dob);
     void setDoD(string dod);
+    void setId(string _id);
 
 private:
     string name;
     string gender;
     string date_of_birth;
     string date_of_death;
+    string id;
 
     bool checkDateFormat(string date); //needed for input checks (DD/MM/YYYY)
     QDate strToQDate(string date); //QDate has a nice isValid() function
