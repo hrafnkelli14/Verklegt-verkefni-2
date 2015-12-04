@@ -101,6 +101,11 @@ void RequestProcessor::setPersonOrdering(personordering _order_by)
     person_order_by = _order_by;
 }
 
+void RequestProcessor::setComputerOrdering(computerordering _order_by)
+{
+    computer_order_by = _order_by;
+}
+
 void RequestProcessor::setGenderView(gendertype _view_gender)
 {
     view_gender = _view_gender;
@@ -109,6 +114,11 @@ void RequestProcessor::setGenderView(gendertype _view_gender)
 personordering RequestProcessor::getPersonOrdering()
 {
     return person_order_by;
+}
+
+computerordering RequestProcessor::getComputerOrdering()
+{
+    return computer_order_by;
 }
 
 gendertype RequestProcessor::getGenderView()

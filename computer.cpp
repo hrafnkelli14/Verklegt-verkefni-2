@@ -92,7 +92,7 @@ istream& operator >>(std::istream& ins, Computer& comp)
     }
     else
     {
-        comp.year_of_build = "";
+        comp.year_of_build = "NULL";
     }
     return ins;
 }

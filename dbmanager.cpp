@@ -14,7 +14,7 @@ DbManager::DbManager()
         createTables();
     }
 
-    execQuery("SELECT * FROM *");
+    execQuery("SELECT * FROM *"); //for some reason you have to display the list twice unless you do this
 
 }
 //========PUBLIC FUNCTIONS==========
@@ -86,8 +86,8 @@ bool DbManager::addComputer(Computer comp)
 
     return execQuery("INSERT INTO Computers (name, year, type, built) "
                      "VALUES ( '" +
-                     comp.getName() + "','" +
-                     comp.getYear() + "','" +
+                     comp.getName() + "'," +
+                     comp.getYear() + ",'" +
                      comp.getType() + "', " +
                      was_built + " )");
 }
@@ -127,7 +127,7 @@ void DbManager::createTables()
     execQuery("CREATE TABLE Computers ( "
               "cID INTEGER PRIMARY KEY AUTOINCREMENT, "
               "name VARCHAR[40], "
-              "year VARCHAR[5], "
+              "year INT, "
               "type VARCHAR[20], "
               "built BOOLEAN, "
               "UNIQUE (name) )");

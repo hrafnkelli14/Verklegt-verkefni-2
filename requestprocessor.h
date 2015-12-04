@@ -27,9 +27,11 @@ public:
     QVector<Computer> searchComputers(QString search_string);
 
     void setPersonOrdering(personordering _order_by); //sets order_by attribute
+    void setComputerOrdering(computerordering _order_by);
     void setGenderView(gendertype _view_gender); //sets view_gender attribute
 
     personordering getPersonOrdering(); //returns order_by attribute
+    computerordering getComputerOrdering();
     gendertype getGenderView(); //returns view_gender attribute
 
 private:

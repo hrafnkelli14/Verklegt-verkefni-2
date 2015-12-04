@@ -73,9 +73,20 @@ void Interface::addPerson()
 
 void Interface::addComputer()
 {
+    clearConsole();
+    printLines();
+    printMenuHead("ADD COMPUTER");
     Computer temp;
+    char ch;
     cin >> temp;
-    request.addComputer(temp);
+
+    cout << "Are you sure you want to add " << temp.getName().toStdString() << "?(y/n): ";
+    cin >> ch;
+    if(ch == 'y' || ch == 'Y')
+    {
+        request.addComputer(temp);
+        setStatus("\"" + temp.getName().toStdString() + "\" added to list!");
+    }
 }
 
 void Interface::outputPersons()
@@ -106,6 +117,9 @@ void Interface::outputComputers()
     {
         cout << to_output[i] << endl;
     }
+
+    printSettingsStatus();
+    cout << "press enter key to continue: ";
     waitForAnyKey();
 }
 
@@ -410,8 +424,9 @@ void Interface::setSettingsStatus()
 {
     personordering current_person_ordering = request.getPersonOrdering();
     gendertype current_genderview = request.getGenderView();
+    computerordering current_computer_ordering = request.getComputerOrdering();
 
-    string new_settingsstatus = "Order by: ";
+    string new_settingsstatus = "Order by(P): ";
 
     switch (current_person_ordering)
     {
@@ -453,6 +468,30 @@ void Interface::setSettingsStatus()
         break;
     default:
         new_settingsstatus += "Does gender really matter?"; //this should never happen anyway
+    }
+
+    new_settingsstatus += "\nOrder by(C): ";
+
+    switch(current_computer_ordering)
+    {
+    case CNAME:
+        new_settingsstatus += "Name(lexicographical)";
+        break;
+    case CNAME_R:
+        new_settingsstatus += "Name(reverse lexicographical)";
+        break;
+    case YEAR:
+        new_settingsstatus += "Year";
+        break;
+    case YEAR_R:
+        new_settingsstatus += "Year(reversed)";
+        break;
+    case TYPE:
+        new_settingsstatus += "Type(lexicographical)";
+        break;
+    case TYPE_R:
+        new_settingsstatus += "Type(reverse lexicographical)";
+        break;
     }
 
     current_settings = new_settingsstatus;
