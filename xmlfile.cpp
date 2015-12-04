@@ -3,7 +3,8 @@
 //========CONSTRUCTORS==========
 XmlFile::XmlFile()
 {
-    order_by = "NAME";
+    person_order_by = "NAME";
+    computer_order_by = "NAME";
     view_gender = "BOTH";
 
     filename = "settings.xml";
@@ -15,9 +16,14 @@ XmlFile::XmlFile()
 }
 
 //========PUBLIC FUNCTIONS==========
-QString XmlFile::getOrdering()
+QString XmlFile::getPersonOrdering()
 {
-    return order_by;
+    return person_order_by;
+}
+
+QString XmlFile::getComputerOrdering()
+{
+    return computer_order_by;
 }
 
 QString XmlFile::getViewGender()
@@ -25,9 +31,9 @@ QString XmlFile::getViewGender()
     return view_gender;
 }
 
-void XmlFile::update(QString _order_by, QString _view_gender)
+void XmlFile::update(QString _person_order_by, QString _view_gender)
 {
-    order_by = _order_by;
+    person_order_by = _person_order_by;
     view_gender = _view_gender;
     writeToFile();
 }
@@ -41,8 +47,16 @@ void XmlFile::writeToFile()
     xmlwriter.writeStartDocument();
 
     xmlwriter.writeStartElement("settings");
-    xmlwriter.writeTextElement("order_by", order_by);
+
+    xmlwriter.writeStartElement("person");
+    xmlwriter.writeTextElement("person_order_by", person_order_by);
     xmlwriter.writeTextElement("view_gender", view_gender);
+    xmlwriter.writeEndElement();
+    xmlwriter.writeStartElement("computer");
+    xmlwriter.writeTextElement("computer_order_by", computer_order_by);
+    //TODO COMPUTER VIEW TYPE?
+    xmlwriter.writeEndElement();
+
     xmlwriter.writeEndElement();
 
     file.close();
@@ -67,14 +81,19 @@ void XmlFile::readFile()
             {
                 xmlreader.readNext();
             }
-            else if(xmlreader.name() == "order_by")
+            else if(xmlreader.name() == "person_order_by")
             {
-                order_by = xmlreader.readElementText();
+                person_order_by = xmlreader.readElementText();
                 xmlreader.readNext();
             }
             else if(xmlreader.name() == "view_gender")
             {
                 view_gender = xmlreader.readElementText();
+                xmlreader.readNext();
+            }
+            else if(xmlreader.name() == "computer_order_by")
+            {
+                computer_order_by = xmlreader.readElementText();
                 xmlreader.readNext();
             }
             // </settings>

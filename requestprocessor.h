@@ -7,7 +7,8 @@
 #ifndef REQUESTPROCESSOR_H
 #define REQUESTPROCESSOR_H
 
-enum ordering{NAME, NAME_R, DOB, DOB_R, DOD, DOD_R}; //enum for order_by setting.. _R means reverse.
+enum personordering{NAME, NAME_R, DOB, DOB_R, DOD, DOD_R}; //enum for order_by setting.. _R means reverse.
+enum computerordering{CNAME, CNAME_R, YEAR, YEAR_R, TYPE, TYPE_R};
 enum gendertype{MALE, FEMALE, BOTH}; //enum for view gender settings
 //BOTH is for implementation of a politically correct list(and is the default setting)
 
@@ -22,26 +23,30 @@ public:
 
     QVector<Person> outputPersons();
     QVector<Computer> outputComputers();
-    QVector<Person> searchPersons(QString search_string); //ordering and view now broken since it searches straight from Db
+    QVector<Person> searchPersons(QString search_string);
+    QVector<Computer> searchComputers(QString search_string);
 
-    void setPersonOrdering(ordering _order_by); //sets order_by attribute
+    void setPersonOrdering(personordering _order_by); //sets order_by attribute
     void setGenderView(gendertype _view_gender); //sets view_gender attribute
 
-    ordering getPersonOrdering(); //returns order_by attribute
+    personordering getPersonOrdering(); //returns order_by attribute
     gendertype getGenderView(); //returns view_gender attribute
 
 private:
     //settings functions
     QString personOrderingToQStr();
+    QString computerOrderingToQStr();
     QString gendertypeToQStr();
-    void readOrdering();
+    void readPersonOrdering();
+    void readComputerOrdering();
     void readGenderView();
-    void readSettings(); //combination of readOrdering() and readGenderView()
+    void readSettings(); //combination of readPersonOrdering() and readGenderView()
 
     XmlFile settings; //xml file connection(settings)
     DbManager data; //sql database connection
 
-    ordering person_order_by; //order by setting
+    personordering person_order_by; //order by setting
+    computerordering computer_order_by;
     gendertype view_gender; //gender view setting
 };
 

@@ -12,15 +12,17 @@
 class XmlFile {
 public:
     XmlFile(); //Constructor
-    QString getOrdering(); //returns ordering as string
-    QString getViewGender(); //returns view gender as string
-    void update(QString _order_by, QString _getViewGender); //updates order_by and view_gender and calls WriteToFile()
+    QString getPersonOrdering();
+    QString getComputerOrdering();
+    QString getViewGender();
+    void update(QString person_order_by, QString _getViewGender); //updates order_by and view_gender and calls WriteToFile()
 private:
     void writeToFile(); //writes order_by and view_gender to XML file
     void readFile(); //Reads data from XML file
     QString filename; //filename of xml file
     QFile file; //file instance
-    QString order_by; //will be converted to enum in requestprocessor
+    QString person_order_by; //will be converted to enum in requestprocessor
+    QString computer_order_by;
     QString view_gender; //will be converted to enum in requestprocessor
     QXmlStreamWriter xmlwriter; //QXml library writer
     QXmlStreamReader xmlreader; //QXml library reader

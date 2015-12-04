@@ -14,7 +14,8 @@ private:
     void addComputer();
     void outputPersons();
     void outputComputers();
-    void search(); //search menu
+    void searchPersons();
+    void searchComputers();
 
     //other menus
     void settingsMain();

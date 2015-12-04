@@ -29,8 +29,7 @@ QVector<Person> RequestProcessor::outputPersons()
 
 QVector<Computer> RequestProcessor::outputComputers()
 {
-    // TODO FIX ORDERING AND TYPE
-    return data.getAllComputers("name", "ALL");
+    return data.getAllComputers(computerOrderingToQStr());
 }
 
 QVector<Person> RequestProcessor::searchPersons(QString search_string)
@@ -65,7 +64,39 @@ QVector<Person> RequestProcessor::searchPersons(QString search_string)
     return search_results;
 }
 
-void RequestProcessor::setPersonOrdering(ordering _order_by)
+QVector<Computer> RequestProcessor::searchComputers(QString search_string)
+{
+    QVector<Computer> search_results;
+    QString search_type = "";
+    QString search_query = "";
+
+    int i = 0;
+    while(1) //finds searchBy
+    {
+        if(search_string[i] == ' ')
+        {
+            break;
+        }
+        else
+        {
+            search_type += search_string[i];
+        }
+
+        if(i > search_string.length())
+        {
+            return QVector<Computer>();
+        }
+
+        i++;
+    }
+
+    search_query = search_string.section(' ', 1); //finds the search query itself
+
+    search_results = data.searchComputers(search_type, search_query, computerOrderingToQStr());
+    return search_results;
+}
+
+void RequestProcessor::setPersonOrdering(personordering _order_by)
 {
     person_order_by = _order_by;
 }
@@ -75,7 +106,7 @@ void RequestProcessor::setGenderView(gendertype _view_gender)
     view_gender = _view_gender;
 }
 
-ordering RequestProcessor::getPersonOrdering()
+personordering RequestProcessor::getPersonOrdering()
 {
     return person_order_by;
 }
@@ -114,6 +145,33 @@ QString RequestProcessor::personOrderingToQStr()
     return "";
 }
 
+QString RequestProcessor::computerOrderingToQStr()
+{
+    switch(computer_order_by)
+    {
+    case CNAME:
+        return "NAME";
+        break;
+    case CNAME_R:
+        return "NAME_R";
+        break;
+    case YEAR:
+        return "YEAR";
+        break;
+    case YEAR_R:
+        return "YEAR_R";
+        break;
+    case TYPE:
+        return "TYPE";
+        break;
+    case TYPE_R:
+        return "TYPE_R";
+        break;
+    }
+
+    return "";
+}
+
 QString RequestProcessor::gendertypeToQStr()
 {
     switch(view_gender)
@@ -132,9 +190,9 @@ QString RequestProcessor::gendertypeToQStr()
     return "";
 }
 
-void RequestProcessor::readOrdering()
+void RequestProcessor::readPersonOrdering()
 {
-    QString orderingQStr = settings.getOrdering();
+    QString orderingQStr = settings.getPersonOrdering();
     if(orderingQStr == "NAME")
     {
         person_order_by = NAME;
@@ -165,6 +223,39 @@ void RequestProcessor::readOrdering()
     }
 }
 
+void RequestProcessor::readComputerOrdering()
+{
+    QString orderingQStr = settings.getComputerOrdering();
+    if(orderingQStr == "NAME")
+    {
+        computer_order_by = CNAME;
+    }
+    else if(orderingQStr == "NAME_R")
+    {
+        computer_order_by = CNAME_R;
+    }
+    else if(orderingQStr == "YEAR")
+    {
+        computer_order_by = YEAR;
+    }
+    else if(orderingQStr == "YEAR_R")
+    {
+        computer_order_by = YEAR_R;
+    }
+    else if(orderingQStr == "TYPE")
+    {
+        computer_order_by = TYPE;
+    }
+    else if(orderingQStr == "TYPE_R")
+    {
+        computer_order_by = TYPE_R;
+    }
+    else
+    {
+        computer_order_by = CNAME; //defaults to name
+    }
+}
+
 void RequestProcessor::readGenderView()
 {
     QString genderViewQStr = settings.getViewGender();
@@ -188,6 +279,7 @@ void RequestProcessor::readGenderView()
 
 void RequestProcessor::readSettings()
 {
-    readOrdering();
+    readPersonOrdering();
+    readComputerOrdering();
     readGenderView();
 }

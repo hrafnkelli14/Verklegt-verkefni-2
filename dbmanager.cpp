@@ -14,6 +14,8 @@ DbManager::DbManager()
         createTables();
     }
 
+    execQuery("SELECT * FROM *");
+
 }
 //========PUBLIC FUNCTIONS==========
 QVector<Person> DbManager::getAllPersons(QString order_by, QString view_gender)
@@ -30,17 +32,9 @@ QVector<Person> DbManager::getAllPersons(QString order_by, QString view_gender)
 
 }
 
-QVector<Computer> DbManager::getAllComputers(QString order_by, QString view_type)
+QVector<Computer> DbManager::getAllComputers(QString order_by)
 {
-    if(view_type != "ALL")
-    {
-        return findComputers("WHERE type LIKE '" + view_type + "' " +
-                             "ORDER BY " + ascOrDesc(order_by));
-    }
-    else
-    {
-        return findComputers("ORDER BY " + ascOrDesc(order_by));
-    }
+    return findComputers("ORDER BY " + ascOrDesc(order_by));
 }
 
 QVector<Person> DbManager::searchPersons(QString search_type, QString search_query, QString order_by, QString view_gender)
@@ -58,11 +52,10 @@ QVector<Person> DbManager::searchPersons(QString search_type, QString search_que
     }
 }
 
-QVector<Computer> DbManager::searchComputers(QString search_type, QString search_query, QString order_by, QString view_type)
+QVector<Computer> DbManager::searchComputers(QString search_type, QString search_query, QString order_by)
 {
-    //TODO implement
-
-    return QVector<Computer>();
+    return findComputers("WHERE " + search_type + " COLLATE UTF8_GENERAL_CI LIKE '%" + search_query + "%' "
+                         "ORDER BY " + ascOrDesc(order_by));
 }
 
 bool DbManager::addPerson(Person pers)

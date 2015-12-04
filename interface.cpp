@@ -34,13 +34,16 @@ void Interface::start()
             settingsMain();
             break;
         case '4':
-            search();
+            searchPersons();
             break;
         case 'c':
             addComputer();
             break;
         case 't':
             outputComputers();
+            break;
+        case 's':
+            searchComputers();
             break;
         default:
             break;
@@ -106,7 +109,7 @@ void Interface::outputComputers()
     waitForAnyKey();
 }
 
-void Interface::search()
+void Interface::searchPersons()
 {
     //searching menu
     newMenu("SEARCH");
@@ -163,6 +166,64 @@ void Interface::search()
          printSettingsStatus();
     }
     //
+}
+
+void Interface::searchComputers()
+{
+    //searching menu
+    newMenu("SEARCH");
+    cout << "Syntax: \"searchtype searchquery\"\n"
+            "Available search types:\n"
+            "'name' -- searches for names containing query\n"
+            "'year'  -- searches for year when built\n"
+            "'type'  -- searches for specific types\n"
+            "Search results follow current settings\n";
+    printSimpleLines();
+
+
+    cin.ignore(1000, '\n');
+
+    while(1)
+    {
+        cout << "Search query(empty to exit to main menu): ";
+        char ch = ' ';
+        string search_string = "";
+
+        do
+        {
+            ch = cin.get();
+            if(ch != '\n')
+            {
+                search_string += ch;
+            }
+        }while(ch != '\n');
+    //
+
+         if(search_string == "")
+         {
+            return;
+         }
+
+    //search results
+         QVector<Computer> search_results = request.searchComputers(QString::fromStdString(search_string));
+         clearConsole();
+         printLines();
+         printMenuHead("SEARCH RESULTS");
+
+         if(search_results.size() > 0)
+         {
+             for(int i = 0; i < search_results.size(); i++)
+             {
+                 cout << search_results[i] << endl;
+             }
+         }
+         else
+         {
+             cout << "NO RESULTS(did you forget to prepend search string with 'name', 'dob' or 'dod'?)" << endl;
+         }
+
+         printSettingsStatus();
+    }
 }
 
 void Interface::settingsMain()
@@ -347,7 +408,7 @@ void Interface::setStatus(string newstatus)
 
 void Interface::setSettingsStatus()
 {
-    ordering current_person_ordering = request.getPersonOrdering();
+    personordering current_person_ordering = request.getPersonOrdering();
     gendertype current_genderview = request.getGenderView();
 
     string new_settingsstatus = "Order by: ";
