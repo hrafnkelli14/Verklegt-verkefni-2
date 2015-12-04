@@ -42,7 +42,7 @@ private:
     void readPersonOrdering();
     void readComputerOrdering();
     void readGenderView();
-    void readSettings(); //combination of readPersonOrdering() and readGenderView()
+    void readSettings();
 
     XmlFile settings; //xml file connection(settings)
     DbManager data; //sql database connection

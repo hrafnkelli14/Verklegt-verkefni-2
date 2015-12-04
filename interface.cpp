@@ -12,7 +12,7 @@ void Interface::start()
 {    
     char ch = ' ';
 
-    while(ch != '5') //there might be a better way to achieve a menu
+    while(ch != '8')
     {
         printMainMenu();
         setStatus(""); //reset status message
@@ -28,22 +28,22 @@ void Interface::start()
             addPerson();
             break;
         case '2':
-            outputPersons();
-            break;
-        case '3':
-            settingsMain();
-            break;
-        case '4':
-            searchPersons();
-            break;
-        case 'c':
             addComputer();
             break;
-        case 't':
+        case '3':
+            outputPersons();
+            break;
+        case '4':
             outputComputers();
             break;
-        case 's':
+        case '5':
+            searchPersons();
+            break;
+        case '6':
             searchComputers();
+            break;
+        case '7':
+            settingsMain();
             break;
         default:
             break;
@@ -126,7 +126,7 @@ void Interface::outputComputers()
 void Interface::searchPersons()
 {
     //searching menu
-    newMenu("SEARCH");
+    newMenu("PERSON SEARCH");
     cout << "Syntax: \"searchtype searchquery\"\n"
             "Available search types:\n"
             "'name' -- searches for names containing query\n"
@@ -185,7 +185,7 @@ void Interface::searchPersons()
 void Interface::searchComputers()
 {
     //searching menu
-    newMenu("SEARCH");
+    newMenu("COMPUTER SEARCH");
     cout << "Syntax: \"searchtype searchquery\"\n"
             "Available search types:\n"
             "'name' -- searches for names containing query\n"
@@ -407,11 +407,14 @@ void Interface::printMainMenu()
 {
     newMenu("MAIN MENU");
 
-    std::cout << "press (1) to add a person to the list \n"
-                 "press (2) to view list \n"
-                 "press (3) for list view settings \n"
-                 "press (4) to search the list\n"
-                 "press (5) to exit \n"
+    std::cout << "press (1) to add a computer scientist\n"
+                 "press (2) to add a computer\n"
+                 "press (3) to view all computer scientists\n"
+                 "press (4) to view all computers\n"
+                 "press (5) to search for computer scientists\n"
+                 "press (6) to search for computers\n"
+                 "press (7) to change settings\n"
+                 "press (8) to exit\n"
                  "press (a) for information about this program\n";
     printLines();
     printStatus();
