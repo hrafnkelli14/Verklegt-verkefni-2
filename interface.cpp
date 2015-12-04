@@ -409,8 +409,8 @@ void Interface::printMainMenu()
 
     std::cout << "press (1) to add a computer scientist\n"
                  "press (2) to add a computer\n"
-                 "press (3) to view all computer scientists\n"
-                 "press (4) to view all computers\n"
+                 "press (3) to a list of computer scientists\n"
+                 "press (4) to a list of computers\n"
                  "press (5) to search for computer scientists\n"
                  "press (6) to search for computers\n"
                  "press (7) to change settings\n"
