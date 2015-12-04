@@ -8,6 +8,7 @@ Computer::Computer()
     year_of_build = "";
     type = "";
     was_built = false;
+    id = "";
 }
 
 //========PUBLIC FUNCTIONS==========
@@ -49,6 +50,11 @@ void Computer::setType(string _type)
 void Computer::setBuilt(bool _was_built)
 {
     was_built = _was_built;
+}
+
+void Computer::setId(string _id)
+{
+    id = _id;
 }
 
 //========PRIVATE FUNCTIONS==========
