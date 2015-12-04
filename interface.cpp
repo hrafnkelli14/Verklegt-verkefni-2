@@ -132,6 +132,7 @@ void Interface::searchPersons()
             "'name' -- searches for names containing query\n"
             "'dob'  -- searches for dates of birth containing query (DD/MM/YYYY)\n"
             "'dod'  -- searches for dates of death containing query - also accepts 'alive'\n"
+            "'id'   -- searches for for computer with specified id\n"
             "Search results follow current settings\n";
     printSimpleLines();
 
@@ -174,7 +175,7 @@ void Interface::searchPersons()
          }
          else
          {
-             cout << "NO RESULTS(did you forget to prepend search string with 'name', 'dob' or 'dod'?)" << endl;
+             cout << "NO RESULTS(did you forget to prepend search string with a correct searchtype?)" << endl;
          }
 
          printSettingsStatus();
@@ -189,8 +190,9 @@ void Interface::searchComputers()
     cout << "Syntax: \"searchtype searchquery\"\n"
             "Available search types:\n"
             "'name' -- searches for names containing query\n"
-            "'year'  -- searches for year when built\n"
-            "'type'  -- searches for specific types\n"
+            "'year' -- searches for year when built\n"
+            "'type' -- searches for specific types\n"
+            "'id'   -- searches for for computer with specified id\n"
             "Search results follow current settings\n";
     printSimpleLines();
 
@@ -233,7 +235,7 @@ void Interface::searchComputers()
          }
          else
          {
-             cout << "NO RESULTS(did you forget to prepend search string with 'name', 'dob' or 'dod'?)" << endl;
+             cout << "NO RESULTS(did you forget to prepend search string with a correct searchtype?)" << endl;
          }
 
          printSettingsStatus();

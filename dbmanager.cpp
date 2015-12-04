@@ -145,12 +145,13 @@ QVector<Person> DbManager::findPersons(QString conditions)
     Person temp;
     QVector<Person> results;
     QSqlQuery qry;
-    execQuery("PRAGMA foreign_keys=ON");
+    qry.exec("PRAGMA foreign_keys=ON");
 
-    qry.exec("SELECT name, gender, dob, dod "
+    qry.exec("SELECT pID, name, gender, dob, dod "
              "FROM Persons "
              + conditions);
 
+    int i_id = qry.record().indexOf("pID");
     int i_name = qry.record().indexOf("name");
     int i_gender = qry.record().indexOf("gender");
     int i_dob = qry.record().indexOf("dob");
@@ -158,6 +159,7 @@ QVector<Person> DbManager::findPersons(QString conditions)
 
     while(qry.next())
     {
+        temp.setId(qry.value(i_id).toString().toStdString());
         temp.setName(qry.value(i_name).toString().toStdString());
         temp.setGender(qry.value(i_gender).toString().toStdString());
         temp.setDoB(fromISO(qry.value(i_dob).toString()).toStdString());
@@ -175,7 +177,7 @@ QVector<Computer> DbManager::findComputers(QString conditions)
     Computer temp;
     QVector<Computer> results;
     QSqlQuery qry;
-    execQuery("PRAGMA foreign_keys=ON");
+    qry.exec("PRAGMA foreign_keys=ON");
 
     qry.exec("SELECT name, year, type, built "
              "FROM Computers "

@@ -58,6 +58,11 @@ QVector<Person> RequestProcessor::searchPersons(QString search_string)
         i++;
     }
 
+    if(search_type == "id")
+    {
+        search_type = "pID";
+    }
+
     search_query = search_string.section(' ', 1); //finds the search query itself
 
     search_results = data.searchPersons(search_type, search_query, personOrderingToQStr(), gendertypeToQStr());
@@ -88,6 +93,11 @@ QVector<Computer> RequestProcessor::searchComputers(QString search_string)
         }
 
         i++;
+    }
+
+    if(search_type == "id")
+    {
+        search_type = "pID";
     }
 
     search_query = search_string.section(' ', 1); //finds the search query itself
