@@ -298,6 +298,7 @@ void Interface::settingsPersonOrdering()
     printLines();
 
     std::cout << "Choice: ";
+    cin.ignore(1, '\n');
     ch = cin.get();
 
     switch(ch)
@@ -354,6 +355,7 @@ void Interface::settingsComputerOrdering()
     printLines();
 
     std::cout << "Choice: ";
+    cin.ignore(1, '\n');
     ch = cin.get();
 
     switch(ch)
@@ -407,6 +409,7 @@ void Interface::settingsGenders()
     printLines();
 
     std::cout << "Choice: ";
+    cin.ignore(1, '\n');
     ch = cin.get();
 
     switch(ch)

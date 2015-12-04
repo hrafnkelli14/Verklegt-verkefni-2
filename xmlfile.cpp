@@ -31,9 +31,10 @@ QString XmlFile::getViewGender()
     return view_gender;
 }
 
-void XmlFile::update(QString _person_order_by, QString _view_gender)
+void XmlFile::update(QString _person_order_by, QString _computer_order_by, QString _view_gender)
 {
     person_order_by = _person_order_by;
+    computer_order_by = _computer_order_by;
     view_gender = _view_gender;
     writeToFile();
 }

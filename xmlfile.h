@@ -15,7 +15,7 @@ public:
     QString getPersonOrdering();
     QString getComputerOrdering();
     QString getViewGender();
-    void update(QString person_order_by, QString _getViewGender); //updates order_by and view_gender and calls WriteToFile()
+    void update(QString _person_order_by, QString _computer_order_by, QString _view_gender); //updates order_by and view_gender and calls WriteToFile()
 private:
     void writeToFile(); //writes order_by and view_gender to XML file
     void readFile(); //Reads data from XML file
