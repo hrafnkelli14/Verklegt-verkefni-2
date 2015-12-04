@@ -19,7 +19,7 @@ void RequestProcessor::addComputer(Computer comp)
 
 void RequestProcessor::updateSettings()
 {
-    settings.update(personOrderingToQStr(), gendertypeToQStr(), computerOrderingToQStr());
+    settings.update(personOrderingToQStr(), computerOrderingToQStr(), gendertypeToQStr());
 }
 
 QVector<Person> RequestProcessor::outputPersons()
