@@ -67,7 +67,7 @@ istream& operator >>(std::istream& ins, Computer& comp)
     char built;
 
     std::cout << "Enter the name of a computer: ";
-    ins >> comp.name;
+    getline(ins, comp.name);
     std::cout << "Enter the computer type: ";
     ins >> comp.type;
     while(1)
@@ -88,13 +88,16 @@ istream& operator >>(std::istream& ins, Computer& comp)
         else
         {
             cout << "Illegal character!" << endl;
-            break;
         }
     }
     if(comp.was_built == true)
     {
-        std::cout << "Enter the year it was built: ";
+        std::cout << "Enter the year it was built (? if unknown): ";
         ins >> comp.year_of_build;
+        if(comp.year_of_build == "?")
+        {
+            comp.year_of_build = "NULL";
+        }
     }
     else
     {
@@ -105,11 +108,13 @@ istream& operator >>(std::istream& ins, Computer& comp)
 
 ostream& operator <<(std::ostream& os, Computer comp)
 {
+    os << '#' << comp.id << ", ";
     os << "Name: " << comp.name << ", ";
     os << "Computer type: " << comp.type << ", ";
     if(comp.was_built)
     {
         os << "Build year: " << comp.year_of_build;
     }
+
     return os;
 }

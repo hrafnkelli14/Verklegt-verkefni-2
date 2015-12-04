@@ -168,6 +168,7 @@ istream& operator >>(istream& ins, Person& person1)
 
 ostream& operator <<(ostream& os, Person person1)
 {
+    os << '#' << person1.id << ", ";
     os << "Name: " <<  person1.name << ", ";
     os << "Gender: " << person1.gender << ", ";
     os << "Born: " << person1.date_of_birth << ", ";
