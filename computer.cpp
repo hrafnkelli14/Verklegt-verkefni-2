@@ -114,7 +114,15 @@ ostream& operator <<(std::ostream& os, Computer comp)
     os << "Computer type: " << comp.type << ", ";
     if(comp.was_built)
     {
-        os << "Build year: " << comp.year_of_build;
+        os << "Build year: ";
+        if(comp.year_of_build.empty())
+        {
+            os << "Unknown";
+        }
+        else
+        {
+            os << comp.year_of_build;
+        }
     }
 
     return os;
