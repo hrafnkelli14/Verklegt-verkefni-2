@@ -10,10 +10,13 @@ public:
     void start(); //essentially the main menu
 private:
     //menus
+    void addCompOrPerson();
     void addPerson();
     void addComputer();
+    void outpCompsOrPersons();
     void outputPersons();
     void outputComputers();
+    void searchCompsOrPersons();
     void searchPersons();
     void searchComputers();
 

@@ -12,7 +12,7 @@ void Interface::start()
 {    
     char ch = ' ';
 
-    while(ch != '8')
+    while(ch != '5')
     {
         printMainMenu();
         setStatus(""); //reset status message
@@ -25,24 +25,15 @@ void Interface::start()
             about();
             break;
         case '1':
-            addPerson();
+            addCompOrPerson();
             break;
         case '2':
-            addComputer();
+            outpCompsOrPersons();
             break;
         case '3':
-            outputPersons();
+            searchCompsOrPersons();
             break;
         case '4':
-            outputComputers();
-            break;
-        case '5':
-            searchPersons();
-            break;
-        case '6':
-            searchComputers();
-            break;
-        case '7':
             settingsMain();
             break;
         default:
@@ -467,18 +458,117 @@ void Interface::clearConsole()
 //NOTE: yeah yeah, I know, system() commands are really really bad
 }
 
+void Interface::addCompOrPerson()
+{
+    newMenu("ADD VIEW");
+
+    char ch = ' ';
+
+    std::cout << "press (1) to add a computer scientist\n"
+                 "press (2) to add a computer\n"
+                 "press (3) to go to main menu \n";
+    printLines();
+
+    std::cout << "Choice: ";
+    cin.ignore(1, '\n');
+    std::cin >> ch;
+
+    switch(ch)
+    {
+
+    case '1':
+        addPerson();
+        break;
+    case '2':
+        addComputer();
+        break;
+    case '3':
+        return; //go to main menu
+        break;
+    default:
+        break;
+    }
+
+
+}
+
+void Interface::outpCompsOrPersons()
+{
+    newMenu("LIST VIEW");
+
+    char ch = ' ';
+
+    std::cout << "press (1) to view a list of computer scientists\n"
+                 "press (2) to view a list of computers\n"
+                 "press (3) to go to main menu \n";
+    printLines();
+
+    std::cout << "Choice: ";
+    cin.ignore(1, '\n');
+    std::cin >> ch;
+
+    switch(ch)
+    {
+
+    case '1':
+        outputPersons();
+        break;
+    case '2':
+        outputComputers();
+        break;
+    case '3':
+        return; //go to main menu
+        break;
+    default:
+        break;
+    }
+
+
+}
+
+void Interface::searchCompsOrPersons()
+{
+    newMenu("SEARCH VIEW");
+
+    char ch = ' ';
+
+    std::cout << "press (1) to search for computer scientists\n"
+                 "press (2) to search for computers\n"
+                 "press (3) to go to main menu \n";
+    printLines();
+
+    std::cout << "Choice: ";
+    cin.ignore(1, '\n');
+    std::cin >> ch;
+
+    switch(ch)
+    {
+
+    case '1':
+        searchPersons();
+        break;
+    case '2':
+        searchComputers();
+        break;
+    case '3':
+        return; //go to main menu
+        break;
+    default:
+        break;
+    }
+
+
+}
+
 void Interface::printMainMenu()
 {
     newMenu("MAIN MENU");
 
-    std::cout << "press (1) to add a computer scientist\n"
-                 "press (2) to add a computer\n"
-                 "press (3) to view a list of computer scientists\n"
-                 "press (4) to view a list of computers\n"
-                 "press (5) to search for computer scientists\n"
-                 "press (6) to search for computers\n"
-                 "press (7) to change settings\n"
-                 "press (8) to exit\n"
+    std::cout << "press (1) to add a computer scientist or a computer\n"
+                 "press (2) to view a list of computer scientists or computers\n"
+                 "press (3) to search for computer scientists or computers\n"
+                 "press (4) to change settings\n"
+                 "press (5) to exit\n"
                  "press (a) for information about this program\n";
     printLines();
     printStatus();
