@@ -15,7 +15,10 @@ SOURCES += main.cpp \
     person.cpp \
     interface.cpp \
     dbmanager.cpp \
-    computer.cpp
+    computer.cpp \
+    relation.cpp \
+    computerxpersons.cpp \
+    personxcomputers.cpp
 
 HEADERS += \
     xmlfile.h \
@@ -23,6 +26,9 @@ HEADERS += \
     person.h \
     interface.h \
     dbmanager.h \
-    computer.h
+    computer.h \
+    relation.h \
+    computerxpersons.h \
+    personxcomputers.h
     requestprocessor.cpp
 

@@ -23,6 +23,8 @@ public:
     bool addPerson(Person pers); //adds person to Person table
     bool addComputer(Computer comp);
     bool deletePerson(Person pers);  //TODO implement
+    bool deleteComputer(Computer comp);
+
     bool editPerson(Person pers); //TODO implement
 private:
     bool execQuery(QString query_string); //executes query.
