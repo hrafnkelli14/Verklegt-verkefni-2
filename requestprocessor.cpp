@@ -37,6 +37,11 @@ ComputerXPersons RequestProcessor::outputComputerXPersons(QString cid)
     return data.getComputerXPersons(cid);
 }
 
+PersonXComputers RequestProcessor::outputPersonXComputers(QString pid)
+{
+    return data.getPersonXComputers(pid);
+}
+
 QVector<Person> RequestProcessor::searchPersons(QString search_string)
 {
     QVector<Person> search_results;

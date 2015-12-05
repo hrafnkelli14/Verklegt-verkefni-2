@@ -24,6 +24,7 @@ public:
     QVector<Person> outputPersons();
     QVector<Computer> outputComputers();
     ComputerXPersons outputComputerXPersons(QString cid);
+    PersonXComputers outputPersonXComputers(QString pid);
     QVector<Person> searchPersons(QString search_string);
     QVector<Computer> searchComputers(QString search_string);
 

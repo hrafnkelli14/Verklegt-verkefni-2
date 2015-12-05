@@ -84,12 +84,46 @@ ComputerXPersons DbManager::getComputerXPersons(QString cid)
         pers.push_back(findPersons("WHERE pID = " + pids[i]).first());
     }
 
-    cxp.setComputer(findComputers("WHERE cID = " + cid).first());
-    cxp.setPersons(pers);
     db.close();
 
+    cxp.setComputer(findComputers("WHERE cID = " + cid).first());
+    cxp.setPersons(pers);
 
     return cxp;
+}
+
+PersonXComputers DbManager::getPersonXComputers(QString pid)
+{
+    db.open();
+    QSqlQuery qry;
+    QVector<Computer> comps;
+    QVector<QString> cids;
+    PersonXComputers pxc;
+
+    qry.exec("PRAGMA foreign_keys=ON");
+
+    qry.exec("SELECT cID "
+             "FROM ComputersXPersons "
+             "WHERE pID = " + pid);
+
+    int i_cid = qry.record().indexOf("cID");
+
+    while(qry.next())
+    {
+        cids.push_back(qry.value(i_cid).toString());
+    }
+
+    for(int i = 0; i < cids.size(); i++)
+    {
+        comps.push_back(findComputers("WHERE cID = " + cids[i]).first());
+    }
+
+    db.close();
+
+    pxc.setPerson(findPersons("WHERE pID = " + pid).first());
+    pxc.setComputers(comps);
+
+    return pxc;
 }
 
 bool DbManager::addPerson(Person pers)
