@@ -11,7 +11,8 @@ public:
     ComputerXPersons(Computer comp, QVector<Person> pers);
     void setComputer(Computer comp);
     void setPersons(QVector<Person> pers);
-    //TODO OVERLOAD COUT
+
+    friend std::ostream& operator <<(std::ostream& os, ComputerXPersons c_x_p);
 };
 
 #endif // COMPUTERXPERSONS_H

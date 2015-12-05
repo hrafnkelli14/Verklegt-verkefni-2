@@ -36,6 +36,9 @@ void Interface::start()
         case '4':
             settingsMain();
             break;
+        case 't':
+            cout << request.outputComputerXPersons("1");
+            waitForAnyKey();
         default:
             break;
         }

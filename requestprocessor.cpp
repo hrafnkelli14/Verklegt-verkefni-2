@@ -32,6 +32,11 @@ QVector<Computer> RequestProcessor::outputComputers()
     return data.getAllComputers(computerOrderingToQStr());
 }
 
+ComputerXPersons RequestProcessor::outputComputerXPersons(QString cid)
+{
+    return data.getComputerXPersons(cid);
+}
+
 QVector<Person> RequestProcessor::searchPersons(QString search_string)
 {
     QVector<Person> search_results;

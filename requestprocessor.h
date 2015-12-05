@@ -23,6 +23,7 @@ public:
 
     QVector<Person> outputPersons();
     QVector<Computer> outputComputers();
+    ComputerXPersons outputComputerXPersons(QString cid);
     QVector<Person> searchPersons(QString search_string);
     QVector<Computer> searchComputers(QString search_string);
 

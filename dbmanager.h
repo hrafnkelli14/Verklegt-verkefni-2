@@ -7,6 +7,8 @@
 #include <iostream> //DEBUGGING
 #include "person.h"
 #include "computer.h"
+#include "computerxpersons.h"
+#include "personxcomputers.h"
 
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
@@ -20,6 +22,8 @@ public:
     QVector<Computer> getAllComputers(QString order_by);
     QVector<Person> searchPersons(QString search_type, QString search_query, QString order_by, QString view_gender);
     QVector<Computer> searchComputers(QString search_type, QString search_query, QString order_by);
+    ComputerXPersons getComputerXPersons(QString cid); //this might have a better way to be implemented
+    PersonXComputers getPersonXComputers(QString pid); //TODO implement
     bool addPerson(Person pers); //adds person to Person table
     bool addComputer(Computer comp);
     bool deletePerson(Person pers);  //TODO implement

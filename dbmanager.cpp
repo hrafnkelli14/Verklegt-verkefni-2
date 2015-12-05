@@ -58,6 +58,40 @@ QVector<Computer> DbManager::searchComputers(QString search_type, QString search
                          "ORDER BY " + ascOrDesc(order_by));
 }
 
+ComputerXPersons DbManager::getComputerXPersons(QString cid)
+{
+    db.open();
+    QSqlQuery qry;
+    QVector<Person> pers;
+    QVector<QString> pids;
+    ComputerXPersons cxp;
+
+    qry.exec("PRAGMA foreign_keys=ON");
+
+    qry.exec("SELECT pID "
+             "FROM ComputersXPersons "
+             "WHERE cID = " + cid);
+
+    int i_pid = qry.record().indexOf("pID");
+
+    while(qry.next())
+    {
+        pids.push_back(qry.value(i_pid).toString());
+    }
+
+    for(int i = 0; i < pids.size(); i++)
+    {
+        pers.push_back(findPersons("WHERE pID = " + pids[i]).first());
+    }
+
+    cxp.setComputer(findComputers("WHERE cID = " + cid).first());
+    cxp.setPersons(pers);
+    db.close();
+
+
+    return cxp;
+}
+
 bool DbManager::addPerson(Person pers)
 {
     QString dob_iso = toISO(pers.getDoB());
