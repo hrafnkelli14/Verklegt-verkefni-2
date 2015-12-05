@@ -67,6 +67,7 @@ istream& operator >>(std::istream& ins, Computer& comp)
     char built;
 
     std::cout << "Enter the name of a computer: ";
+    cin.ignore(1000, '\n');
     getline(ins, comp.name);
     std::cout << "Enter the computer type: ";
     ins >> comp.type;
