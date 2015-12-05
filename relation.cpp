@@ -4,4 +4,3 @@ Relation::Relation()
 {
     //Intentionally left empty
 }
-

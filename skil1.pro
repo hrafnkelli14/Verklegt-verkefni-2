@@ -1,6 +1,4 @@
-QT += core
-QT += sql
-QT -= gui
+QT += core gui sql
 
 TARGET = skil1
 CONFIG += console

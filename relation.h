@@ -15,7 +15,7 @@ protected:
     QVector<Person> persons;
     QVector<Computer> computers;
     Person person;
-    Computer computers;
+    Computer computer;
 };
 
 #endif // RELATION_H
