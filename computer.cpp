@@ -66,11 +66,18 @@ istream& operator >>(std::istream& ins, Computer& comp)
 {
     char built;
 
-    std::cout << "Enter the name of a computer: ";
     cin.ignore(1000, '\n');
-    getline(ins, comp.name);
+
+    while(comp.name.empty()) //a computer cant have no name
+    {
+        std::cout << "Enter the name of a computer: ";
+        getline(ins, comp.name);
+    }
+
+
     std::cout << "Enter the computer type: ";
     ins >> comp.type;
+
     while(1)
     {
         std::cout << "Was the computer built(y for yes, n for no): ";

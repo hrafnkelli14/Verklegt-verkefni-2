@@ -103,12 +103,15 @@ istream& operator >>(istream& ins, Person& person1)
 {
     char temp;  //temporary variable to enter a character for the persons gender
     string temp_gender;  //makes the interface easier to read
-
     QDate bdate, ddate; //for checking valid dates
 
-    cout << "Enter the name of a computer scientist: ";
-    cin.ignore(1000, '\n'); //this might be needed because cin leaves stuff in the buffer
-    getline(ins, person1.name);
+    cin.ignore(1000, '\n'); //this is needed because cin leaves stuff in the buffer
+
+    while(person1.name.empty()) //a person can't have no name
+    {
+       cout << "Enter the name of a computer scientist: ";
+       getline(ins, person1.name);
+    }
 
     while(1) //input checker
     {
