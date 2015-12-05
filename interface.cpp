@@ -17,8 +17,8 @@ void Interface::start()
         printMainMenu();
         setStatus(""); //reset status message
 
-        std::cout << "Choice: ";
-        std::cin >> ch;
+        cout << "Choice: ";
+        cin >> ch;
         switch(ch)
         {
         case 'a':
@@ -44,6 +44,36 @@ void Interface::start()
 
 //========PRIVATE FUNCTIONS==========
 //--menus--
+void Interface::addCompOrPerson()
+{
+    newMenu("ADD VIEW");
+
+    char ch = ' ';
+
+    cout << "press (1) to add a computer scientist\n"
+            "press (2) to add a computer\n"
+            "press anything else to go to main menu \n";
+    printLines();
+
+    cout << "Choice: ";
+    cin.ignore(1, '\n');
+    ch = cin.get();
+
+    switch(ch)
+    {
+    case '1':
+        addPerson();
+        break;
+    case '2':
+        addComputer();
+        break;
+    default:
+        break;
+    }
+
+
+}
+
 void Interface::addPerson()
 {  
     clearConsole();
@@ -80,6 +110,37 @@ void Interface::addComputer()
     }
 }
 
+void Interface::outpCompsOrPersons()
+{
+    newMenu("LIST VIEW");
+
+    char ch = ' ';
+
+    cout << "press (1) to view a list of computer scientists\n"
+            "press (2) to view a list of computers\n"
+            "press anything else to go to main menu \n";
+    printLines();
+
+    cout << "Choice: ";
+    cin.ignore(1, '\n');
+    ch = cin.get();
+
+    switch(ch)
+    {
+
+    case '1':
+        outputPersons();
+        break;
+    case '2':
+        outputComputers();
+        break;
+    default:
+        break;
+    }
+
+
+}
+
 void Interface::outputPersons()
 {
     QVector<Person> to_output = request.outputPersons();
@@ -112,6 +173,37 @@ void Interface::outputComputers()
     printSettingsStatus();
     cout << "press enter key to continue: ";
     waitForAnyKey();
+}
+
+void Interface::searchCompsOrPersons()
+{
+    newMenu("SEARCH VIEW");
+
+    char ch = ' ';
+
+    cout << "press (1) to search for computer scientists\n"
+            "press (2) to search for computers\n"
+            "press anything else to go to main menu \n";
+    printLines();
+
+    cout << "Choice: ";
+    cin.ignore(1, '\n');
+    ch = cin.get();
+
+    switch(ch)
+    {
+
+    case '1':
+        searchPersons();
+        break;
+    case '2':
+        searchComputers();
+        break;
+    default:
+        break;
+    }
+
+
 }
 
 void Interface::searchPersons()
@@ -243,13 +335,13 @@ void Interface::settingsMain()
         char ch = ' ';
 
 
-        std::cout << "press (1) to change person ordering\n"
-                     "press (2) to change computer ordering\n"
-                     "press (3) to change gender view\n"
-                     "press anything else to go to main menu\n";
+        cout << "press (1) to change person ordering\n"
+                "press (2) to change computer ordering\n"
+                "press (3) to change gender view\n"
+                 "press anything else to go to main menu\n";
         printLines();
 
-        std::cout << "Choice: ";
+        cout << "Choice: ";
 
         ch = cin.get();
 
@@ -280,17 +372,17 @@ void Interface::settingsPersonOrdering()
 
     char ch = ' ';
 
-    std::cout << "press (1) to order by name in lexicographical order \n"
-                 "press (2) to order by name in reverse lexicographical order\n"
-                 "press (3) to order by date of birth \n"
-                 "press (4) to order by date of birth in reverse order \n"
-                 "press (5) to order by date of death \n"
-                 "press (6) to order by date of death in reverse order \n"
-                 "press (7) to go to main menu \n"
-                 "press anything else to go back\n";
+    cout << "press (1) to order by name in lexicographical order \n"
+            "press (2) to order by name in reverse lexicographical order\n"
+            "press (3) to order by date of birth \n"
+            "press (4) to order by date of birth in reverse order \n"
+            "press (5) to order by date of death \n"
+            "press (6) to order by date of death in reverse order \n"
+            "press (7) to go to main menu \n"
+            "press anything else to go back\n";
     printLines();
 
-    std::cout << "Choice: ";
+    cout << "Choice: ";
     cin.ignore(1, '\n');
     ch = cin.get();
 
@@ -337,17 +429,17 @@ void Interface::settingsComputerOrdering()
 
     char ch = ' ';
 
-    std::cout << "press (1) to order by name in lexicographical order \n"
-                 "press (2) to order by name in reverse lexicographical order\n"
-                 "press (3) to order by year when built \n"
-                 "press (4) to order by year when built in reverse order \n"
-                 "press (5) to order by type \n"
-                 "press (6) to order by type in reverse order \n"
-                 "press (7) to go to main menu \n"
-                 "press anything else to go back\n";
+    cout << "press (1) to order by name in lexicographical order \n"
+            "press (2) to order by name in reverse lexicographical order\n"
+            "press (3) to order by year when built \n"
+            "press (4) to order by year when built in reverse order \n"
+            "press (5) to order by type \n"
+            "press (6) to order by type in reverse order \n"
+            "press (7) to go to main menu \n"
+            "press anything else to go back\n";
     printLines();
 
-    std::cout << "Choice: ";
+    cout << "Choice: ";
     cin.ignore(1, '\n');
     ch = cin.get();
 
@@ -394,14 +486,15 @@ void Interface::settingsGenders()
 
     char ch = ' ';
 
-    std::cout << "press (1) to only view male computer scientists \n"
-                 "press (2) to only view female computer scientists \n"
-                 "press (3) view both genders \n"
-                 "press (4) to go to main menu \n"
-                 "press anything else to go back\n";
+    cout << "press (1) to only view male computer scientists \n"
+            "press (2) to only view female computer scientists \n"
+            "press (3) view both genders \n"
+            "press (4) to go to main menu \n"
+            "press anything else to go back\n";
     printLines();
 
-    std::cout << "Choice: ";
+    cout << "Choice: ";
+
     cin.ignore(1, '\n');
     ch = cin.get();
 
@@ -450,126 +543,24 @@ void Interface::clearConsole()
     //this function is ugly but it works for the purpose of this program
     for(int i = 0; i < 20; i++) //for smoother transition
     {
-        std::cout << endl;
+        cout << endl;
     }
     //std::system("clear"); //for unix based
-    std::system("CLS"); //for windows
+    system("CLS"); //for windows
 
 //NOTE: yeah yeah, I know, system() commands are really really bad
-}
-
-void Interface::addCompOrPerson()
-{
-    newMenu("ADD VIEW");
-
-    char ch = ' ';
-
-    std::cout << "press (1) to add a computer scientist\n"
-                 "press (2) to add a computer\n"
-                 "press (3) to go to main menu \n";
-    printLines();
-
-    std::cout << "Choice: ";
-    cin.ignore(1, '\n');
-    std::cin >> ch;
-
-    switch(ch)
-    {
-
-    case '1':
-        addPerson();
-        break;
-    case '2':
-        addComputer();
-        break;
-    case '3':
-        return; //go to main menu
-        break;
-    default:
-        break;
-    }
-
-
-}
-
-void Interface::outpCompsOrPersons()
-{
-    newMenu("LIST VIEW");
-
-    char ch = ' ';
-
-    std::cout << "press (1) to view a list of computer scientists\n"
-                 "press (2) to view a list of computers\n"
-                 "press (3) to go to main menu \n";
-    printLines();
-
-    std::cout << "Choice: ";
-    cin.ignore(1, '\n');
-    std::cin >> ch;
-
-    switch(ch)
-    {
-
-    case '1':
-        outputPersons();
-        break;
-    case '2':
-        outputComputers();
-        break;
-    case '3':
-        return; //go to main menu
-        break;
-    default:
-        break;
-    }
-
-
-}
-
-void Interface::searchCompsOrPersons()
-{
-    newMenu("SEARCH VIEW");
-
-    char ch = ' ';
-
-    std::cout << "press (1) to search for computer scientists\n"
-                 "press (2) to search for computers\n"
-                 "press (3) to go to main menu \n";
-    printLines();
-
-    std::cout << "Choice: ";
-    cin.ignore(1, '\n');
-    std::cin >> ch;
-
-    switch(ch)
-    {
-
-    case '1':
-        searchPersons();
-        break;
-    case '2':
-        searchComputers();
-        break;
-    case '3':
-        return; //go to main menu
-        break;
-    default:
-        break;
-    }
-
-
 }
 
 void Interface::printMainMenu()
 {
     newMenu("MAIN MENU");
 
-    std::cout << "press (1) to add a computer scientist or a computer\n"
-                 "press (2) to view a list of computer scientists or computers\n"
-                 "press (3) to search for computer scientists or computers\n"
-                 "press (4) to change settings\n"
-                 "press (5) to exit\n"
-                 "press (a) for information about this program\n";
+    cout << "press (1) to add a computer scientist or a computer\n"
+            "press (2) to view a list of computer scientists or computers\n"
+            "press (3) to search for computer scientists or computers\n"
+            "press (4) to change settings\n"
+            "press (5) to exit\n"
+            "press (a) for information about this program\n";
     printLines();
     printStatus();
 
@@ -662,7 +653,7 @@ void Interface::printStatus()
 {
     if(current_status != "")
     {
-        std::cout << current_status << endl;
+        cout << current_status << endl;
         printLines();
     }
 }
@@ -671,37 +662,37 @@ void Interface::printSettingsStatus()
 {
     printLines();
     printMenuHead("CURRENT SETTINGS");
-    std::cout << current_settings << endl;
+    cout << current_settings << endl;
     printLines();
 }
 
 void Interface::printMenuHead(string menuname)
 {
-    std::cout << "\t\t\t";
+    cout << "\t\t\t";
     for(unsigned int i = 0; i < 70/menuname.size(); i++) //this makes the text appear centered(kind of)
     {
-        std::cout << ' ';
+        cout << ' ';
     }
-    std::cout << menuname << endl;
+    cout << menuname << endl;
     printSimpleLines();
 
 }
 
 void Interface::printLines()
 {
-    std::cout << "========================================================================\n";
+    cout << "========================================================================\n";
 }
 
 void Interface::printSimpleLines()
 {
-    std::cout << "------------------------------------------------------------------------\n";
+    cout << "------------------------------------------------------------------------\n";
 }
 
 void Interface::newMenu(string menuname)
 {
     clearConsole();
     printSettingsStatus();
-    std::cout << endl;
+    cout << endl;
     printLines();
     printMenuHead(menuname);
 }
