@@ -7,14 +7,14 @@ RequestProcessor::RequestProcessor()
 }
 
 //========PUBLIC FUNCTIONS==========
-void RequestProcessor::addPerson(Person pers)
+bool RequestProcessor::addPerson(Person pers)
 {
-    data.addPerson(pers);
+    return data.addPerson(pers);
 }
 
-void RequestProcessor::addComputer(Computer comp)
+bool RequestProcessor::addComputer(Computer comp)
 {
-    data.addComputer(comp);
+    return data.addComputer(comp);
 }
 
 void RequestProcessor::updateSettings()

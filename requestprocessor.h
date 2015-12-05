@@ -7,17 +7,17 @@
 #ifndef REQUESTPROCESSOR_H
 #define REQUESTPROCESSOR_H
 
-enum personordering{NAME, NAME_R, DOB, DOB_R, DOD, DOD_R}; //enum for order_by setting.. _R means reverse.
+enum personordering{NAME, NAME_R, DOB, DOB_R, DOD, DOD_R}; //_R means reverse.
 enum computerordering{CNAME, CNAME_R, YEAR, YEAR_R, TYPE, TYPE_R};
-enum gendertype{MALE, FEMALE, BOTH}; //enum for view gender settings
+enum gendertype{MALE, FEMALE, BOTH};
 //BOTH is for implementation of a politically correct list(and is the default setting)
 
 class RequestProcessor
 {
 public:
     RequestProcessor();
-    void addPerson(Person pers); //contains the famous middle-out compression algorithm
-    void addComputer(Computer comp);
+    bool addPerson(Person pers); //contains the famous middle-out compression algorithm
+    bool addComputer(Computer comp);
 
     void updateSettings(); //what happens here?
 

@@ -9,7 +9,7 @@ Interface::Interface()
 
 //========PUBLIC FUNCTIONS==========
 void Interface::start()
-{    
+{
     char ch = ' ';
 
     while(ch != '5')
@@ -90,8 +90,14 @@ void Interface::addPerson()
     cin >> ch;
     if(ch == 'y' || ch == 'Y')
     {
-        request.addPerson(temp);
-        setStatus("\"" + temp.getName().toStdString() + "\" added to list!");
+       if(request.addPerson(temp))
+       {
+            setStatus("\"" + temp.getName().toStdString() + "\" added to computer scientists!");
+       }
+       else
+       {
+           setStatus("\"" + temp.getName().toStdString() + "\" could not be added to computer scientists!");
+       }
     }
 }
 
@@ -108,8 +114,14 @@ void Interface::addComputer()
     cin >> ch;
     if(ch == 'y' || ch == 'Y')
     {
-        request.addComputer(temp);
-        setStatus("\"" + temp.getName().toStdString() + "\" added to list!");
+        if(request.addComputer(temp))
+        {
+            setStatus("\"" + temp.getName().toStdString() + "\" added to computers!");
+        }
+        else
+        {
+            setStatus("\"" + temp.getName().toStdString() + "\" could not be added to computers!");
+        }
     }
 }
 
@@ -341,7 +353,7 @@ void Interface::settingsMain()
         cout << "press (1) to change person ordering\n"
                 "press (2) to change computer ordering\n"
                 "press (3) to change gender view\n"
-                 "press anything else to go to main menu\n";
+                "press anything else to go to main menu\n";
         printLines();
 
         cout << "Choice: ";
