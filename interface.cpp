@@ -177,13 +177,16 @@ void Interface::searchPersons()
 {
     //searching menu
     newMenu("PERSON SEARCH");
-    cout << "Syntax: \"searchtype searchquery\"\n"
+    cout << "'*' to view all\n"
+            "Search syntax: \"searchtype searchquery\"\n"
             "Available search types:\n"
             "'name'   -- searches for names containing query\n"
             "'dob'    -- searches for dates of birth containing query (DD/MM/YYYY)\n"
             "'dod'    -- searches for dates of death containing query - also accepts 'alive'\n"
             "'id'     -- searches for for computer with specified id\n"
-            "'delete' -- deletes a person via id number"
+            "Command syntax: \"command id\"\n"
+            "'edit'   -- edits a person via id number\n"
+            "'delete' -- deletes a person via id number\n"
             "Search results follow current settings\n";
     printSimpleLines();
 
@@ -244,13 +247,16 @@ void Interface::searchComputers()
 {
     //searching menu
     newMenu("COMPUTER SEARCH");
-    cout << "Syntax: \"searchtype searchquery\"\n"
+    cout << "'*' to view all\n"
+            "Search syntax: \"searchtype searchquery\"\n"
             "Available search types:\n"
-            "'name' -- searches for names containing query\n"
-            "'year' -- searches for year when built\n"
-            "'type' -- searches for specific types\n"
-            "'id'   -- searches for for computer with specified id\n"
-            "'delete' -- deletes a computer via id number"
+            "'name'   -- searches for names containing query\n"
+            "'year'   -- searches for year when built\n"
+            "'type'   -- searches for specific types\n"
+            "'id'     -- searches for for computer with specified id\n"
+            "Command syntax: \"command id\"\n"
+            "'edit'   -- edits a computer via id number\n"
+            "'delete' -- deletes a computer via id number\n"
             "Search results follow current settings\n";
     printSimpleLines();
 
