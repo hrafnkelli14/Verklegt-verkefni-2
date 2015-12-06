@@ -247,10 +247,11 @@ void Interface::searchPersons()
     newMenu("PERSON SEARCH");
     cout << "Syntax: \"searchtype searchquery\"\n"
             "Available search types:\n"
-            "'name' -- searches for names containing query\n"
-            "'dob'  -- searches for dates of birth containing query (DD/MM/YYYY)\n"
-            "'dod'  -- searches for dates of death containing query - also accepts 'alive'\n"
-            "'id'   -- searches for for computer with specified id\n"
+            "'name'   -- searches for names containing query\n"
+            "'dob'    -- searches for dates of birth containing query (DD/MM/YYYY)\n"
+            "'dod'    -- searches for dates of death containing query - also accepts 'alive'\n"
+            "'id'     -- searches for for computer with specified id\n"
+            "'delete' -- deletes a person via id number"
             "Search results follow current settings\n";
     printSimpleLines();
 
@@ -317,6 +318,7 @@ void Interface::searchComputers()
             "'year' -- searches for year when built\n"
             "'type' -- searches for specific types\n"
             "'id'   -- searches for for computer with specified id\n"
+            "'delete' -- deletes a computer via id number"
             "Search results follow current settings\n";
     printSimpleLines();
 
