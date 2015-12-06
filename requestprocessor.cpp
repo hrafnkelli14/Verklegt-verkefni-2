@@ -121,6 +121,11 @@ QVector<Person> RequestProcessor::searchPersons(QString search_string)
     QString search_type = "";
     QString search_query = "";
 
+    if(search_string == "*")
+    {
+        return outputPersons();
+    }
+
     int i = 0;
     while(1) //finds searchBy
     {
@@ -158,6 +163,11 @@ QVector<Computer> RequestProcessor::searchComputers(QString search_string)
     Computer temp;
     QString search_type = "";
     QString search_query = "";
+
+    if(search_string == "*")
+    {
+        return outputComputers();
+    }
 
     int i = 0;
     while(1) //finds searchBy
