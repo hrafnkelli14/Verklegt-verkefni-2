@@ -316,9 +316,14 @@ void Interface::doCommand(QString command_string, char type)
     printLines();
 
 
-    if(type == 'p')
+    if(type == 'p') //PERSON
     {
         printMenuHead(command.toUpper().toStdString() + " PERSON");
+        if(request.searchPersons("id " + id).isEmpty()) //needed to prevent crashes
+        {
+            setStatus("Person #" + id.toStdString() + " does not exist!");
+            return;
+        }
         string name = request.searchPersons("id " + id).first().getName().toStdString();
         if(command == "edit")
         {
@@ -355,9 +360,14 @@ void Interface::doCommand(QString command_string, char type)
             }
         }
     }
-    else if(type == 'c')
+    else if(type == 'c') //COMPUTER
     {
         printMenuHead(command.toUpper().toStdString() + " COMPUTER");
+        if(request.searchComputers("id " + id).isEmpty()) //needed to prevent crashes
+        {
+            setStatus("Computer #" + id.toStdString() + " does not exist!");
+            return;
+        }
         string name = request.searchComputers("id " + id).first().getName().toStdString();
         if(command == "edit")
         {
