@@ -21,6 +21,12 @@ private:
     void searchPersons();
     void searchComputers();
 
+    void doCommand(QString search_string, char type);
+    void editPerson(QString pid);
+    void editComputer(QString cid);
+    void deletePerson(QString pid);
+    void deleteComputer(QString cid);
+
     //settings menus
     void settingsMain();
     void settingsPersonOrdering();

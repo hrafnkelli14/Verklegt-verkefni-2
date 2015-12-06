@@ -22,12 +22,21 @@ public:
 
     void updateSettings(); //what happens here?
 
+    bool isCommand(QString command_string);
+    QString extractCommand(QString command_string);
+    QString extractId(QString command_string);
+
     QVector<Person> outputPersons();
     QVector<Computer> outputComputers();
     ComputerXPersons outputComputerXPersons(QString cid);
     PersonXComputers outputPersonXComputers(QString pid);
     QVector<Person> searchPersons(QString search_string);
     QVector<Computer> searchComputers(QString search_string);
+
+    bool editPerson(QString id); //TODO implement
+    bool editComputer(QString id); //TODO implement
+    bool deletePerson(QString id); //TODO implement
+    bool deleteComputer(QString id); //TODO implement
 
     void setPersonOrdering(personordering _order_by); //sets order_by attribute
     void setComputerOrdering(computerordering _order_by);
@@ -46,11 +55,6 @@ private:
     void readComputerOrdering();
     void readGenderView();
     void readSettings();
-
-    void editPerson(QString id); //TODO implement
-    void editComputer(QString id); //TODO implement
-    void deletePerson(QString id); //TODO implement
-    void deleteComputer(QString id); //TODO implement
 
     XmlFile settings; //xml file connection(settings)
     DbManager data; //sql database connection

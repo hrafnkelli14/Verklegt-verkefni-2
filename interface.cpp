@@ -279,6 +279,12 @@ void Interface::searchPersons()
          }
 
     //search results
+         if(request.isCommand(QString::fromStdString(search_string)))
+         {
+             doCommand(QString::fromStdString(search_string), 'p');
+             return;
+         }
+
          QVector<Person> search_results = request.searchPersons(QString::fromStdString(search_string));
          clearConsole();
          printLines();
@@ -339,6 +345,12 @@ void Interface::searchComputers()
          }
 
     //search results
+         if(request.isCommand(QString::fromStdString(search_string)))
+         {
+             doCommand(QString::fromStdString(search_string), 'c');
+             return;
+         }
+
          QVector<Computer> search_results = request.searchComputers(QString::fromStdString(search_string));
          clearConsole();
          printLines();
@@ -358,6 +370,64 @@ void Interface::searchComputers()
 
          printSettingsStatus();
     }
+}
+
+void Interface::doCommand(QString command_string, char type)
+{
+    QString command = request.extractCommand(command_string);
+    QString id = request.extractId(command_string);
+
+    clearConsole();
+    printLines();
+
+    if(type == 'p')
+    {
+        printMenuHead(command.toUpper().toStdString() + " PERSON");
+
+        if(command == "edit")
+        {
+            editPerson(id);
+        }
+        else if(command == "delete")
+        {
+            deletePerson(id);
+        }
+    }
+    else if(type == 'c')
+    {
+        printMenuHead(command.toUpper().toStdString() + " COMPUTER");
+
+        if(command == "edit")
+        {
+            editComputer(id);
+        }
+        else if(command == "delete")
+        {
+            deleteComputer(id);
+        }
+    }
+
+    cin.get(); //TESTING
+}
+
+void Interface::editPerson(QString pid)
+{
+    //TODO implement
+}
+
+void Interface::editComputer(QString cid)
+{
+    //TODO implement
+}
+
+void Interface::deletePerson(QString pid)
+{
+    //TODO implement
+}
+
+void Interface::deleteComputer(QString cid)
+{
+    //TODO implement
 }
 
 void Interface::settingsMain()

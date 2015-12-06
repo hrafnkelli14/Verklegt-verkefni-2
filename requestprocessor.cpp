@@ -27,6 +27,73 @@ void RequestProcessor::updateSettings()
     settings.update(personOrderingToQStr(), computerOrderingToQStr(), gendertypeToQStr());
 }
 
+bool RequestProcessor::isCommand(QString command_string)
+{
+    QString command = "";
+
+    int i = 0;
+    while(1) //finds command
+    {
+        if(command_string[i] == ' ')
+        {
+            break;
+        }
+        else
+        {
+            command += command_string[i];
+        }
+
+        if(i > command_string.length())
+        {
+            return false;
+        }
+
+        i++;
+    }
+
+    if(command == "edit")
+    {
+        return true;
+    }
+    else if(command == "delete")
+    {
+        return true;
+    }
+
+    return false;
+}
+
+QString RequestProcessor::extractCommand(QString command_string)
+{
+    QString command = "";
+    int i = 0;
+    while(1) //finds command
+    {
+        if(command_string[i] == ' ')
+        {
+            break;
+        }
+        else
+        {
+            command += command_string[i];
+        }
+
+        if(i > command_string.length())
+        {
+            return ""; //redundant
+        }
+
+        i++;
+    }
+
+    return command;
+}
+
+QString RequestProcessor::extractId(QString command_string)
+{
+    return command_string.section(' ', 1);
+}
+
 QVector<Person> RequestProcessor::outputPersons()
 {
     return data.getAllPersons(personOrderingToQStr(), gendertypeToQStr());
@@ -81,22 +148,6 @@ QVector<Person> RequestProcessor::searchPersons(QString search_string)
     }
 
     search_query = search_string.section(' ', 1); //finds the search query itself
-
-    if(search_type == "edit") //does the user want to edit?
-    {
-        temp.setName("EDIT CALLED FOR #" + search_query.toStdString());
-        search_results.push_back(temp);
-        editPerson(search_query);
-        return search_results;
-    }
-    else if(search_type == "delete") //does the user want to delete?
-    {
-        temp.setName("DELETE CALLED FOR #" + search_query.toStdString());
-        search_results.push_back(temp);
-        deletePerson(search_query);
-        return search_results;
-    }
-
     search_results = data.searchPersons(search_type, search_query, personOrderingToQStr(), gendertypeToQStr());
     return search_results;
 }
@@ -134,25 +185,34 @@ QVector<Computer> RequestProcessor::searchComputers(QString search_string)
     }
 
     search_query = search_string.section(' ', 1); //finds the search query itself
-
-    if(search_type == "edit") //does the user want to edit?
-    {
-        temp.setName("EDIT CALLED FOR #" + search_query.toStdString()); //just for testing
-        search_results.push_back(temp);
-        editComputer(search_query);
-        return search_results;
-    }
-    else if(search_type == "delete") //does the user want to delete?
-    {
-        temp.setName("DELETE CALLED FOR #" + search_query.toStdString()); //just for testing
-        search_results.push_back(temp);
-        deleteComputer(search_query);
-        return search_results;
-    }
-
     search_results = data.searchComputers(search_type, search_query, computerOrderingToQStr());
     return search_results;
 }
+
+bool RequestProcessor::editPerson(QString id)
+{
+    //TODO implement
+    return false;
+}
+
+bool RequestProcessor::editComputer(QString id)
+{
+    //TODO implement
+    return false;
+}
+
+bool RequestProcessor::deletePerson(QString id)
+{
+    //TODO implement
+    return false;
+}
+
+bool RequestProcessor::deleteComputer(QString id)
+{
+    //TODO implement
+    return false;
+}
+
 
 void RequestProcessor::setPersonOrdering(personordering _order_by)
 {
@@ -350,24 +410,4 @@ void RequestProcessor::readSettings()
     readPersonOrdering();
     readComputerOrdering();
     readGenderView();
-}
-
-void RequestProcessor::editPerson(QString id)
-{
-    //TODO implement
-}
-
-void RequestProcessor::editComputer(QString id)
-{
-    //TODO implement
-}
-
-void RequestProcessor::deletePerson(QString id)
-{
-    //TODO implement
-}
-
-void RequestProcessor::deleteComputer(QString id)
-{
-    //TODO implement
 }
