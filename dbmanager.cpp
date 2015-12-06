@@ -216,8 +216,8 @@ bool DbManager::editPerson(Person pers)
     return execQuery("UPDATE Persons "
                      "SET name = '" + pers.getName() + "', "
                      "gender = '" + pers.getGender() + "', "
-                     "dob = " + dob_iso + ", "
-                     "dod = " + dod_iso + " "
+                     "dob = '" + dob_iso + "', "
+                     "dod = '" + dod_iso + "' "
                      "WHERE pID = " + pers.getId());
 }
 
@@ -239,7 +239,7 @@ bool DbManager::editComputer(Computer comp)
                      "year = " + comp.getYear() + ", "
                      "type = '" + comp.getType() + "', "
                      "built = " + was_built + " "
-                     "WHERE pID = " + comp.getId());
+                     "WHERE cID = " + comp.getId());
 }
 
 //========PRIVATE FUNCTIONS==========
