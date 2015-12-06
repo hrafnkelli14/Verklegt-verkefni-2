@@ -189,28 +189,26 @@ QVector<Computer> RequestProcessor::searchComputers(QString search_string)
     return search_results;
 }
 
-bool RequestProcessor::editPerson(QString id)
+bool RequestProcessor::editPerson(Person to_edit, QString pid)
 {
-    //TODO implement
-    return false;
+    to_edit.setId(pid.toStdString());
+    return data.editPerson(to_edit);
 }
 
-bool RequestProcessor::editComputer(QString id)
+bool RequestProcessor::editComputer(Computer to_edit, QString cid)
 {
-    //TODO implement
-    return false;
+    to_edit.setId(cid.toStdString());
+    return data.editComputer(to_edit);
 }
 
-bool RequestProcessor::deletePerson(QString id)
+bool RequestProcessor::deletePerson(QString pid)
 {
-    //TODO implement
-    return false;
+    return data.deletePerson(pid);
 }
 
-bool RequestProcessor::deleteComputer(QString id)
+bool RequestProcessor::deleteComputer(QString cid)
 {
-    //TODO implement
-    return false;
+    return data.deletePerson(cid);
 }
 
 

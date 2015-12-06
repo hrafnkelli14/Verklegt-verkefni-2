@@ -168,26 +168,91 @@ bool DbManager::addComputerXPerson(QString cid, QString pid)
                      cid + " )");
 }
 
-bool DbManager::deletePerson(Person pers)
+bool DbManager::deletePerson(QString pid)
 {
-    //TODO implement
-    return false;
+    bool executed = false;
+    db.open();
+    QSqlQuery qry;
+    executed = qry.exec("DELETE FROM ComputersXPersons "
+                        "WHERE pID = " + pid);
+    if(!executed)
+    {
+        db.close();
+        return executed;
+    }
+
+    executed = qry.exec("DELETE FROM Persons "
+                        "WHERE pID = " + pid);
+
+    db.close();
+    return executed;
+}
+
+bool DbManager::deleteComputer(QString cid)
+{
+    bool executed = false;
+    db.open();
+    QSqlQuery qry;
+    executed = qry.exec("DELETE FROM ComputersXPersons "
+                        "WHERE cID = " + cid);
+    if(!executed)
+    {
+        db.close();
+        return executed;
+    }
+
+    executed = qry.exec("DELETE FROM Computers "
+                        "WHERE cID = " + cid);
+
+    db.close();
+    return executed;
 }
 
 bool DbManager::editPerson(Person pers)
 {
-    //TODO implement
-    return false;
+    QString dob_iso = toISO(pers.getDoB());
+    QString dod_iso = toISO(pers.getDoD());
+
+    return execQuery("UPDATE Persons "
+                     "SET name = '" + pers.getName() + "', "
+                     "gender = '" + pers.getGender() + "', "
+                     "dob = " + dob_iso + ", "
+                     "dod = " + dod_iso + " "
+                     "WHERE pID = " + pers.getId());
+}
+
+bool DbManager::editComputer(Computer comp)
+{
+    QString was_built = "";
+    switch (comp.getBuilt())
+    {
+    case 0:
+        was_built = "0";
+        break;
+    case 1:
+        was_built = "1";
+        break;
+    }
+
+    return execQuery("UPDATE Computers "
+                     "SET name = '" + comp.getName() + "', "
+                     "year = " + comp.getYear() + ", "
+                     "type = '" + comp.getType() + "', "
+                     "built = " + was_built + " "
+                     "WHERE pID = " + comp.getId());
 }
 
 //========PRIVATE FUNCTIONS==========
 bool DbManager::execQuery(QString query_string)
 {
+    bool executed = false;
     db.open();
     QSqlQuery qry;
     qry.exec("PRAGMA foreign_keys = ON");
-    return qry.exec(query_string);
+    executed = qry.exec(query_string);
     db.close();
+
+    return executed;
 }
 
 void DbManager::createTables()

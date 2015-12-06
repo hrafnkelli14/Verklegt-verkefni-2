@@ -27,10 +27,10 @@ public:
     bool addPerson(Person pers); //adds person to Person table
     bool addComputer(Computer comp);
     bool addComputerXPerson(QString cid, QString pid);
-    bool deletePerson(Person pers);  //TODO implement
-    bool deleteComputer(Computer comp);
-
+    bool deletePerson(QString pid);  //TODO implement
+    bool deleteComputer(QString cid);
     bool editPerson(Person pers); //TODO implement
+    bool editComputer(Computer comp);
 private:
     bool execQuery(QString query_string); //executes query.
     void createTables(); //creates needed tables for the program

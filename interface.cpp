@@ -376,38 +376,91 @@ void Interface::doCommand(QString command_string, char type)
 {
     QString command = request.extractCommand(command_string);
     QString id = request.extractId(command_string);
+    char ch = ' ';
 
     clearConsole();
     printLines();
 
+
     if(type == 'p')
     {
         printMenuHead(command.toUpper().toStdString() + " PERSON");
-
+        string name = request.searchPersons("id " + id).first().getName().toStdString();
         if(command == "edit")
         {
-            editPerson(id);
+            cout << "Are you sure you want to edit " << name << "?(y/n): ";
+            cin >> ch;
+            if(ch == 'y' || ch == 'Y')
+            {
+                Person to_edit;
+                cin >> to_edit;
+                if(request.editPerson(to_edit, id))
+                {
+                    setStatus("\"" + name + "\" changed to \"" + to_edit.getName().toStdString() + "\"");
+                }
+                else
+                {
+                    setStatus("\"" + name + "\" was NOT changed!");
+                }
+            }
         }
         else if(command == "delete")
         {
-            deletePerson(id);
+            cout << "Are you sure you want to delete " << name << "?(y/n): ";
+            cin >> ch;
+            if(ch == 'y' || ch == 'Y')
+            {
+                if(request.deletePerson(id))
+                {
+                    setStatus("\"" + name + "\" deleted!");
+                }
+                else
+                {
+                    setStatus("\"" + name + "\" was NOT deleted!");
+                }
+            }
         }
     }
     else if(type == 'c')
     {
         printMenuHead(command.toUpper().toStdString() + " COMPUTER");
-
+        string name = request.searchComputers("id " + id).first().getName().toStdString();
         if(command == "edit")
         {
-            editComputer(id);
+            cout << "Are you sure you want to edit " << name << "?(y/n): ";
+            cin >> ch;
+            if(ch == 'y' || ch == 'Y')
+            {
+                Computer to_edit;
+                cin >> to_edit;
+                if(request.editComputer(to_edit, id))
+                {
+                    setStatus("\"" + name + "\" changed to \"" + to_edit.getName().toStdString() + "\"");
+                }
+                else
+                {
+                    setStatus("\"" + name + "\" was NOT changed!");
+                }
+            }
         }
         else if(command == "delete")
         {
-            deleteComputer(id);
+            cout << "Are you sure you want to delete " << name << "?(y/n): ";
+            cin >> ch;
+            if(ch == 'y' || ch == 'Y')
+            {
+                if(request.deleteComputer(id))
+                {
+                    setStatus("\"" + name + "\" deleted!");
+                }
+                else
+                {
+                    setStatus("\"" + name + "\" was NOT deleted!");
+                }
+            }
         }
     }
-
-    cin.get(); //TESTING
+    cin.ignore(1, '\n');
 }
 
 void Interface::editPerson(QString pid)

@@ -33,8 +33,8 @@ public:
     QVector<Person> searchPersons(QString search_string);
     QVector<Computer> searchComputers(QString search_string);
 
-    bool editPerson(QString id); //TODO implement
-    bool editComputer(QString id); //TODO implement
+    bool editPerson(Person to_edit, QString id); //TODO implement
+    bool editComputer(Computer to_edit, QString id); //TODO implement
     bool deletePerson(QString id); //TODO implement
     bool deleteComputer(QString id); //TODO implement
 
