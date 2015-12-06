@@ -19,6 +19,7 @@ public:
     QString getGender();
     QString getDoB();
     QString getDoD();
+    QString getId();
 
     //'set' functions
     void setName(string _name);

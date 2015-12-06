@@ -32,6 +32,11 @@ bool Computer::getBuilt()
     return was_built;
 }
 
+QString Computer::getId()
+{
+    return QString::fromStdString(id);
+}
+
 void Computer::setName(string _name)
 {
     name = _name;

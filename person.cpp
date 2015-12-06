@@ -31,6 +31,11 @@ QString Person::getDoD()
     return QString::fromStdString(date_of_death);
 }
 
+QString Person::getId()
+{
+    return QString::fromStdString(id);
+}
+
 void Person::setName(string _name)
 {
     name = _name;

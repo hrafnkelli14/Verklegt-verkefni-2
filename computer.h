@@ -16,6 +16,7 @@ public:
     QString getYear();
     QString getType();
     bool getBuilt();
+    QString getId();
 
     //'set' functions
     void setName(string _name);
