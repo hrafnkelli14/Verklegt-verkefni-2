@@ -327,7 +327,7 @@ void Interface::doCommand(QString command_string, char type)
         printMenuHead(command.toUpper().toStdString() + " PERSON");
         if(request.searchPersons("id " + id).isEmpty()) //needed to prevent crashes
         {
-            setStatus("Person #" + id.toStdString() + " does not exist!");
+            setStatus("Person #" + id.toStdString() + " does not exist or is omitted!");
             return;
         }
         string name = request.searchPersons("id " + id).first().getName().toStdString();

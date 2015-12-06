@@ -9,17 +9,17 @@ Verkefni 2
 - DONE: (*Hrafnkell*) write/read settings to/from xml file
 - DONE: (*Hrafnkell*) Adding to sql db [will use placeholders later]
 - DONE: (*Hrafnkell*) order by - sql style [will use placeholders later
-- TODO: edit computers & persons
-- TODO: delete computers & persons
+- DONE: (*Hrafnkell*) edit computers & persons
+- DONE: (*Hrafnkell*) delete computers & persons
 
 ######DOMAIN LAYER
 - DONE: (*Hrafnkell*) Add person to database
 - DONE: (*Hrafnkell*) Add computer to database
 - DONE: (*Hrafnkell*) fetch persons list from db
-- DONE: (*Hrafnkell*)fetch computer list from db
-- TODO: fetch computers x persons relations list from db
-- TODO: edit computers & persons
-- TODO: delete computers & persons
+- DONE: (*Hrafnkell*) fetch computer list from db
+- DONE: (*Hrafnkell*) fetch computers x persons relations list from db
+- DONE: (*Hrafnkell*) edit computers & persons
+- DONE: (*Hrafnkell*) delete computers & persons
 - DONE: (*Hrafnkell*) Settings requests for computers
 - DONE: (*Hrafnkell*) Viewing only people of a certain gender [now sql-ified]
 - DONE: Search
@@ -27,13 +27,13 @@ Verkefni 2
 ######PRESENTATION LAYER/UI
 - DONE: (*Arnar, Eiríkur, Hrafnkell*) Add new computer scientist from console
 - WIP: Main menu [needs more menus for new functionality]
-- WIP: (*Hrafnkell) Settings menu  [might need menus for computer x person relations]
+- DONE: (*Hrafnkell*) Settings menu 
 - WIP: Search from console. [needs more menus for new functionality]
 - DONE: (*Hrafnkell*) display person list from console.
 - DONE: (*Hrafnkell*) display computer list from console.
-- TODO: display computer x persons relations from console
-- TODO: edit computers & persons
-- TODO: delete computers & persons
+- WIP: display computer x persons relations from console
+- DONE: (*Hrafnkell*) edit computers & persons
+- DONE: (*Hrafnkell*) delete computers & persons
 
 ######FINISHED PRODUCT
 - TODO: compile and add populated data.db and settings.xml to .zip/.rar
