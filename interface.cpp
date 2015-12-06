@@ -12,7 +12,7 @@ void Interface::start()
 {
     char ch = ' ';
 
-    while(ch != '5')
+    while(ch != '4')
     {
         printMainMenu();
         setStatus(""); //reset status message
@@ -28,12 +28,9 @@ void Interface::start()
             addCompOrPerson();
             break;
         case '2':
-            outpCompsOrPersons();
-            break;
-        case '3':
             searchCompsOrPersons();
             break;
-        case '4':
+        case '3':
             settingsMain();
             break;
         case 't':
@@ -143,71 +140,6 @@ void Interface::addComputerXPerson()
     cin >> temp;
     cid = QString::fromStdString(temp);
     request.addComputerXPerson(cid, pid);
-}
-
-void Interface::outpCompsOrPersons()
-{
-    newMenu("LIST VIEW");
-
-    char ch = ' ';
-
-    cout << "(1) to view a list of computer scientists\n"
-            "(2) to view a list of computers\n"
-            "enter anything else to go to main menu \n";
-    printLines();
-
-    cout << "Choice: ";
-    cin.ignore(1, '\n');
-    ch = cin.get();
-
-    switch(ch)
-    {
-
-    case '1':
-        outputPersons();
-        break;
-    case '2':
-        outputComputers();
-        break;
-    default:
-        break;
-    }
-
-
-}
-
-void Interface::outputPersons()
-{
-    QVector<Person> to_output = request.outputPersons();
-    clearConsole();
-    printLines();
-    printMenuHead("COMPUTER SCIENTISTS");
-
-    for(int i = 0; i < to_output.size(); i++)
-    {
-        cout << to_output[i] << endl;
-    }
-
-    printSettingsStatus();
-    cout << "press enter key to continue: ";
-    waitForAnyKey();
-}
-
-void Interface::outputComputers()
-{
-    clearConsole();
-    printLines();
-    printMenuHead("COMPUTERS");
-
-    QVector<Computer> to_output = request.outputComputers();
-    for(int i = 0; i < to_output.size(); i++)
-    {
-        cout << to_output[i] << endl;
-    }
-
-    printSettingsStatus();
-    cout << "enter key to continue: ";
-    waitForAnyKey();
 }
 
 void Interface::searchCompsOrPersons()
@@ -716,10 +648,9 @@ void Interface::printMainMenu()
     newMenu("MAIN MENU");
 
     cout << "(1) to add a computer scientist or a computer\n"
-            "(2) to view a list of computer scientists or computers\n"
-            "(3) to search for computer scientists or computers\n"
-            "(4) to change settings\n"
-            "(5) to exit\n"
+            "(2) to search for computer scientists or computers\n"
+            "(3) to change settings\n"
+            "(4) to exit\n"
             "(a) for information about this program\n";
     printLines();
     printStatus();
