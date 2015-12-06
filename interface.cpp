@@ -58,9 +58,9 @@ void Interface::addCompOrPerson()
 
     char ch = ' ';
 
-    cout << "press (1) to add a computer scientist\n"
-            "press (2) to add a computer\n"
-            "press anything else to go to main menu \n";
+    cout << "(1) to add a computer scientist\n"
+            "(2) to add a computer\n"
+            "enter anything else to go to main menu \n";
     printLines();
 
     cout << "Choice: ";
@@ -151,9 +151,9 @@ void Interface::outpCompsOrPersons()
 
     char ch = ' ';
 
-    cout << "press (1) to view a list of computer scientists\n"
-            "press (2) to view a list of computers\n"
-            "press anything else to go to main menu \n";
+    cout << "(1) to view a list of computer scientists\n"
+            "(2) to view a list of computers\n"
+            "enter anything else to go to main menu \n";
     printLines();
 
     cout << "Choice: ";
@@ -206,7 +206,7 @@ void Interface::outputComputers()
     }
 
     printSettingsStatus();
-    cout << "press enter key to continue: ";
+    cout << "enter key to continue: ";
     waitForAnyKey();
 }
 
@@ -216,9 +216,9 @@ void Interface::searchCompsOrPersons()
 
     char ch = ' ';
 
-    cout << "press (1) to search for computer scientists\n"
-            "press (2) to search for computers\n"
-            "press anything else to go to main menu \n";
+    cout << "(1) to search for computer scientists\n"
+            "(2) to search for computers\n"
+            "enter anything else to go to main menu \n";
     printLines();
 
     cout << "Choice: ";
@@ -370,10 +370,10 @@ void Interface::settingsMain()
         char ch = ' ';
 
 
-        cout << "press (1) to change person ordering\n"
-                "press (2) to change computer ordering\n"
-                "press (3) to change gender view\n"
-                "press anything else to go to main menu\n";
+        cout << "(1) to change person ordering\n"
+                "(2) to change computer ordering\n"
+                "(3) to change gender view\n"
+                "enter anything else to go to main menu\n";
         printLines();
 
         cout << "Choice: ";
@@ -407,14 +407,14 @@ void Interface::settingsPersonOrdering()
 
     char ch = ' ';
 
-    cout << "press (1) to order by name in lexicographical order \n"
-            "press (2) to order by name in reverse lexicographical order\n"
-            "press (3) to order by date of birth \n"
-            "press (4) to order by date of birth in reverse order \n"
-            "press (5) to order by date of death \n"
-            "press (6) to order by date of death in reverse order \n"
-            "press (7) to go to main menu \n"
-            "press anything else to go back\n";
+    cout << "(1) to order by name in lexicographical order \n"
+            "(2) to order by name in reverse lexicographical order\n"
+            "(3) to order by date of birth \n"
+            "(4) to order by date of birth in reverse order \n"
+            "(5) to order by date of death \n"
+            "(6) to order by date of death in reverse order \n"
+            "(7) to go to main menu \n"
+            "enter anything else to go back\n";
     printLines();
 
     cout << "Choice: ";
@@ -464,14 +464,14 @@ void Interface::settingsComputerOrdering()
 
     char ch = ' ';
 
-    cout << "press (1) to order by name in lexicographical order \n"
-            "press (2) to order by name in reverse lexicographical order\n"
-            "press (3) to order by year when built \n"
-            "press (4) to order by year when built in reverse order \n"
-            "press (5) to order by type \n"
-            "press (6) to order by type in reverse order \n"
-            "press (7) to go to main menu \n"
-            "press anything else to go back\n";
+    cout << "(1) to order by name in lexicographical order \n"
+            "(2) to order by name in reverse lexicographical order\n"
+            "(3) to order by year when built \n"
+            "(4) to order by year when built in reverse order \n"
+            "(5) to order by type \n"
+            "(6) to order by type in reverse order \n"
+            "(7) to go to main menu \n"
+            "enter anything else to go back\n";
     printLines();
 
     cout << "Choice: ";
@@ -521,11 +521,11 @@ void Interface::settingsGenders()
 
     char ch = ' ';
 
-    cout << "press (1) to only view male computer scientists \n"
-            "press (2) to only view female computer scientists \n"
-            "press (3) view both genders \n"
-            "press (4) to go to main menu \n"
-            "press anything else to go back\n";
+    cout << "(1) to only view male computer scientists \n"
+            "(2) to only view female computer scientists \n"
+            "(3) view both genders \n"
+            "(4) to go to main menu \n"
+            "enter anything else to go back\n";
     printLines();
 
     cout << "Choice: ";
@@ -590,12 +590,12 @@ void Interface::printMainMenu()
 {
     newMenu("MAIN MENU");
 
-    cout << "press (1) to add a computer scientist or a computer\n"
-            "press (2) to view a list of computer scientists or computers\n"
-            "press (3) to search for computer scientists or computers\n"
-            "press (4) to change settings\n"
-            "press (5) to exit\n"
-            "press (a) for information about this program\n";
+    cout << "(1) to add a computer scientist or a computer\n"
+            "(2) to view a list of computer scientists or computers\n"
+            "(3) to search for computer scientists or computers\n"
+            "(4) to change settings\n"
+            "(5) to exit\n"
+            "(a) for information about this program\n";
     printLines();
     printStatus();
 
