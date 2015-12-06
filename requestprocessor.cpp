@@ -17,6 +17,11 @@ bool RequestProcessor::addComputer(Computer comp)
     return data.addComputer(comp);
 }
 
+bool RequestProcessor::addComputerXPerson(QString cid, QString pid)
+{
+    return data.addComputerXPerson(cid, pid);
+}
+
 void RequestProcessor::updateSettings()
 {
     settings.update(personOrderingToQStr(), computerOrderingToQStr(), gendertypeToQStr());
@@ -45,6 +50,7 @@ PersonXComputers RequestProcessor::outputPersonXComputers(QString pid)
 QVector<Person> RequestProcessor::searchPersons(QString search_string)
 {
     QVector<Person> search_results;
+    Person temp;
     QString search_type = "";
     QString search_query = "";
 
@@ -68,12 +74,28 @@ QVector<Person> RequestProcessor::searchPersons(QString search_string)
         i++;
     }
 
+
     if(search_type == "id")
     {
         search_type = "pID";
     }
 
     search_query = search_string.section(' ', 1); //finds the search query itself
+
+    if(search_type == "edit") //does the user want to edit?
+    {
+        temp.setName("EDIT CALLED FOR #" + search_query.toStdString());
+        search_results.push_back(temp);
+        editPerson(search_query);
+        return search_results;
+    }
+    else if(search_type == "delete") //does the user want to delete?
+    {
+        temp.setName("DELETE CALLED FOR #" + search_query.toStdString());
+        search_results.push_back(temp);
+        deletePerson(search_query);
+        return search_results;
+    }
 
     search_results = data.searchPersons(search_type, search_query, personOrderingToQStr(), gendertypeToQStr());
     return search_results;
@@ -82,6 +104,7 @@ QVector<Person> RequestProcessor::searchPersons(QString search_string)
 QVector<Computer> RequestProcessor::searchComputers(QString search_string)
 {
     QVector<Computer> search_results;
+    Computer temp;
     QString search_type = "";
     QString search_query = "";
 
@@ -111,6 +134,21 @@ QVector<Computer> RequestProcessor::searchComputers(QString search_string)
     }
 
     search_query = search_string.section(' ', 1); //finds the search query itself
+
+    if(search_type == "edit") //does the user want to edit?
+    {
+        temp.setName("EDIT CALLED FOR #" + search_query.toStdString()); //just for testing
+        search_results.push_back(temp);
+        editComputer(search_query);
+        return search_results;
+    }
+    else if(search_type == "delete") //does the user want to delete?
+    {
+        temp.setName("DELETE CALLED FOR #" + search_query.toStdString()); //just for testing
+        search_results.push_back(temp);
+        deleteComputer(search_query);
+        return search_results;
+    }
 
     search_results = data.searchComputers(search_type, search_query, computerOrderingToQStr());
     return search_results;
@@ -312,4 +350,24 @@ void RequestProcessor::readSettings()
     readPersonOrdering();
     readComputerOrdering();
     readGenderView();
+}
+
+void RequestProcessor::editPerson(QString id)
+{
+    //TODO implement
+}
+
+void RequestProcessor::editComputer(QString id)
+{
+    //TODO implement
+}
+
+void RequestProcessor::deletePerson(QString id)
+{
+    //TODO implement
+}
+
+void RequestProcessor::deleteComputer(QString id)
+{
+    //TODO implement
 }

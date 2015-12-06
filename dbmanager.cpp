@@ -160,6 +160,14 @@ bool DbManager::addComputer(Computer comp)
                      was_built + " )");
 }
 
+bool DbManager::addComputerXPerson(QString cid, QString pid)
+{
+    return execQuery("INSERT INTO ComputersXPersons "
+                     "VALUES ( " +
+                     pid + ", " +
+                     cid + " )");
+}
+
 bool DbManager::deletePerson(Person pers)
 {
     //TODO implement

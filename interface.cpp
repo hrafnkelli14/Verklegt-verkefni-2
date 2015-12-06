@@ -37,8 +37,13 @@ void Interface::start()
             settingsMain();
             break;
         case 't':
-            cout << request.outputComputerXPersons("1");
+            cout << request.outputComputerXPersons("1"); //TODO CREATE MENU
             waitForAnyKey();
+        case 'y':
+            cout << request.outputPersonXComputers("1"); //TODO CREATE MENU
+            waitForAnyKey();
+        case 'u':
+            addComputerXPerson();
         default:
             break;
         }
@@ -123,6 +128,21 @@ void Interface::addComputer()
             setStatus("\"" + temp.getName().toStdString() + "\" could not be added to computers!");
         }
     }
+}
+
+void Interface::addComputerXPerson()
+{
+    QString cid = "";
+    QString pid = "";
+    string temp;
+
+    cout << "Personid:";
+    cin >> temp;
+    pid = QString::fromStdString(temp);
+    cout << "Computerid:";
+    cin >> temp;
+    cid = QString::fromStdString(temp);
+    request.addComputerXPerson(cid, pid);
 }
 
 void Interface::outpCompsOrPersons()

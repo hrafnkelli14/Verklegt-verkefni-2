@@ -26,6 +26,7 @@ public:
     PersonXComputers getPersonXComputers(QString pid); //TODO implement
     bool addPerson(Person pers); //adds person to Person table
     bool addComputer(Computer comp);
+    bool addComputerXPerson(QString cid, QString pid);
     bool deletePerson(Person pers);  //TODO implement
     bool deleteComputer(Computer comp);
 

@@ -18,6 +18,7 @@ public:
     RequestProcessor();
     bool addPerson(Person pers); //contains the famous middle-out compression algorithm
     bool addComputer(Computer comp);
+    bool addComputerXPerson(QString cid, QString pid);
 
     void updateSettings(); //what happens here?
 
@@ -45,6 +46,11 @@ private:
     void readComputerOrdering();
     void readGenderView();
     void readSettings();
+
+    void editPerson(QString id); //TODO implement
+    void editComputer(QString id); //TODO implement
+    void deletePerson(QString id); //TODO implement
+    void deleteComputer(QString id); //TODO implement
 
     XmlFile settings; //xml file connection(settings)
     DbManager data; //sql database connection

@@ -13,6 +13,7 @@ private:
     void addCompOrPerson();
     void addPerson();
     void addComputer();
+    void addComputerXPerson(); //NEEDS SOME WORK
     void outpCompsOrPersons();
     void outputPersons();
     void outputComputers();
