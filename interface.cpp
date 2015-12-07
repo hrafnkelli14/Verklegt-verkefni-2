@@ -7,7 +7,7 @@ Interface::Interface()
     current_status = "";
     r_pid = "";
     r_cid = "";
-    r_stage = 0;
+    second_view = false;
 }
 
 Interface::~Interface()
@@ -50,6 +50,9 @@ void Interface::start()
         case 'y':
             cout << request.outputPersonXComputers("1"); //TODO CREATE MENU
             waitForAnyKey();
+            break;
+        case 'u':
+            request.addComputerXPerson("1", "6");
             break;
         default:
             break;
@@ -196,13 +199,20 @@ void Interface::viewPersons()
             "'relation' -- adds a relation to a computer by id number\n"
             "Search results follow current settings\n";
     printSimpleLines();
+    printStatus();
 
-
-    cin.ignore(1000, '\n');
+    if(!second_view)
+    {
+        cin.ignore(1000, '\n');
+    }
+    else
+    {
+        second_view = false;
+    }
 
     while(1)
     {
-        printStatus();
+
         cout << "Query(empty to exit to main menu): ";
         char ch = ' ';
         string search_string = "";
@@ -249,13 +259,20 @@ void Interface::viewComputers()
             "'relation' -- adds a relation to a computer scientist by id number\n"
             "Search results follow current settings\n";
     printSimpleLines();
+    printStatus();
 
-
-    cin.ignore(1000, '\n');
+    if(!second_view)
+    {
+        cin.ignore(1000, '\n');
+    }
+    else
+    {
+        second_view = false;
+    }
 
     while(1)
     {
-        printStatus();
+
         cout << "Query(empty to exit to main menu): ";
         char ch = ' ';
         string search_string = "";
@@ -306,6 +323,7 @@ void Interface::searchResultsPersons(string search_string)
     }
 
     printSettingsStatus();
+    printStatus();
 }
 
 void Interface::searchResultsComputers(string search_string)
@@ -328,6 +346,7 @@ void Interface::searchResultsComputers(string search_string)
     }
 
     printSettingsStatus();
+    printStatus();
 }
 
 void Interface::doCommand(QString command_string, char type)
@@ -385,7 +404,6 @@ void Interface::doCommand(QString command_string, char type)
             addComputerRelation(id);
         }
     }
-    //cin.ignore(1, '\n');
 }
 
 void Interface::editPerson(QString id)
@@ -470,16 +488,54 @@ void Interface::deleteComputer(QString id)
 
 void Interface::addPersonRelation(QString id)
 {
-    string name = request.getPerson(id).getName().toStdString();
-    r_cid == id;
-    setStatus("Adding relation to " + name + ", choose id for computer." );
+    string p_name = request.getPerson(id).getName().toStdString();
+    r_pid = id;
+    if(r_cid.isEmpty())
+    {
+        second_view = true;
+        setStatus("Adding relation to " + p_name + ", choose id for computer." );
+        viewComputers();
+    }
+    else
+    {
+        string c_name = request.getComputer(r_cid).getName().toStdString();
+        if(request.addComputerXPerson(r_cid, r_pid))
+        {
+            setStatus("Relation between " + p_name + " and " + c_name + " added!");
+        }
+        else
+        {
+            setStatus("Relation between " + p_name + " and " + c_name + " NOT added!");
+        }
+        r_cid = "";
+        r_pid = "";
+    }
 }
 
 void Interface::addComputerRelation(QString id)
 {
-    string name = request.getComputer(id).getName().toStdString();
-    r_cid == id;
-    setStatus("Adding relation to " + name + ", choose id for person." );
+    string c_name = request.getComputer(id).getName().toStdString();
+    r_cid = id;
+    if(r_pid.isEmpty())
+    {
+        second_view = true;
+        setStatus("Adding relation to " + c_name + ", choose id for person." );
+        viewPersons();
+    }
+    else
+    {
+        string p_name = request.getPerson(r_pid).getName().toStdString();
+        if(request.addComputerXPerson(r_cid, r_pid))
+        {
+            setStatus("Relation between " + c_name + " and " + p_name + " added!");
+        }
+        else
+        {
+             setStatus("Relation between " + r_cid.toStdString() + " and " + r_pid.toStdString() + " NOT added!");
+        }
+        r_cid = "";
+        r_pid = "";
+    }
 }
 
 void Interface::settingsMain()
@@ -868,15 +924,12 @@ void Interface::checkRelation()
 {
     if(!r_pid.isEmpty() && r_cid.isEmpty())
     {
-        viewComputers();
+        r_pid = "";
+        setStatus("");
     }
     else if(!r_cid.isEmpty() && r_pid.isEmpty())
     {
-        viewPersons();
-    }
-    else if(!r_pid.isEmpty() && !r_cid.isEmpty())
-    {
-        r_stage = 0;
-        //add relation
+        r_cid = "";
+        setStatus("");
     }
 }

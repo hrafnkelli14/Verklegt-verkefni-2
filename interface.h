@@ -55,7 +55,7 @@ private:
 
     //relation helpers
     void checkRelation();
-    int r_stage;
+    bool second_view;
     QString r_pid;
     QString r_cid;
 
