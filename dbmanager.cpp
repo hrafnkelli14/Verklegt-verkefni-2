@@ -17,6 +17,12 @@ DbManager::DbManager()
     execQuery("SELECT * FROM *"); //for some reason you have to display the list twice unless you do this
 
 }
+
+DbManager::~DbManager()
+{
+     //Intentionally left empty
+}
+
 //========PUBLIC FUNCTIONS==========
 QVector<Person> DbManager::getAllPersons(QString order_by, QString view_gender)
 {

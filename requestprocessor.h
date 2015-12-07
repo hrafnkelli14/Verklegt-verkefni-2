@@ -16,6 +16,7 @@ class RequestProcessor
 {
 public:
     RequestProcessor();
+    ~RequestProcessor();
     bool addPerson(Person pers); //contains the famous middle-out compression algorithm
     bool addComputer(Computer comp);
     bool addComputerXPerson(QString cid, QString pid);

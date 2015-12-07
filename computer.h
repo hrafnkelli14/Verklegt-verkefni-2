@@ -10,7 +10,7 @@ class Computer
 {
 public:
     Computer();
-
+    ~Computer();
     //'get' functions
     QString getName();
     QString getYear();

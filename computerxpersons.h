@@ -8,6 +8,7 @@ class ComputerXPersons : public Relation
 {
 public:
     ComputerXPersons();
+    ~ComputerXPersons();
     ComputerXPersons(Computer comp, QVector<Person> pers);
     void setComputer(Computer comp);
     void setPersons(QVector<Person> pers);

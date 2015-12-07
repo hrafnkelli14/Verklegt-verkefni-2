@@ -11,6 +11,11 @@ PersonXComputers::PersonXComputers(Person pers, QVector<Computer> comp)
     computers = comp;
 }
 
+PersonXComputers::~PersonXComputers()
+{
+    //Intentionally left empty
+}
+
 void PersonXComputers::setPerson(Person pers)
 {
     person = pers;

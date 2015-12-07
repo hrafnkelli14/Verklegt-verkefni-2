@@ -7,6 +7,11 @@ Interface::Interface()
     current_status = "";
 }
 
+Interface::~Interface()
+{
+     //Intentionally left empty
+}
+
 //========PUBLIC FUNCTIONS==========
 void Interface::start()
 {

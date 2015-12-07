@@ -11,6 +11,11 @@ Computer::Computer()
     id = "";
 }
 
+Computer::~Computer()
+{
+    //Intentionally left empty
+}
+
 //========PUBLIC FUNCTIONS==========
 QString Computer::getName()
 {
