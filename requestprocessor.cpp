@@ -244,6 +244,10 @@ bool RequestProcessor::deleteComputer(QString cid)
     return data.deletePerson(cid);
 }
 
+bool RequestProcessor::deleteRelation(QString cid, QString pid)
+{
+    return data.deleteComputerXPerson(cid, pid);
+}
 
 void RequestProcessor::setPersonOrdering(personordering _order_by)
 {

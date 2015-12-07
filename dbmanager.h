@@ -30,6 +30,7 @@ public:
     bool addComputerXPerson(QString cid, QString pid);
     bool deletePerson(QString pid);
     bool deleteComputer(QString cid);
+    bool deleteComputerXPerson(QString cid, QString pid);
     bool editPerson(Person pers);
     bool editComputer(Computer comp);
     Person getPerson(QString pid);

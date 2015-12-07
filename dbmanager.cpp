@@ -219,6 +219,19 @@ bool DbManager::deleteComputer(QString cid)
     return executed;
 }
 
+bool DbManager::deleteComputerXPerson(QString cid, QString pid)
+{
+    bool executed = false;
+    db.open();
+    QSqlQuery qry;
+    executed = qry.exec("DELETE FROM ComputersXPersons "
+                        "WHERE pID = " + pid + " " +
+                        "AND cID = " + cid);
+
+    db.close();
+    return executed;
+}
+
 bool DbManager::editPerson(Person pers)
 {
     QString dob_iso = toISO(pers.getDoB());

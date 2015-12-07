@@ -41,6 +41,7 @@ public:
     bool editComputer(Computer to_edit, QString id);
     bool deletePerson(QString id);
     bool deleteComputer(QString id);
+    bool deleteRelation(QString cid, QString pid);
 
     void setPersonOrdering(personordering _order_by); //sets order_by attribute
     void setComputerOrdering(computerordering _order_by);

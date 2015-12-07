@@ -351,6 +351,9 @@ void Interface::searchResultsComputers(string search_string)
 
 void Interface::viewPersonXComputers(QString id)
 {
+    string command_string;
+    QString command;
+    QString d_id;
     clearConsole();
     printLines();
     printMenuHead("PERSON RELATIONS");
@@ -358,21 +361,56 @@ void Interface::viewPersonXComputers(QString id)
     cout << request.outputPersonXComputers(id);
 
     printSimpleLines();
-    cout << "Press enter to continue";
-    cin.get();
+    cout << "Type 'delete id' or leave empty to return" << endl;
+    printSimpleLines();
+    cout << "Query: " << endl;
+
+    getline(cin, command_string);
+    command = request.extractCommand(QString::fromStdString(command_string));
+    if(command == "delete")
+    {
+        d_id = request.extractId(QString::fromStdString(command_string));
+        if(request.deleteRelation(d_id, id))
+        {
+            setStatus("Relation deleted!");
+        }
+        else
+        {
+            setStatus("Unable to delete relation");
+        }
+    }
 }
 
 void Interface::viewComputerXPersons(QString id)
 {
+    string command_string;
+    QString command;
+    QString d_id;
     clearConsole();
     printLines();
-    printMenuHead("PERSON RELATIONS");
+    printMenuHead("COMPUTER RELATIONS");
 
     cout << request.outputComputerXPersons(id);
 
     printSimpleLines();
-    cout << "Press enter to continue";
-    cin.get();
+    cout << "Type 'delete id' or leave empty to return" << endl;
+    printSimpleLines();
+    cout << "Query: " << endl;
+
+    getline(cin, command_string);
+    command = request.extractCommand(QString::fromStdString(command_string));
+    if(command == "delete")
+    {
+        d_id = request.extractId(QString::fromStdString(command_string));
+        if(request.deleteRelation(id, d_id))
+        {
+            setStatus("Relation deleted!");
+        }
+        else
+        {
+            setStatus("Unable to delete relation");
+        }
+    }
 }
 
 void Interface::doCommand(QString command_string, char type)
