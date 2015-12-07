@@ -28,7 +28,7 @@ void Interface::start()
             addCompOrPerson();
             break;
         case '2':
-            searchCompsOrPersons();
+            viewCompsOrPersons();
             break;
         case '3':
             settingsMain();
@@ -142,9 +142,9 @@ void Interface::addComputerXPerson()
     request.addComputerXPerson(cid, pid);
 }
 
-void Interface::searchCompsOrPersons()
+void Interface::viewCompsOrPersons()
 {
-    newMenu("SEARCH VIEW");
+    newMenu("VIEW");
 
     char ch = ' ';
 
@@ -161,10 +161,10 @@ void Interface::searchCompsOrPersons()
     {
 
     case '1':
-        searchPersons();
+        viewPersons();
         break;
     case '2':
-        searchComputers();
+        viewComputers();
         break;
     default:
         break;
@@ -173,9 +173,8 @@ void Interface::searchCompsOrPersons()
 
 }
 
-void Interface::searchPersons()
+void Interface::viewPersons()
 {
-    //searching menu
     newMenu("PERSON SEARCH");
     cout << "'*' to view all\n"
             "Search syntax: \"searchtype searchquery\"\n"
@@ -195,7 +194,7 @@ void Interface::searchPersons()
 
     while(1)
     {
-        cout << "Search query(empty to exit to main menu): ";
+        cout << "Query(empty to exit to main menu): ";
         char ch = ' ';
         string search_string = "";
 
@@ -207,45 +206,26 @@ void Interface::searchPersons()
                 search_string += ch;
             }
         }while(ch != '\n');
-    //
 
          if(search_string == "")
          {
             return;
          }
 
-    //search results
          if(request.isCommand(QString::fromStdString(search_string)))
          {
              doCommand(QString::fromStdString(search_string), 'p');
              return;
          }
-
-         QVector<Person> search_results = request.searchPersons(QString::fromStdString(search_string));
-         clearConsole();
-         printLines();
-         printMenuHead("SEARCH RESULTS");
-
-         if(search_results.size() > 0)
-         {
-             for(int i = 0; i < search_results.size(); i++)
-             {
-                 cout << search_results[i] << endl;
-             }
-         }
          else
          {
-             cout << "NO RESULTS(did you forget to prepend search string with a correct searchtype?)" << endl;
+             searchResultsPersons(search_string);
          }
-
-         printSettingsStatus();
     }
-    //
 }
 
-void Interface::searchComputers()
+void Interface::viewComputers()
 {
-    //searching menu
     newMenu("COMPUTER SEARCH");
     cout << "'*' to view all\n"
             "Search syntax: \"searchtype searchquery\"\n"
@@ -265,7 +245,7 @@ void Interface::searchComputers()
 
     while(1)
     {
-        cout << "Search query(empty to exit to main menu): ";
+        cout << "Query(empty to exit to main menu): ";
         char ch = ' ';
         string search_string = "";
 
@@ -277,46 +257,72 @@ void Interface::searchComputers()
                 search_string += ch;
             }
         }while(ch != '\n');
-    //
 
-         if(search_string == "")
-         {
+        if(search_string == "")
+        {
+           return;
+        }
+
+        if(request.isCommand(QString::fromStdString(search_string)))
+        {
+            doCommand(QString::fromStdString(search_string), 'c');
             return;
-         }
-
-    //search results
-         if(request.isCommand(QString::fromStdString(search_string)))
-         {
-             doCommand(QString::fromStdString(search_string), 'c');
-             return;
-         }
-
-         QVector<Computer> search_results = request.searchComputers(QString::fromStdString(search_string));
-         clearConsole();
-         printLines();
-         printMenuHead("SEARCH RESULTS");
-
-         if(search_results.size() > 0)
-         {
-             for(int i = 0; i < search_results.size(); i++)
-             {
-                 cout << search_results[i] << endl;
-             }
-         }
-         else
-         {
-             cout << "NO RESULTS(did you forget to prepend search string with a correct searchtype?)" << endl;
-         }
-
-         printSettingsStatus();
+        }
+        else
+        {
+            searchResultsComputers(search_string);
+        }
     }
+}
+
+void Interface::searchResultsPersons(string search_string)
+{
+    QVector<Person> search_results = request.searchPersons(QString::fromStdString(search_string));
+    clearConsole();
+    printLines();
+    printMenuHead("SEARCH RESULTS");
+
+    if(search_results.size() > 0)
+    {
+        for(int i = 0; i < search_results.size(); i++)
+        {
+            cout << search_results[i] << endl;
+        }
+    }
+    else
+    {
+        cout << "NO RESULTS(did you forget to prepend search string with a correct searchtype?)" << endl;
+    }
+
+    printSettingsStatus();
+}
+
+void Interface::searchResultsComputers(string search_string)
+{
+    QVector<Computer> search_results = request.searchComputers(QString::fromStdString(search_string));
+    clearConsole();
+    printLines();
+    printMenuHead("SEARCH RESULTS");
+
+    if(search_results.size() > 0)
+    {
+        for(int i = 0; i < search_results.size(); i++)
+        {
+            cout << search_results[i] << endl;
+        }
+    }
+    else
+    {
+        cout << "NO RESULTS(did you forget to prepend search string with a correct searchtype?)" << endl;
+    }
+
+    printSettingsStatus();
 }
 
 void Interface::doCommand(QString command_string, char type)
 {
     QString command = request.extractCommand(command_string);
     QString id = request.extractId(command_string);
-    char ch = ' ';
 
     clearConsole();
     printLines();
@@ -324,113 +330,125 @@ void Interface::doCommand(QString command_string, char type)
 
     if(type == 'p') //PERSON
     {
-        printMenuHead(command.toUpper().toStdString() + " PERSON");
         if(request.searchPersons("id " + id).isEmpty()) //needed to prevent crashes
         {
             setStatus("Person #" + id.toStdString() + " does not exist or is omitted!");
             return;
         }
-        string name = request.searchPersons("id " + id).first().getName().toStdString();
+
+
+        printMenuHead(command.toUpper().toStdString() + " PERSON");
+
         if(command == "edit")
         {
-            cout << "Are you sure you want to edit " << name << "?(y/n): ";
-            cin >> ch;
-            if(ch == 'y' || ch == 'Y')
-            {
-                Person to_edit;
-                cin >> to_edit;
-                if(request.editPerson(to_edit, id))
-                {
-                    setStatus("\"" + name + "\" changed to \"" + to_edit.getName().toStdString() + "\"");
-                }
-                else
-                {
-                    setStatus("\"" + name + "\" was NOT changed!");
-                }
-            }
+            editPerson(id);
         }
         else if(command == "delete")
         {
-            cout << "Are you sure you want to delete " << name << "?(y/n): ";
-            cin >> ch;
-            if(ch == 'y' || ch == 'Y')
-            {
-                if(request.deletePerson(id))
-                {
-                    setStatus("\"" + name + "\" deleted!");
-                }
-                else
-                {
-                    setStatus("\"" + name + "\" was NOT deleted!");
-                }
-            }
+            deletePerson(id);
         }
     }
     else if(type == 'c') //COMPUTER
     {
-        printMenuHead(command.toUpper().toStdString() + " COMPUTER");
         if(request.searchComputers("id " + id).isEmpty()) //needed to prevent crashes
         {
             setStatus("Computer #" + id.toStdString() + " does not exist!");
             return;
         }
-        string name = request.searchComputers("id " + id).first().getName().toStdString();
+
+
+        printMenuHead(command.toUpper().toStdString() + " COMPUTER");
+
         if(command == "edit")
         {
-            cout << "Are you sure you want to edit " << name << "?(y/n): ";
-            cin >> ch;
-            if(ch == 'y' || ch == 'Y')
-            {
-                Computer to_edit;
-                cin >> to_edit;
-                if(request.editComputer(to_edit, id))
-                {
-                    setStatus("\"" + name + "\" changed to \"" + to_edit.getName().toStdString() + "\"");
-                }
-                else
-                {
-                    setStatus("\"" + name + "\" was NOT changed!");
-                }
-            }
+            editComputer(id);
         }
         else if(command == "delete")
         {
-            cout << "Are you sure you want to delete " << name << "?(y/n): ";
-            cin >> ch;
-            if(ch == 'y' || ch == 'Y')
-            {
-                if(request.deleteComputer(id))
-                {
-                    setStatus("\"" + name + "\" deleted!");
-                }
-                else
-                {
-                    setStatus("\"" + name + "\" was NOT deleted!");
-                }
-            }
+            deleteComputer(id);
         }
     }
     cin.ignore(1, '\n');
 }
 
-void Interface::editPerson(QString pid)
+void Interface::editPerson(QString id)
 {
-    //TODO implement
+    char ch = ' ';
+    string name = request.searchPersons("id " + id).first().getName().toStdString();
+    cout << "Are you sure you want to edit " << name << "?(y/n): ";
+    cin >> ch;
+    if(ch == 'y' || ch == 'Y')
+    {
+        Person to_edit;
+        cin >> to_edit;
+        if(request.editPerson(to_edit, id))
+        {
+            setStatus("\"" + name + "\" changed to \"" + to_edit.getName().toStdString() + "\"");
+        }
+        else
+        {
+            setStatus("\"" + name + "\" was NOT changed!");
+        }
+    }
 }
 
-void Interface::editComputer(QString cid)
+void Interface::editComputer(QString id)
 {
-    //TODO implement
+    char ch = ' ';
+    string name = request.searchComputers("id " + id).first().getName().toStdString();
+    cout << "Are you sure you want to edit " << name << "?(y/n): ";
+    cin >> ch;
+    if(ch == 'y' || ch == 'Y')
+    {
+        Computer to_edit;
+        cin >> to_edit;
+        if(request.editComputer(to_edit, id))
+        {
+            setStatus("\"" + name + "\" changed to \"" + to_edit.getName().toStdString() + "\"");
+        }
+        else
+        {
+            setStatus("\"" + name + "\" was NOT changed!");
+        }
+    }
 }
 
-void Interface::deletePerson(QString pid)
+void Interface::deletePerson(QString id)
 {
-    //TODO implement
+    char ch = ' ';
+    string name = request.searchPersons("id " + id).first().getName().toStdString();
+    cout << "Are you sure you want to delete " << name << "?(y/n): ";
+    cin >> ch;
+    if(ch == 'y' || ch == 'Y')
+    {
+        if(request.deletePerson(id))
+        {
+            setStatus("\"" + name + "\" deleted!");
+        }
+        else
+        {
+            setStatus("\"" + name + "\" was NOT deleted!");
+        }
+    }
 }
 
-void Interface::deleteComputer(QString cid)
+void Interface::deleteComputer(QString id)
 {
-    //TODO implement
+    char ch = ' ';
+    string name = request.searchComputers("id " + id).first().getName().toStdString();
+    cout << "Are you sure you want to delete " << name << "?(y/n): ";
+    cin >> ch;
+    if(ch == 'y' || ch == 'Y')
+    {
+        if(request.deleteComputer(id))
+        {
+            setStatus("\"" + name + "\" deleted!");
+        }
+        else
+        {
+            setStatus("\"" + name + "\" was NOT deleted!");
+        }
+    }
 }
 
 void Interface::settingsMain()

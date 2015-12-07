@@ -17,15 +17,17 @@ private:
     void outpCompsOrPersons();
     void outputPersons();
     void outputComputers();
-    void searchCompsOrPersons();
-    void searchPersons();
-    void searchComputers();
+    void viewCompsOrPersons();
+    void viewPersons();
+    void viewComputers();
+    void searchResultsPersons(string search_string);
+    void searchResultsComputers(string search_string);
 
     void doCommand(QString search_string, char type);
-    void editPerson(QString pid);
-    void editComputer(QString cid);
-    void deletePerson(QString pid);
-    void deleteComputer(QString cid);
+    void editPerson(QString id);
+    void editComputer(QString id);
+    void deletePerson(QString id);
+    void deleteComputer(QString id);
 
     //settings menus
     void settingsMain();
