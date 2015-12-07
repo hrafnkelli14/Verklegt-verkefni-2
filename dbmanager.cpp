@@ -354,7 +354,8 @@ void DbManager::createTables()
               "pID INT, "
               "cID INT, "
               "FOREIGN KEY (pID) REFERENCES Persons(pID), "
-              "FOREIGN KEY (cID) REFERENCES Computers(cID) )");
+              "FOREIGN KEY (cID) REFERENCES Computers(cID), "
+              "PRIMARY KEY(pID, cID))");
 }
 
 QVector<Person> DbManager::findPersons(QString conditions)

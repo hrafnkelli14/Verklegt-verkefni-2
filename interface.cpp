@@ -196,7 +196,7 @@ void Interface::viewPersons()
             "Command syntax: \"command id\"\n"
             "'edit'   -- edits a person via id number\n"
             "'delete' -- deletes a person via id number\n"
-            "'relation' -- adds a relation to a computer by id number\n"
+            "'addr'   -- adds a relation to a computer by id number\n"
             "Search results follow current settings\n";
     printSimpleLines();
     printStatus();
@@ -256,7 +256,7 @@ void Interface::viewComputers()
             "Command syntax: \"command id\"\n"
             "'edit'   -- edits a computer via id number\n"
             "'delete' -- deletes a computer via id number\n"
-            "'relation' -- adds a relation to a computer scientist by id number\n"
+            "'addr'   -- adds a relation to a computer scientist by id number\n"
             "Search results follow current settings\n";
     printSimpleLines();
     printStatus();
@@ -376,7 +376,7 @@ void Interface::doCommand(QString command_string, char type)
         {
             deletePerson(id);
         }
-        else if(command == "relation")
+        else if(command == "addr")
         {
             addPersonRelation(id);
         }
@@ -399,7 +399,7 @@ void Interface::doCommand(QString command_string, char type)
         {
             deleteComputer(id);
         }
-        else if(command == "relation")
+        else if(command == "addr")
         {
             addComputerRelation(id);
         }

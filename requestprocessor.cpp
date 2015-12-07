@@ -64,7 +64,7 @@ bool RequestProcessor::isCommand(QString command_string)
     {
         return true;
     }
-    else if(command == "relation")
+    else if(command == "addr")
     {
         return true;
     }
