@@ -12,6 +12,7 @@
 class XmlFile {
 public:
     XmlFile(); //Constructor
+    ~XmlFile();
     QString getPersonOrdering();
     QString getComputerOrdering();
     QString getViewGender();

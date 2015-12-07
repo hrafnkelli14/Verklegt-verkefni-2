@@ -18,6 +18,7 @@ class DbManager
 {
 public:
     DbManager(); //main constructor
+    ~DbManager();
     QVector<Person> getAllPersons(QString order_by, QString view_gender); //outputs list according to order_by and view_gender
     QVector<Computer> getAllComputers(QString order_by);
     QVector<Person> searchPersons(QString search_type, QString search_query, QString order_by, QString view_gender);

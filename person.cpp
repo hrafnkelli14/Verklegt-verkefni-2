@@ -10,6 +10,11 @@ Person::Person()
     id = "";
 }
 
+Person::~Person()
+{
+    //Intentionally left empty
+}
+
 //========PUBLIC FUNCTIONS==========
 QString Person::getName()
 {

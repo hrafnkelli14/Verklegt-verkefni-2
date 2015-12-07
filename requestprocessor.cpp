@@ -6,6 +6,11 @@ RequestProcessor::RequestProcessor()
     readSettings();
 }
 
+RequestProcessor::~RequestProcessor()
+{
+     //Intentionally left empty
+}
+
 //========PUBLIC FUNCTIONS==========
 bool RequestProcessor::addPerson(Person pers)
 {

@@ -13,7 +13,7 @@ class Person
 {
 public:
     Person();   //default constructor
-
+    ~Person();
     //'get' functions
     QString getName();
     QString getGender();

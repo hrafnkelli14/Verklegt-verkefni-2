@@ -7,6 +7,7 @@ class Interface
 {
 public:
     Interface();
+    ~Interface();
     void start(); //essentially the main menu
 private:
     //menus

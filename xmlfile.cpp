@@ -15,6 +15,11 @@ XmlFile::XmlFile()
     readFile();
 }
 
+XmlFile::~XmlFile()
+{
+     //Intentionally left empty
+}
+
 //========PUBLIC FUNCTIONS==========
 QString XmlFile::getPersonOrdering()
 {

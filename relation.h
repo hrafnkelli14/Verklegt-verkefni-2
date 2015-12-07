@@ -11,6 +11,7 @@ class Relation
 {
 public:
     Relation();
+    ~Relation();
 protected:
     QVector<Person> persons;
     QVector<Computer> computers;

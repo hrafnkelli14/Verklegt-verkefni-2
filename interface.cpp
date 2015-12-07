@@ -10,6 +10,11 @@ Interface::Interface()
     r_stage = 0;
 }
 
+Interface::~Interface()
+{
+     //Intentionally left empty
+}
+
 //========PUBLIC FUNCTIONS==========
 void Interface::start()
 {
