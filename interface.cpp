@@ -187,7 +187,7 @@ void Interface::viewPersons()
             "'delete' -- deletes a person via id number\n"
             "'addr'   -- pick a person to add relations to via id\n"
             "            and then pick the related computer with 'addr id'\n"
-            "'viewr'  -- view relations via id number"
+            "'viewr'  -- view relations via id number\n"
             "Search results follow current settings\n";
     printSimpleLines();
     printStatus();
@@ -249,7 +249,7 @@ void Interface::viewComputers()
             "'delete' -- deletes a computer via id number\n"
             "'addr'   -- pick a computer to add relations to via id\n"
             "            and then pick the related person with 'addr id'\n"
-            "'viewr'  -- view relations via id number"
+            "'viewr'  -- view relations via id number\n"
             "Search results follow current settings\n";
     printSimpleLines();
     printStatus();
