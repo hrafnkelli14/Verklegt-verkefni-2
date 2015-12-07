@@ -20,7 +20,7 @@ void Interface::start()
 {
     char ch = ' ';
 
-    while(ch != '4')
+    while(ch != 'q')
     {
         checkRelation();
 
@@ -42,17 +42,6 @@ void Interface::start()
             break;
         case '3':
             settingsMain();
-            break;
-        case 't':
-            cout << request.outputComputerXPersons("1"); //TODO CREATE MENU
-            waitForAnyKey();
-            break;
-        case 'y':
-            cout << request.outputPersonXComputers("1"); //TODO CREATE MENU
-            waitForAnyKey();
-            break;
-        case 'u':
-            request.addComputerXPerson("1", "6");
             break;
         default:
             break;
@@ -365,9 +354,9 @@ void Interface::viewPersonXComputers(QString id)
     cout << request.outputPersonXComputers(id);
 
     printSimpleLines();
-    cout << "Type 'delete id' or leave empty to return" << endl;
+    cout << "Type 'delete id' to delete relation or leave empty to return" << endl;
     printSimpleLines();
-    cout << "Query: " << endl;
+    cout << "Query: ";
 
     getline(cin, command_string);
     command = request.extractCommand(QString::fromStdString(command_string));
@@ -376,7 +365,9 @@ void Interface::viewPersonXComputers(QString id)
         d_id = request.extractId(QString::fromStdString(command_string));
         if(request.deleteRelation(d_id, id))
         {
-            setStatus("Relation deleted!");
+            string p_name = request.getPerson(d_id).getName().toStdString();
+            string c_name = request.getComputer(id).getName().toStdString();
+            setStatus("Relation of '" + p_name + "' to '" + c_name + "' deleted!");
         }
         else
         {
@@ -397,18 +388,20 @@ void Interface::viewComputerXPersons(QString id)
     cout << request.outputComputerXPersons(id);
 
     printSimpleLines();
-    cout << "Type 'delete id' or leave empty to return" << endl;
+    cout << "Type 'delete id' to delete relation or leave empty to return" << endl;
     printSimpleLines();
-    cout << "Query: " << endl;
+    cout << "Query: ";
 
     getline(cin, command_string);
     command = request.extractCommand(QString::fromStdString(command_string));
     if(command == "delete")
     {
-        d_id = request.extractId(QString::fromStdString(command_string));
+        d_id = request.extractId(QString::fromStdString(command_string));    
         if(request.deleteRelation(id, d_id))
         {
-            setStatus("Relation deleted!");
+            string c_name = request.getComputer(id).getName().toStdString();
+            string p_name = request.getPerson(d_id).getName().toStdString();
+            setStatus("Relation of '" + c_name + "' to '" + p_name + "' deleted!");
         }
         else
         {
@@ -569,7 +562,7 @@ void Interface::addPersonRelation(QString id)
     if(r_cid.isEmpty())
     {
         second_view = true;
-        setStatus("Adding relation to " + p_name + ", choose id for computer." );
+        setStatus("Adding relation to '" + p_name + "', choose id for computer." );
         viewComputers();
     }
     else
@@ -577,11 +570,11 @@ void Interface::addPersonRelation(QString id)
         string c_name = request.getComputer(r_cid).getName().toStdString();
         if(request.addComputerXPerson(r_cid, r_pid))
         {
-            setStatus("Relation between " + p_name + " and " + c_name + " added!");
+            setStatus("Relation between '" + p_name + "' and '" + c_name + "' added!");
         }
         else
         {
-            setStatus("Relation between " + p_name + " and " + c_name + " NOT added!");
+            setStatus("Unable to add relation!");
         }
         r_cid = "";
         r_pid = "";
@@ -595,7 +588,7 @@ void Interface::addComputerRelation(QString id)
     if(r_pid.isEmpty())
     {
         second_view = true;
-        setStatus("Adding relation to " + c_name + ", choose id for person." );
+        setStatus("Adding relation to '" + c_name + "', choose id for person." );
         viewPersons();
     }
     else
@@ -603,11 +596,11 @@ void Interface::addComputerRelation(QString id)
         string p_name = request.getPerson(r_pid).getName().toStdString();
         if(request.addComputerXPerson(r_cid, r_pid))
         {
-            setStatus("Relation between " + c_name + " and " + p_name + " added!");
+            setStatus("Relation between '" + c_name + "' and '" + p_name + "' added!");
         }
         else
         {
-             setStatus("Relation between " + r_cid.toStdString() + " and " + r_pid.toStdString() + " NOT added!");
+             setStatus("Unable to add relation!");
         }
         r_cid = "";
         r_pid = "";
@@ -847,7 +840,7 @@ void Interface::printMainMenu()
     cout << "(1) to add a computer scientist or a computer\n"
             "(2) for utility menus\n"
             "(3) to change settings\n"
-            "(4) to exit\n"
+            "(q) to exit\n"
             "(a) for information about this program\n";
     printLines();
     printStatus();
