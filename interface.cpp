@@ -5,6 +5,9 @@ Interface::Interface()
 { 
     setSettingsStatus();
     current_status = "";
+    r_pid = "";
+    r_cid = "";
+    r_stage = 0;
 }
 
 //========PUBLIC FUNCTIONS==========
@@ -14,6 +17,8 @@ void Interface::start()
 
     while(ch != '4')
     {
+        checkRelation();
+
         printMainMenu();
         setStatus(""); //reset status message
 
@@ -36,11 +41,11 @@ void Interface::start()
         case 't':
             cout << request.outputComputerXPersons("1"); //TODO CREATE MENU
             waitForAnyKey();
+            break;
         case 'y':
             cout << request.outputPersonXComputers("1"); //TODO CREATE MENU
             waitForAnyKey();
-        case 'u':
-            addComputerXPerson();
+            break;
         default:
             break;
         }
@@ -194,6 +199,7 @@ void Interface::viewPersons()
 
     while(1)
     {
+        printStatus();
         cout << "Query(empty to exit to main menu): ";
         char ch = ' ';
         string search_string = "";
@@ -245,6 +251,7 @@ void Interface::viewComputers()
 
     while(1)
     {
+        printStatus();
         cout << "Query(empty to exit to main menu): ";
         char ch = ' ';
         string search_string = "";
@@ -330,12 +337,11 @@ void Interface::doCommand(QString command_string, char type)
 
     if(type == 'p') //PERSON
     {
-        if(request.searchPersons("id " + id).isEmpty()) //needed to prevent crashes
+        if(request.getPerson(id).getId().isEmpty()) //needed to prevent crashes
         {
             setStatus("Person #" + id.toStdString() + " does not exist or is omitted!");
             return;
         }
-
 
         printMenuHead(command.toUpper().toStdString() + " PERSON");
 
@@ -350,12 +356,11 @@ void Interface::doCommand(QString command_string, char type)
     }
     else if(type == 'c') //COMPUTER
     {
-        if(request.searchComputers("id " + id).isEmpty()) //needed to prevent crashes
+        if(request.getComputer(id).getId().isEmpty()) //needed to prevent crashes
         {
             setStatus("Computer #" + id.toStdString() + " does not exist!");
             return;
         }
-
 
         printMenuHead(command.toUpper().toStdString() + " COMPUTER");
 
@@ -367,14 +372,20 @@ void Interface::doCommand(QString command_string, char type)
         {
             deleteComputer(id);
         }
+        else if(command == "relation")
+        {
+            string name = request.getComputer(id).getName().toStdString();
+            r_cid == id;
+            setStatus("Adding relation to " + name + ", choose id for person." );
+        }
     }
-    cin.ignore(1, '\n');
+    //cin.ignore(1, '\n');
 }
 
 void Interface::editPerson(QString id)
 {
     char ch = ' ';
-    string name = request.searchPersons("id " + id).first().getName().toStdString();
+    string name = request.getPerson(id).getName().toStdString();
     cout << "Are you sure you want to edit " << name << "?(y/n): ";
     cin >> ch;
     if(ch == 'y' || ch == 'Y')
@@ -395,7 +406,7 @@ void Interface::editPerson(QString id)
 void Interface::editComputer(QString id)
 {
     char ch = ' ';
-    string name = request.searchComputers("id " + id).first().getName().toStdString();
+    string name = request.getComputer(id).getName().toStdString();
     cout << "Are you sure you want to edit " << name << "?(y/n): ";
     cin >> ch;
     if(ch == 'y' || ch == 'Y')
@@ -416,7 +427,7 @@ void Interface::editComputer(QString id)
 void Interface::deletePerson(QString id)
 {
     char ch = ' ';
-    string name = request.searchPersons("id " + id).first().getName().toStdString();
+    string name = request.getPerson(id).getName().toStdString();
     cout << "Are you sure you want to delete " << name << "?(y/n): ";
     cin >> ch;
     if(ch == 'y' || ch == 'Y')
@@ -435,7 +446,7 @@ void Interface::deletePerson(QString id)
 void Interface::deleteComputer(QString id)
 {
     char ch = ' ';
-    string name = request.searchComputers("id " + id).first().getName().toStdString();
+    string name = request.getComputer(id).getName().toStdString();
     cout << "Are you sure you want to delete " << name << "?(y/n): ";
     cin >> ch;
     if(ch == 'y' || ch == 'Y')
@@ -830,5 +841,22 @@ void Interface::waitForAnyKey()
     while(ch != '\n') //ugly but works
     {
         ch = cin.get();
+    }
+}
+
+void Interface::checkRelation()
+{
+    if(!r_pid.isEmpty() && r_cid.isEmpty())
+    {
+        viewComputers();
+    }
+    else if(!r_cid.isEmpty() && r_pid.isEmpty())
+    {
+        viewPersons();
+    }
+    else if(!r_pid.isEmpty() && !r_cid.isEmpty())
+    {
+        r_stage = 0;
+        //add relation
     }
 }

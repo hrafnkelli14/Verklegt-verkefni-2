@@ -59,6 +59,10 @@ bool RequestProcessor::isCommand(QString command_string)
     {
         return true;
     }
+    else if(command == "relation")
+    {
+        return true;
+    }
 
     return false;
 }
@@ -197,6 +201,16 @@ QVector<Computer> RequestProcessor::searchComputers(QString search_string)
     search_query = search_string.section(' ', 1); //finds the search query itself
     search_results = data.searchComputers(search_type, search_query, computerOrderingToQStr());
     return search_results;
+}
+
+Person RequestProcessor::getPerson(QString id)
+{
+    return data.getPerson(id);
+}
+
+Computer RequestProcessor::getComputer(QString id)
+{
+    return data.getComputer(id);
 }
 
 bool RequestProcessor::editPerson(Person to_edit, QString pid)

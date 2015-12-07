@@ -242,6 +242,66 @@ bool DbManager::editComputer(Computer comp)
                      "WHERE cID = " + comp.getId());
 }
 
+Person DbManager::getPerson(QString pid)
+{
+    db.open();
+    Person temp;
+    QSqlQuery qry;
+    qry.exec("PRAGMA foreign_keys=ON");
+
+    qry.exec("SELECT pID, name, gender, dob, dod "
+             "FROM Persons "
+             "WHERE pID = " + pid);
+
+    int i_id = qry.record().indexOf("pID");
+    int i_name = qry.record().indexOf("name");
+    int i_gender = qry.record().indexOf("gender");
+    int i_dob = qry.record().indexOf("dob");
+    int i_dod = qry.record().indexOf("dod");
+
+    while(qry.next())
+    {
+        temp.setId(qry.value(i_id).toString().toStdString());
+        temp.setName(qry.value(i_name).toString().toStdString());
+        temp.setGender(qry.value(i_gender).toString().toStdString());
+        temp.setDoB(fromISO(qry.value(i_dob).toString()).toStdString());
+        temp.setDoD(fromISO(qry.value(i_dod).toString()).toStdString());
+    }
+    db.close();
+
+    return temp;
+}
+
+Computer DbManager::getComputer(QString cid)
+{
+    db.open();
+    Computer temp;
+    QSqlQuery qry;
+    qry.exec("PRAGMA foreign_keys=ON");
+
+    qry.exec("SELECT cID, name, year, type, built "
+             "FROM Computers "
+             "WHERE cID = " + cid);
+
+    int i_id = qry.record().indexOf("cID");
+    int i_name = qry.record().indexOf("name");
+    int i_year = qry.record().indexOf("year");
+    int i_type = qry.record().indexOf("type");
+    int i_built = qry.record().indexOf("built");
+
+    while(qry.next())
+    {
+        temp.setId(qry.value(i_id).toString().toStdString());
+        temp.setName(qry.value(i_name).toString().toStdString());
+        temp.setYear(qry.value(i_year).toString().toStdString());
+        temp.setType(qry.value(i_type).toString().toStdString());
+        temp.setBuilt(stoi(qry.value(i_built).toString().toStdString())); //stoi to change to bool
+    }
+    db.close();
+
+    return temp;
+}
+
 //========PRIVATE FUNCTIONS==========
 bool DbManager::execQuery(QString query_string)
 {

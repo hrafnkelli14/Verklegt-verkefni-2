@@ -33,10 +33,13 @@ public:
     QVector<Person> searchPersons(QString search_string);
     QVector<Computer> searchComputers(QString search_string);
 
-    bool editPerson(Person to_edit, QString id); //TODO implement
-    bool editComputer(Computer to_edit, QString id); //TODO implement
-    bool deletePerson(QString id); //TODO implement
-    bool deleteComputer(QString id); //TODO implement
+    Person getPerson(QString id);
+    Computer getComputer(QString id);
+
+    bool editPerson(Person to_edit, QString id);
+    bool editComputer(Computer to_edit, QString id);
+    bool deletePerson(QString id);
+    bool deleteComputer(QString id);
 
     void setPersonOrdering(personordering _order_by); //sets order_by attribute
     void setComputerOrdering(computerordering _order_by);

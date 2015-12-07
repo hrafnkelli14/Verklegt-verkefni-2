@@ -48,10 +48,18 @@ private:
     void printLines(); //prints "===================================================\n" easier for consistency
     void printSimpleLines(); //prints "------------------------------------------------------------------------\n" easier for consistency
     void newMenu(string menuname); //combination of clearConsole(), printSettingsStatus(), printMenuHead() and printLines();
-    void waitForAnyKey(); //waits for any key
+    void waitForAnyKey(); //waits for any
+
+    //relation helpers
+    void checkRelation();
+    int r_stage;
+    QString r_pid;
+    QString r_cid;
 
     string current_status; //current status (to display in main menu)
     string current_settings; //current settings (to display in various menus)
+
+
 
     RequestProcessor request;
 };
