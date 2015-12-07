@@ -159,8 +159,8 @@ void Interface::viewCompsOrPersons()
 
     char ch = ' ';
 
-    cout << "(1) to search for computer scientists\n"
-            "(2) to search for computers\n"
+    cout << "(1) utility menu for computer scientists\n"
+            "(2) utility menu for computers\n"
             "enter anything else to go to main menu \n";
     printLines();
 
@@ -803,7 +803,7 @@ void Interface::printMainMenu()
     newMenu("MAIN MENU");
 
     cout << "(1) to add a computer scientist or a computer\n"
-            "(2) to search for computer scientists or computers\n"
+            "(2) for utility menus\n"
             "(3) to change settings\n"
             "(4) to exit\n"
             "(a) for information about this program\n";
