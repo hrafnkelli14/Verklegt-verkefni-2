@@ -359,7 +359,7 @@ void Interface::doCommand(QString command_string, char type)
         }
         else if(command == "relation")
         {
-
+            addPersonRelation(id);
         }
     }
     else if(type == 'c') //COMPUTER
@@ -382,10 +382,7 @@ void Interface::doCommand(QString command_string, char type)
         }
         else if(command == "relation")
         {
-            string name = request.getComputer(id).getName().toStdString();
-            r_cid == id;
-            setStatus("Adding relation to " + name + ", choose id for person." );
-
+            addComputerRelation(id);
         }
     }
     //cin.ignore(1, '\n');
