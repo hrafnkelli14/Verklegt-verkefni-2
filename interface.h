@@ -29,6 +29,8 @@ private:
     void editComputer(QString id);
     void deletePerson(QString id);
     void deleteComputer(QString id);
+    void addPersonRelation(QString id);
+    void addComputerRelation(QString id);
 
     //settings menus
     void settingsMain();

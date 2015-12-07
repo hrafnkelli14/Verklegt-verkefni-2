@@ -85,8 +85,6 @@ void Interface::addCompOrPerson()
     default:
         break;
     }
-
-
 }
 
 void Interface::addPerson()
@@ -169,7 +167,6 @@ void Interface::viewCompsOrPersons()
 
     switch(ch)
     {
-
     case '1':
         viewPersons();
         break;
@@ -185,7 +182,7 @@ void Interface::viewCompsOrPersons()
 
 void Interface::viewPersons()
 {
-    newMenu("PERSON SEARCH");
+    newMenu("PERSON UTILITY");
     cout << "'*' to view all\n"
             "Search syntax: \"searchtype searchquery\"\n"
             "Available search types:\n"
@@ -196,6 +193,7 @@ void Interface::viewPersons()
             "Command syntax: \"command id\"\n"
             "'edit'   -- edits a person via id number\n"
             "'delete' -- deletes a person via id number\n"
+            "'relation' -- adds a relation to a computer by id number\n"
             "Search results follow current settings\n";
     printSimpleLines();
 
@@ -237,7 +235,7 @@ void Interface::viewPersons()
 
 void Interface::viewComputers()
 {
-    newMenu("COMPUTER SEARCH");
+    newMenu("COMPUTER UTILITY");
     cout << "'*' to view all\n"
             "Search syntax: \"searchtype searchquery\"\n"
             "Available search types:\n"
@@ -248,6 +246,7 @@ void Interface::viewComputers()
             "Command syntax: \"command id\"\n"
             "'edit'   -- edits a computer via id number\n"
             "'delete' -- deletes a computer via id number\n"
+            "'relation' -- adds a relation to a computer scientist by id number\n"
             "Search results follow current settings\n";
     printSimpleLines();
 
@@ -358,6 +357,10 @@ void Interface::doCommand(QString command_string, char type)
         {
             deletePerson(id);
         }
+        else if(command == "relation")
+        {
+
+        }
     }
     else if(type == 'c') //COMPUTER
     {
@@ -382,6 +385,7 @@ void Interface::doCommand(QString command_string, char type)
             string name = request.getComputer(id).getName().toStdString();
             r_cid == id;
             setStatus("Adding relation to " + name + ", choose id for person." );
+
         }
     }
     //cin.ignore(1, '\n');
@@ -465,6 +469,20 @@ void Interface::deleteComputer(QString id)
             setStatus("\"" + name + "\" was NOT deleted!");
         }
     }
+}
+
+void Interface::addPersonRelation(QString id)
+{
+    string name = request.getPerson(id).getName().toStdString();
+    r_cid == id;
+    setStatus("Adding relation to " + name + ", choose id for computer." );
+}
+
+void Interface::addComputerRelation(QString id)
+{
+    string name = request.getComputer(id).getName().toStdString();
+    r_cid == id;
+    setStatus("Adding relation to " + name + ", choose id for person." );
 }
 
 void Interface::settingsMain()
