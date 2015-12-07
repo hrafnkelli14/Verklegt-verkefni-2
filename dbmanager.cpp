@@ -168,12 +168,6 @@ bool DbManager::addComputer(Computer comp)
 
 bool DbManager::addComputerXPerson(QString cid, QString pid)
 {
-    /*
-    return execQuery("INSERT INTO ComputersXPersons "
-                     "VALUES ( " +
-                     pid + ", " +
-                     cid + " )");
-                     */
     bool executed = false;
     db.open();
     QSqlQuery qry;

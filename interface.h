@@ -23,6 +23,8 @@ private:
     void viewComputers();
     void searchResultsPersons(string search_string);
     void searchResultsComputers(string search_string);
+    void viewPersonXComputers(QString id);
+    void viewComputerXPersons(QString id);
 
     void doCommand(QString search_string, char type);
     void editPerson(QString id);

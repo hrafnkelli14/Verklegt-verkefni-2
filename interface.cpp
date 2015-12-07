@@ -349,6 +349,32 @@ void Interface::searchResultsComputers(string search_string)
     printStatus();
 }
 
+void Interface::viewPersonXComputers(QString id)
+{
+    clearConsole();
+    printLines();
+    printMenuHead("PERSON RELATIONS");
+
+    cout << request.outputPersonXComputers(id);
+
+    printSimpleLines();
+    cout << "Press enter to continue";
+    cin.get();
+}
+
+void Interface::viewComputerXPersons(QString id)
+{
+    clearConsole();
+    printLines();
+    printMenuHead("PERSON RELATIONS");
+
+    cout << request.outputComputerXPersons(id);
+
+    printSimpleLines();
+    cout << "Press enter to continue";
+    cin.get();
+}
+
 void Interface::doCommand(QString command_string, char type)
 {
     QString command = request.extractCommand(command_string);
@@ -380,6 +406,10 @@ void Interface::doCommand(QString command_string, char type)
         {
             addPersonRelation(id);
         }
+        else if(command == "viewr")
+        {
+            viewPersonXComputers(id);
+        }
     }
     else if(type == 'c') //COMPUTER
     {
@@ -402,6 +432,10 @@ void Interface::doCommand(QString command_string, char type)
         else if(command == "addr")
         {
             addComputerRelation(id);
+        }
+        else if(command == "viewr")
+        {
+            viewComputerXPersons(id);
         }
     }
 }

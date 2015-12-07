@@ -30,7 +30,7 @@ std::ostream& operator <<(std::ostream& os, PersonXComputers p_x_c)
 {
     os << "Person: " << p_x_c.person.getName().toStdString() << endl;
     os << "Related to:" << endl;
-    for(int i = 0; i < p_x_c.persons.size(); i++)
+    for(int i = 0; i < p_x_c.computers.size(); i++)
     {
         os << p_x_c.computers[i] << endl;
     }

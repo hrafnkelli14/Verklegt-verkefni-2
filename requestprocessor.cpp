@@ -68,6 +68,10 @@ bool RequestProcessor::isCommand(QString command_string)
     {
         return true;
     }
+    else if(command == "viewr")
+    {
+        return true;
+    }
 
     return false;
 }
