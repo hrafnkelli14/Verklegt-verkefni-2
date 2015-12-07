@@ -196,7 +196,9 @@ void Interface::viewPersons()
             "Command syntax: \"command id\"\n"
             "'edit'   -- edits a person via id number\n"
             "'delete' -- deletes a person via id number\n"
-            "'addr'   -- adds a relation to a computer by id number\n"
+            "'addr'   -- pick a person to add relations to via id\n"
+            "            and then pick the related computer with 'addr id'\n"
+            "'viewr'  -- view relations via id number"
             "Search results follow current settings\n";
     printSimpleLines();
     printStatus();
@@ -256,7 +258,9 @@ void Interface::viewComputers()
             "Command syntax: \"command id\"\n"
             "'edit'   -- edits a computer via id number\n"
             "'delete' -- deletes a computer via id number\n"
-            "'addr'   -- adds a relation to a computer scientist by id number\n"
+            "'addr'   -- pick a computer to add relations to via id\n"
+            "            and then pick the related person with 'addr id'\n"
+            "'viewr'  -- view relations via id number"
             "Search results follow current settings\n";
     printSimpleLines();
     printStatus();
