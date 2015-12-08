@@ -1,5 +1,5 @@
 #include "interface.h"
-
+#include "windows.h"
 //========CONSTRUCTORS==========
 Interface::Interface()
 { 
@@ -43,6 +43,9 @@ void Interface::start()
         {
         case 'a':
             about();
+            break;
+        case 's':
+            enterTheMatrixQuestion();
             break;
         case '1':
             addCompOrPerson();
@@ -1027,3 +1030,86 @@ void Interface::checkRelation()
         setStatus("");
     }
 }
+
+void Interface::enterTheMatrixQuestion()
+{
+
+    char ch = ' ';
+
+    clearConsole();
+    printLines();
+    printMenuHead("I AM MORPHEUS");
+    cout << "(1) Take the blue pill, the story ends\n"
+            "(2) take the red pill, you stay in wonderland,\n"
+            "    and I show you how deep the rabbit hole goes \n"
+
+            "Your choice: ";
+    cin.ignore(1, '\n');
+    ch = cin.get();
+
+    switch(ch)
+    {
+    case '1':
+        return;
+        break;
+    case '2':
+        enterTheMatrix();
+        break;
+     }
+}
+
+char Modulus(int iN, int iMod)
+{
+    int iQ = (iN/iMod);
+    return iN - (iQ*iMod);
+
+}
+
+int GetChar(int iGenerator, char cBase, int iRange)
+{
+    return (cBase + Modulus(iGenerator, iRange));
+
+}
+
+void Interface::enterTheMatrix()
+{
+    // Color code
+        HANDLE  hConsole;
+        hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(hConsole, 2);
+
+        char caRow[80];
+        int j = 7;
+        int k = 2;
+        int l = 5;
+        int m = 1;
+        while (true)
+        {
+            int i = 0;
+            // Output a random row of characters
+            while (i < 80) {
+                if (caRow[i] != ' ') {
+                    caRow[i] = GetChar(j + i*i, 33, 30);
+                    if (((i*i + k) % 71) == 0) {
+                        SetConsoleTextAttribute(hConsole,  7);
+                    } else {
+                        SetConsoleTextAttribute(hConsole,  2);
+                    }
+                }
+                std::cout << caRow[i];
+                ++i;
+                SetConsoleTextAttribute(hConsole,  2);
+            }
+            j = (j + 31);
+            k = (k + 17);
+            l = (l + 47);
+            m = (m + 67);
+            caRow[Modulus(j, 80)] = '-';
+            caRow[Modulus(k, 80)] = ' ';
+            caRow[Modulus(l, 80)] = '-';
+            caRow[Modulus(m, 80)] = ' ';
+            // Delay
+            Sleep(10);
+        }
+}
+

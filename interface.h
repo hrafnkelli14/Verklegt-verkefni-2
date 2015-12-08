@@ -52,6 +52,11 @@ private:
     void newMenu(string menuname); //combination of clearConsole(), printSettingsStatus(), printMenuHead() and printLines();
     void waitForAnyKey();
 
+    //easter egg
+    void enterTheMatrixQuestion();
+    void enterTheMatrix();
+    //easter egg code is borrowed from http://xoax.net/cpp/crs/misc/lessons/TheMatrixEffect/
+
     //relation helpers
     void checkRelation();
     bool second_view;
