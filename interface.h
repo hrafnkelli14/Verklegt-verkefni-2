@@ -1,5 +1,6 @@
 #include "requestprocessor.h"
 #include "oscheck.h"
+#include "windows.h" //for easter egg
 
 #ifndef INTERFACE_H
 #define INTERFACE_H
@@ -54,6 +55,8 @@ private:
 
     //easter egg
     void enterTheMatrixQuestion();
+    char mModulus(int i, int i_mod);
+    int getChar(int i_generator, char c_base, int i_range);
     void enterTheMatrix();
     //easter egg code is borrowed from http://xoax.net/cpp/crs/misc/lessons/TheMatrixEffect/
 

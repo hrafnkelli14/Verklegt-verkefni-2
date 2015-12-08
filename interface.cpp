@@ -1,5 +1,5 @@
 #include "interface.h"
-#include "windows.h"
+
 //========CONSTRUCTORS==========
 Interface::Interface()
 { 
@@ -1058,27 +1058,28 @@ void Interface::enterTheMatrixQuestion()
      }
 }
 
-char Modulus(int iN, int iMod)
+char Interface::mModulus(int i, int i_mod)
 {
-    int iQ = (iN/iMod);
-    return iN - (iQ*iMod);
+    int iq = (i/i_mod);
+    return i - (iq*i_mod);
 
 }
 
-int GetChar(int iGenerator, char cBase, int iRange)
+int Interface::getChar(int i_generator, char c_base, int i_range)
 {
-    return (cBase + Modulus(iGenerator, iRange));
+    return (c_base + mModulus(i_generator, i_range));
 
 }
 
 void Interface::enterTheMatrix()
 {
+        clearConsole();
     // Color code
-        HANDLE  hConsole;
-        hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        SetConsoleTextAttribute(hConsole, 2);
+        HANDLE  h_console;
+        h_console = GetStdHandle(STD_OUTPUT_HANDLE);
+        SetConsoleTextAttribute(h_console, 2);
 
-        char caRow[80];
+        char ca_row[80];
         int j = 7;
         int k = 2;
         int l = 5;
@@ -1088,28 +1089,27 @@ void Interface::enterTheMatrix()
             int i = 0;
             // Output a random row of characters
             while (i < 80) {
-                if (caRow[i] != ' ') {
-                    caRow[i] = GetChar(j + i*i, 33, 30);
+                if (ca_row[i] != ' ') {
+                    ca_row[i] = getChar(j + i*i, 33, 30);
                     if (((i*i + k) % 71) == 0) {
-                        SetConsoleTextAttribute(hConsole,  7);
+                        SetConsoleTextAttribute(h_console,  7);
                     } else {
-                        SetConsoleTextAttribute(hConsole,  2);
+                        SetConsoleTextAttribute(h_console,  2);
                     }
                 }
-                std::cout << caRow[i];
+                std::cout << ca_row[i];
                 ++i;
-                SetConsoleTextAttribute(hConsole,  2);
+                SetConsoleTextAttribute(h_console,  2);
             }
             j = (j + 31);
             k = (k + 17);
             l = (l + 47);
             m = (m + 67);
-            caRow[Modulus(j, 80)] = '-';
-            caRow[Modulus(k, 80)] = ' ';
-            caRow[Modulus(l, 80)] = '-';
-            caRow[Modulus(m, 80)] = ' ';
+            ca_row[mModulus(j, 80)] = '-';
+            ca_row[mModulus(k, 80)] = ' ';
+            ca_row[mModulus(l, 80)] = '-';
+            ca_row[mModulus(m, 80)] = ' ';
             // Delay
             Sleep(10);
         }
 }
-
