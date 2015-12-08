@@ -557,7 +557,7 @@ void Interface::addPersonRelation(QString id)
     if(r_cid.isEmpty())
     {
         second_view = true;
-        setStatus("Adding relation to '" + p_name + "', choose id for computer." );
+        setStatus("Adding relation to '" + p_name + "', type addr and choose id for computer." );
         viewComputers();
     }
     else
@@ -583,7 +583,7 @@ void Interface::addComputerRelation(QString id)
     if(r_pid.isEmpty())
     {
         second_view = true;
-        setStatus("Adding relation to '" + c_name + "', choose id for person." );
+        setStatus("Adding relation to '" + c_name + "', type addr and choose id for person." );
         viewPersons();
     }
     else
