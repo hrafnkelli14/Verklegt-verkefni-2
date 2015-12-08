@@ -8,6 +8,16 @@ Interface::Interface()
     r_pid = "";
     r_cid = "";
     second_view = false;
+
+    switch(is_windows)
+    {
+    case 0: //is not windows.. assumes unix terminal
+        clear_command = "clear";
+        break;
+    case 1: //is windows
+        clear_command = "CLS";
+        break;
+    }
 }
 
 Interface::~Interface()
@@ -812,9 +822,8 @@ void Interface::clearConsole()
     {
         cout << endl;
     }
-    //std::system("clear"); //for unix based
-    system("CLS"); //for windows
 
+    system(clear_command.c_str());
 //NOTE: yeah yeah, I know, system() commands are really really bad
 }
 

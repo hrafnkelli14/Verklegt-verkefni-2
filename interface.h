@@ -1,4 +1,5 @@
 #include "requestprocessor.h"
+#include "oscheck.h"
 
 #ifndef INTERFACE_H
 #define INTERFACE_H
@@ -49,7 +50,7 @@ private:
     void printLines(); //prints "===================================================\n" easier for consistency
     void printSimpleLines(); //prints "------------------------------------------------------------------------\n" easier for consistency
     void newMenu(string menuname); //combination of clearConsole(), printSettingsStatus(), printMenuHead() and printLines();
-    void waitForAnyKey(); //waits for any
+    void waitForAnyKey();
 
     //relation helpers
     void checkRelation();
@@ -60,7 +61,7 @@ private:
     string current_status; //current status (to display in main menu)
     string current_settings; //current settings (to display in various menus)
 
-
+    string clear_command; //clear console command(see constructor)
 
     RequestProcessor request;
 };

@@ -27,6 +27,7 @@ HEADERS += \
     computer.h \
     relation.h \
     computerxpersons.h \
-    personxcomputers.h
+    personxcomputers.h \
+    oscheck.h
     requestprocessor.cpp
 
