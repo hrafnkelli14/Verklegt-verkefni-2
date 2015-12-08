@@ -4,7 +4,6 @@
 #include <QString>
 #include <QFileInfo>
 #include <QVector>
-#include <iostream> //DEBUGGING
 #include "person.h"
 #include "computer.h"
 #include "computerxpersons.h"
@@ -13,6 +12,12 @@
 #ifndef DBMANAGER_H
 #define DBMANAGER_H
 
+/* NOTE: This code is very easy to SQL inject and the bad guys are free to do so.
+ * It's in fact so easy, that you have to watch your inputs to avoid accidentally
+ * SQL injecting your database. It's very vulnerable to famous computer scientists like
+ * Bobby Tables. We know this could be easily fixed by using placeholders instead of
+ * just concatenating strings together. This method will be implemented next week.
+ */
 
 class DbManager
 {
@@ -23,8 +28,8 @@ public:
     QVector<Computer> getAllComputers(QString order_by);
     QVector<Person> searchPersons(QString search_type, QString search_query, QString order_by, QString view_gender);
     QVector<Computer> searchComputers(QString search_type, QString search_query, QString order_by);
-    ComputerXPersons getComputerXPersons(QString cid); //this might have a better way to be implemented
-    PersonXComputers getPersonXComputers(QString pid); //TODO implement
+    ComputerXPersons getComputerXPersons(QString cid);
+    PersonXComputers getPersonXComputers(QString pid);
     bool addPerson(Person pers); //adds person to Person table
     bool addComputer(Computer comp);
     bool addComputerXPerson(QString cid, QString pid);
@@ -45,7 +50,6 @@ private:
     QString ascOrDesc(QString order_by);
     QString toISO(QString date);
     QString fromISO(QString date);
-
 
     QSqlDatabase db;
 };
