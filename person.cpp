@@ -187,7 +187,7 @@ ostream& operator <<(ostream& os, Person person1)
     os << "Born: " << person1.date_of_birth << ", ";
     if(person1.date_of_death != "alive")
     {
-        os << " Died: " << person1.date_of_death;
+        os << "Died: " << person1.date_of_death;
     }
 
     return os;
