@@ -127,21 +127,6 @@ void Interface::addComputer()
     }
 }
 
-void Interface::addComputerXPerson()
-{
-    QString cid = "";
-    QString pid = "";
-    string temp;
-
-    cout << "Personid:";
-    cin >> temp;
-    pid = QString::fromStdString(temp);
-    cout << "Computerid:";
-    cin >> temp;
-    cid = QString::fromStdString(temp);
-    request.addComputerXPerson(cid, pid);
-}
-
 void Interface::viewCompsOrPersons()
 {
     newMenu("VIEW");

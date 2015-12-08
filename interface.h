@@ -14,7 +14,6 @@ private:
     void addCompOrPerson();
     void addPerson();
     void addComputer();
-    void addComputerXPerson();
     void viewCompsOrPersons();
     void viewPersons();
     void viewComputers();
