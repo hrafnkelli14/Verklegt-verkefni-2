@@ -241,7 +241,7 @@ bool RequestProcessor::deletePerson(QString pid)
 
 bool RequestProcessor::deleteComputer(QString cid)
 {
-    return data.deletePerson(cid);
+    return data.deleteComputer(cid);
 }
 
 bool RequestProcessor::deleteRelation(QString cid, QString pid)
