@@ -3,11 +3,11 @@
 //========CONSTRUCTORS==========
 DbManager::DbManager()
 {
-    QFileInfo checkFile("data.db");
+    QFileInfo checkFile(QCoreApplication::applicationDirPath() + "\\data.db");
     bool db_exists = checkFile.exists();
 
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("data.db");
+    db.setDatabaseName(QCoreApplication::applicationDirPath() + "\\data.db");
 
     if(!db_exists)
     {
