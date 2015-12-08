@@ -562,6 +562,7 @@ void Interface::addPersonRelation(QString id)
     }
     else
     {
+
         string c_name = request.getComputer(r_cid).getName().toStdString();
         if(request.addComputerXPerson(r_cid, r_pid))
         {
@@ -655,7 +656,9 @@ void Interface::settingsPersonOrdering()
             "(4) to order by date of birth in reverse order \n"
             "(5) to order by date of death \n"
             "(6) to order by date of death in reverse order \n"
-            "(7) to go to main menu \n"
+            "(7) to order by ID\n"
+            "(8) to order by ID in reverse order\n"
+            "(9) to go to main menu \n"
             "enter anything else to go back\n";
     printLines();
 
@@ -690,6 +693,14 @@ void Interface::settingsPersonOrdering()
         setSettingsStatus(); //update settings status
         break;
     case '7':
+        request.setPersonOrdering(pID);
+        setSettingsStatus();
+        break;
+    case '8':
+        request.setPersonOrdering(pID_R);
+        setSettingsStatus();
+        break;
+    case '9':
         return; //go to main menu
         break;
     default:
@@ -712,7 +723,9 @@ void Interface::settingsComputerOrdering()
             "(4) to order by year when built in reverse order \n"
             "(5) to order by type \n"
             "(6) to order by type in reverse order \n"
-            "(7) to go to main menu \n"
+            "(7) to order by ID\n"
+            "(8) to order by ID in reverse order\n"
+            "(9) to go to main menu \n"
             "enter anything else to go back\n";
     printLines();
 
@@ -747,6 +760,14 @@ void Interface::settingsComputerOrdering()
         setSettingsStatus(); //update settings status
         break;
     case '7':
+        request.setComputerOrdering(cID);
+        setSettingsStatus();
+        break;
+    case '8':
+        request.setComputerOrdering(cID_R);
+        setSettingsStatus();
+        break;
+    case '9':
         return; //go to main menu
         break;
     default:
@@ -874,6 +895,11 @@ void Interface::setSettingsStatus()
     case DOD_R:
         new_settingsstatus += "Date of Death(reversed)";
         break;
+    case pID:
+        new_settingsstatus += "ID";
+        break;
+    case pID_R:
+        new_settingsstatus += "ID (reversed)";
     default:
         new_settingsstatus += "This is awkward"; //this should never happen anyway
         break;
@@ -918,6 +944,11 @@ void Interface::setSettingsStatus()
     case TYPE_R:
         new_settingsstatus += "Type(reverse lexicographical)";
         break;
+    case cID:
+        new_settingsstatus += "ID";
+        break;
+    case cID_R:
+        new_settingsstatus += "ID (reverse)";
     }
 
     current_settings = new_settingsstatus;

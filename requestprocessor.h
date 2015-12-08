@@ -7,8 +7,8 @@
 #ifndef REQUESTPROCESSOR_H
 #define REQUESTPROCESSOR_H
 
-enum personordering{NAME, NAME_R, DOB, DOB_R, DOD, DOD_R}; //_R means reverse.
-enum computerordering{CNAME, CNAME_R, YEAR, YEAR_R, TYPE, TYPE_R};
+enum personordering{NAME, NAME_R, DOB, DOB_R, DOD, DOD_R, pID, pID_R}; //_R means reverse.
+enum computerordering{CNAME, CNAME_R, YEAR, YEAR_R, TYPE, TYPE_R, cID, cID_R};
 enum gendertype{MALE, FEMALE, BOTH};
 //BOTH is for implementation of a politically correct list(and is the default setting)
 

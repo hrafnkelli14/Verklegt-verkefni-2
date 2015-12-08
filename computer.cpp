@@ -85,7 +85,7 @@ istream& operator >>(std::istream& ins, Computer& comp)
     }
 
 
-    while(comp.type.empty()) //a computer cant have no name
+    while(comp.type.empty()) //a computer must have a type
     {
         std::cout << "Enter the computer type: ";
         getline(ins, comp.type);

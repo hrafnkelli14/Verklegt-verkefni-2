@@ -303,6 +303,12 @@ QString RequestProcessor::personOrderingToQStr()
     case DOD_R:
         return "DOD_R";
         break;
+    case pID:
+        return "pID";
+        break;
+    case pID_R:
+        return "pID_R";
+        break;
     }
 
     return "";
@@ -329,6 +335,12 @@ QString RequestProcessor::computerOrderingToQStr()
         break;
     case TYPE_R:
         return "TYPE_R";
+        break;
+    case cID:
+        return "cID";
+        break;
+    case cID_R:
+        return "cID_R";
         break;
     }
 
@@ -380,6 +392,14 @@ void RequestProcessor::readPersonOrdering()
     {
         person_order_by = DOD_R;
     }
+    else if(orderingQStr == "pID")
+    {
+        person_order_by = pID;
+    }
+    else if(orderingQStr == "pID_R")
+    {
+        person_order_by = pID_R;
+    }
     else
     {
         person_order_by = NAME; //defaults to name
@@ -412,6 +432,14 @@ void RequestProcessor::readComputerOrdering()
     else if(orderingQStr == "TYPE_R")
     {
         computer_order_by = TYPE_R;
+    }
+    else if(orderingQStr == "cID")
+    {
+        computer_order_by = cID;
+    }
+    else if(orderingQStr == "cID_R")
+    {
+        computer_order_by = cID_R;
     }
     else
     {
